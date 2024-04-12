@@ -1,5 +1,9 @@
 #include "ApplicationManager.h"
 #include "Actions\AddRectAction.h"
+#include "Actions\AddSqrAction.h"
+#include "Actions\AddTriAction.h"
+#include "Actions\AddHexAction.h"
+#include "Actions\AddCircAction.h"
 
 
 //Constructor
@@ -31,19 +35,176 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	Action* pAct = NULL;
 	
 	//According to Action Type, create the corresponding action object
-	switch (ActType)
+	switch (ActType)   //(salem) 5adt el switch case men phase 1 we 3mlt implement le el Add figures
 	{
 		case DRAW_RECT:
+		{
 			pAct = new AddRectAction(this);
 			break;
-
-		case EXIT:
-			///create ExitAction here
-			
+		}
+		case DRAW_SQUARE:
+		{
+			pAct = new AddSqrAction(this);
 			break;
-		
-		case STATUS:	//a click on the status bar ==> no action
-			return;
+		}
+		case DRAW_TRIANGLE:
+		{
+			pAct = new AddTriAction(this);
+			break;
+		}
+
+		case DRAW_CIRCLE:
+		{
+			pAct = new AddCircAction(this);
+			break;
+		}
+
+		case DRAW_HEXAGON:
+		{
+			pAct = new AddHexAction(this);
+			break;
+		}
+
+		case COLOR_BLACK:
+		{
+			pOut->PrintMessage("Action: Black Color , Click anywhere");
+			break;
+		}
+
+		case COLOR_YELLOW:
+		{
+			pOut->PrintMessage("Action: Yellow Color , Click anywhere");
+			break;
+		}
+
+		case COLOR_ORANGE:
+		{
+			pOut->PrintMessage("Action: Orange Color , Click anywhere");
+			break;
+		}
+
+		case COLOR_RED:
+		{
+			pOut->PrintMessage("Action: Red Color , Click anywhere");
+			break;
+		}
+
+		case COLOR_GREEN:
+		{
+			pOut->PrintMessage("Action: Green Color , Click anywhere");
+			break;
+		}
+
+		case COLOR_BLUE:
+		{
+			pOut->PrintMessage("Action: Blue Color , Click anywhere");
+			break;
+		}
+
+		case SELECTED:
+		{
+			pOut->PrintMessage("Action: Selection Tool , Click anywhere");
+			break;
+		}
+		case COLOR_FILLED:
+		{
+			pOut->PrintMessage("Action: Color Fill Tool , Click anywhere");
+			break;
+		}
+		case COLOR_BORDERED:
+		{
+			pOut->PrintMessage("Action: Color Border Tool , Click anywhere");
+			break;
+		}
+		case DELETED:
+		{
+			pOut->PrintMessage("Action: Delete Tool , Click anywhere");
+			break;
+		}
+		case CLEARED:
+		{
+			pOut->PrintMessage("Action: Clear Tool , Click anywhere");
+			break;
+		}
+		case COPIED:
+		{
+			pOut->PrintMessage("Action: Copy Tool , Click anywhere");
+			break;
+		}
+		case CUT:
+		{
+			pOut->PrintMessage("Action: Cut Tool , Click anywhere");
+			break;
+		}
+		case PASTED:
+		{
+			pOut->PrintMessage("Action: Paste Tool , Click anywhere");
+			break;
+		}
+		case FRONT_SENT:
+		{
+			pOut->PrintMessage("Action: Send to Front Tool , Click anywhere");
+			break;
+		}
+		case BACK_SENT:
+		{
+			pOut->PrintMessage("Action: Send to Back Tool , Click anywhere");
+			break;
+		}
+		case SAVED:
+		{
+			pOut->PrintMessage("Action: Save Tool , Click anywhere");
+			break;
+		}
+		case LOADED:
+		{
+			pOut->PrintMessage("Action: Load Tool , Click anywhere");
+			break;
+		}
+		case STATUS:
+		{
+			pOut->PrintMessage("Action: a click on the Status Bar, Click anywhere");
+			break;
+		}
+		case DRAWING_AREA:
+		{
+			pOut->PrintMessage("Action: a click on the Drawing Area, Click anywhere");
+			break;
+		}
+		case EMPTY:
+		{
+			pOut->PrintMessage("Action: a click on empty area in the Tool Bar, Click anywhere");
+			break;
+		}
+		case TO_DRAW:
+		{
+			pOut->PrintMessage("Action: Switch to Draw Mode");
+			pOut->CreateDrawToolBar();
+			break;
+		}
+		case TO_PLAY:
+		{
+			pOut->PrintMessage("Action: Switch to Play Mode");
+			pOut->CreatePlayToolBar();
+			break;
+		}
+		case TYPE:
+		{
+			pOut->PrintMessage("Action: click on find by type");
+			break;
+		}
+		case TYPE_AND_COLOR:
+		{
+			pOut->PrintMessage("Action: click on find by type and color");
+			break;
+		}
+		case COLOR:
+		{
+			pOut->PrintMessage("Action: click on find by color");
+			break;
+		}
+		case EXIT:
+			break;
 	}
 	
 	//Execute the created action
