@@ -4,6 +4,18 @@
 #include "CMUgraphicsLib\CMUgraphics.h"
 
 //This file contains some global constants and definitions to be used in the project.
+enum FigureType //Added by salem
+{
+	SQUARE,
+
+	RECTANGLE,
+
+	HEXAGON,
+
+	TRIANGLE,
+	
+	CIRCLE
+};
 enum ActionType //The actions supported (you can add more if needed)
 {
 	DRAW_RECT,		//Draw Rectangle

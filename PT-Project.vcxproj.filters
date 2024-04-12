@@ -25,6 +25,9 @@
     <Filter Include="Action Classes\FigureActions">
       <UniqueIdentifier>{f2ec7709-59b4-4ead-8d91-43d9f141806e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Action Classes\Miscellanious Actions">
+      <UniqueIdentifier>{496cf20f-6aa2-4e05-82be-a0bca81b4108}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMUgraphicsLib\auxil.cpp">
@@ -178,6 +181,9 @@
     <ClCompile Include="Actions\AddTriAction.cpp">
       <Filter>Action Classes\FigureActions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\SelectionAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -288,6 +294,9 @@
     </ClInclude>
     <ClInclude Include="Actions\AddTriAction.h">
       <Filter>Action Classes\FigureActions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SelectionAction.h">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

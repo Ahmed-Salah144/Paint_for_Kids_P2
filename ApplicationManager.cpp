@@ -4,6 +4,7 @@
 #include "Actions\AddTriAction.h"
 #include "Actions\AddHexAction.h"
 #include "Actions\AddCircAction.h"
+#include "Actions\SelectionAction.h"
 
 
 //Constructor
@@ -103,7 +104,8 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case SELECTED:
 		{
-			pOut->PrintMessage("Action: Selection Tool , Click anywhere");
+			pOut->PrintMessage("Action: Selection Tool , Click to select");
+			pAct = new SelectionAction(this);
 			break;
 		}
 		case COLOR_FILLED:
@@ -222,8 +224,11 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 //Add a figure to the list of figures
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
-	if(FigCount < MaxFigCount )
-		FigList[FigCount++] = pFig;	
+	if (FigCount < MaxFigCount)
+	{
+		FigList[FigCount++] = pFig;
+		pFig->SetID(FigCount);//(salem)
+	}
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
@@ -235,8 +240,14 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 	//Add your code here to search for a figure given a point x,y	
 	//Remember that ApplicationManager only calls functions do NOT implement it.
 
+	for (int i = FigCount - 1; i >= 0; i--)
+	{
+		if (FigList[i]->IsClicked(x, y))
+			return FigList[i];
+	}
 	return NULL;
 }
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
