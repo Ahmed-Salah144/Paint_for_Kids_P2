@@ -19,6 +19,9 @@
     <Filter Include="Application Manager">
       <UniqueIdentifier>{be3a4e10-d854-4bf8-9add-2f85904b4103}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Figures Classes\Figures">
+      <UniqueIdentifier>{eb4be2e3-d499-436d-bc5d-1c53437bc559}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMUgraphicsLib\auxil.cpp">
@@ -129,9 +132,6 @@
     <ClCompile Include="Figures\CFigure.cpp">
       <Filter>Figures Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Figures\CRectangle.cpp">
-      <Filter>Figures Classes</Filter>
-    </ClCompile>
     <ClCompile Include="Actions\AddRectAction.cpp">
       <Filter>Action Classes</Filter>
     </ClCompile>
@@ -147,6 +147,21 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CMUgraphicsLib\colors.cpp">
       <Filter>CMUgraphicsLib</Filter>
+    </ClCompile>
+    <ClCompile Include="Figures\CTriangle.cpp">
+      <Filter>Figures Classes\Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="Figures\CCircle.cpp">
+      <Filter>Figures Classes\Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="Figures\CRectangle.cpp">
+      <Filter>Figures Classes\Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="Figures\CHexagon.cpp">
+      <Filter>Figures Classes\Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="Figures\CSquare.cpp">
+      <Filter>Figures Classes\Figures</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -213,9 +228,6 @@
     <ClInclude Include="Figures\CFigure.h">
       <Filter>Figures Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Figures\CRectangle.h">
-      <Filter>Figures Classes</Filter>
-    </ClInclude>
     <ClInclude Include="Actions\Action.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
@@ -235,6 +247,21 @@
       <Filter>Application Manager</Filter>
     </ClInclude>
     <ClInclude Include="DEFS.h" />
+    <ClInclude Include="Figures\CTriangle.h">
+      <Filter>Figures Classes\Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="Figures\CRectangle.h">
+      <Filter>Figures Classes\Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="Figures\CHexagon.h">
+      <Filter>Figures Classes\Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="Figures\CSquare.h">
+      <Filter>Figures Classes\Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="Figures\CCircle.h">
+      <Filter>Figures Classes\Figures</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
