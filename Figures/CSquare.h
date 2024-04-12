@@ -3,8 +3,7 @@
 
 #include"CFigure.h"
 
-class CSquare :
-	CFigure
+class CSquare : public CFigure
 {
 private:
 	Point Center;

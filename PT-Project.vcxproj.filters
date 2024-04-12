@@ -22,6 +22,9 @@
     <Filter Include="Figures Classes\Figures">
       <UniqueIdentifier>{eb4be2e3-d499-436d-bc5d-1c53437bc559}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Action Classes\FigureActions">
+      <UniqueIdentifier>{f2ec7709-59b4-4ead-8d91-43d9f141806e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMUgraphicsLib\auxil.cpp">
@@ -132,9 +135,6 @@
     <ClCompile Include="Figures\CFigure.cpp">
       <Filter>Figures Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Actions\AddRectAction.cpp">
-      <Filter>Action Classes</Filter>
-    </ClCompile>
     <ClCompile Include="GUI\Input.cpp">
       <Filter>GUI Classes</Filter>
     </ClCompile>
@@ -162,6 +162,21 @@
     </ClCompile>
     <ClCompile Include="Figures\CSquare.cpp">
       <Filter>Figures Classes\Figures</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddRectAction.cpp">
+      <Filter>Action Classes\FigureActions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddCircAction.cpp">
+      <Filter>Action Classes\FigureActions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddHexAction.cpp">
+      <Filter>Action Classes\FigureActions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddSqrAction.cpp">
+      <Filter>Action Classes\FigureActions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddTriAction.cpp">
+      <Filter>Action Classes\FigureActions</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -231,9 +246,6 @@
     <ClInclude Include="Actions\Action.h">
       <Filter>Action Classes</Filter>
     </ClInclude>
-    <ClInclude Include="Actions\AddRectAction.h">
-      <Filter>Action Classes</Filter>
-    </ClInclude>
     <ClInclude Include="GUI\Input.h">
       <Filter>GUI Classes</Filter>
     </ClInclude>
@@ -261,6 +273,21 @@
     </ClInclude>
     <ClInclude Include="Figures\CCircle.h">
       <Filter>Figures Classes\Figures</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddRectAction.h">
+      <Filter>Action Classes\FigureActions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddCircAction.h">
+      <Filter>Action Classes\FigureActions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddHexAction.h">
+      <Filter>Action Classes\FigureActions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddSqrAction.h">
+      <Filter>Action Classes\FigureActions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddTriAction.h">
+      <Filter>Action Classes\FigureActions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

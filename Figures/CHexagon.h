@@ -4,8 +4,7 @@
 
 #include"CFigure.h"
 
-class CHexagon :
-	CFigure
+class CHexagon : public CFigure
 {
 private:
 	Point Center;

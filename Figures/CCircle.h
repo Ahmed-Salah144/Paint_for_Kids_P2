@@ -4,8 +4,7 @@
 
 #include"CFigure.h"
 
-class CCircle :
-	CFigure
+class CCircle : public CFigure
 {
 private:
 	Point Center;
