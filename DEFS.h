@@ -7,12 +7,71 @@
 enum ActionType //The actions supported (you can add more if needed)
 {
 	DRAW_RECT,		//Draw Rectangle
-	EXIT,			//Exit
-	TO_DRAW,		//Switch interface to Draw mode
+
+	DRAW_SQUARE,    //shaped declaration abdo
+
+	DRAW_TRIANGLE,	
+
+	DRAW_CIRCLE,	
+
+	DRAW_HEXAGON,	
+
+	COLOR_BLACK,	// colors declaration abdo
+
+	COLOR_YELLOW,	
+
+	COLOR_ORANGE,	
+
+	COLOR_RED,		
+
+	COLOR_GREEN,	
+
+	COLOR_BLUE,		
+
+	SELECTED,		// features declaration abdo
+
+	COLOR_FILLED,  
+
+	COLOR_BORDERED,
+
+	DELETED,
+
+	CLEARED, 
+
+	COPIED, 
+
+	CUT,
+
+	PASTED,
+
+	FRONT_SENT,
+
+	BACK_SENT,
+
+	SAVED,
+
+	LOADED,
+
 	TO_PLAY,		//Switch interface to Play mode
+
+	EXIT,			//Exit 
+
+	TO_DRAW,		//Switch interface to Draw mode
+
 	EMPTY,			//A click on empty place in the toolbar
+
 	DRAWING_AREA,	//A click on the drawing area
-	STATUS			//A click on the status bar
+
+	STATUS,			//A click on the status bar
+
+	TYPE,
+
+	COLOR,
+
+	TYPE_AND_COLOR,
+
+	DRAW_MODE
+
 
 	///TODO: Add the other action types of the two modes
 };
