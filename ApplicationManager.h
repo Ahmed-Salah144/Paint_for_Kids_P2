@@ -15,7 +15,6 @@ class ApplicationManager
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
-
 	CFigure* SelectedFigList[MaxFigCount]; //Pointer to the selected figures(salem)
 	int SelectedFigCount;//(salem)
 	int SelectedRects, SelectedSqrs, SelectedHexes, SelectedTris, SelectedCircs ;//selected
@@ -35,14 +34,16 @@ public:
 	//Reads the input command from the user and returns the corresponding action type
 	ActionType GetUserAction() const;
 	void ExecuteAction(ActionType) ; //Creates an action and executes it
-	
 	// -- Figures Management Functions
 	void AddFigure(CFigure* pFig);          //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 
+	CFigure* GetSelectedFigure() const;
+
 	// -- Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
+
 	void UpdateInterface() const;	//Redraws all the drawing window	
 	void UpdateNumOfFigures();
 	friend class SelectionAction;//Awaiting confirmation from TA(Salem)

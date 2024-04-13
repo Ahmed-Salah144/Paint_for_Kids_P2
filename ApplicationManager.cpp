@@ -5,6 +5,8 @@
 #include "Actions\AddHexAction.h"
 #include "Actions\AddCircAction.h"
 #include "Actions\SelectionAction.h"
+#include "Actions\BorderColorAction.h"
+#include "Actions\FillColorAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -112,12 +114,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		}
 		case COLOR_FILLED:
 		{
-			pOut->PrintMessage("Action: Color Fill Tool , Click anywhere");
+			if (SelectedFigCount == 1)
+				pAct = new FillColorAction(this);
+			else
+				pOut->PrintMessage("Error! You can only select one shape to change fill color");
 			break;
 		}
 		case COLOR_BORDERED:
 		{
-			pOut->PrintMessage("Action: Color Border Tool , Click anywhere");
+			if (SelectedFigCount == 1)
+				pAct = new BorderColorAction(this);
+			else
+				pOut->PrintMessage("Error! You can only select one shape to change border color");
 			break;
 		}
 		case DELETED:
@@ -231,6 +239,10 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 		FigList[FigCount++] = pFig;
 		pFig->SetID(FigCount);//(salem)
 	}
+}
+CFigure* ApplicationManager::GetSelectedFigure()const
+{
+	return SelectedFigList[0];
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const

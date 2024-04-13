@@ -184,6 +184,12 @@
     <ClCompile Include="Actions\SelectionAction.cpp">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\BorderColorAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\FillColorAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -296,6 +302,12 @@
       <Filter>Action Classes\FigureActions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\SelectionAction.h">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\BorderColorAction.h">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\FillColorAction.h">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
   </ItemGroup>
