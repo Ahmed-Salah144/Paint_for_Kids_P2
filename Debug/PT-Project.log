@@ -1,13 +1,7 @@
 ﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  CTriangle.cpp
-C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Figures\CTriangle.cpp(26,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Figures\CTriangle.cpp(30,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  CHexagon.cpp
-C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Figures\CHexagon.cpp(25,24): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Figures\CHexagon.cpp(30,23): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  CCircle.cpp
-C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Figures\CCircle.cpp(10,15): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Figures\CCircle.cpp(25,14): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  SelectionAction.cpp
   Generating Code...
-AddCircAction.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
+  Skipping... (no relevant changes detected)
+  ApplicationManager.cpp
+  AddCircAction.cpp
   PT-Project.vcxproj -> C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Debug\PT Project.exe

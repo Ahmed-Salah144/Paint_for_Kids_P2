@@ -16,6 +16,7 @@ void CHexagon::Draw(Output* pOut) const
 
 void CHexagon::PrintInfo(Output* pOut)
 {
+	pOut->PrintMessage("Hexagon   ID: " + to_string(ID) + " ,Center : (" + to_string(Center.x) + "," + to_string(Center.y) + "),Side Length : " + to_string(100));
 }
 
 bool CHexagon::IsClicked(int x, int y)

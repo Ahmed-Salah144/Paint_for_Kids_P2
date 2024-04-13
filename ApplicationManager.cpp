@@ -6,7 +6,6 @@
 #include "Actions\AddCircAction.h"
 #include "Actions\SelectionAction.h"
 
-
 //Constructor
 ApplicationManager::ApplicationManager()
 {
@@ -104,7 +103,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case SELECTED:
 		{
-			pOut->PrintMessage("Action: Selection Tool , Click to select");
 			pAct = new SelectionAction(this);
 			break;
 		}
@@ -257,6 +255,40 @@ void ApplicationManager::UpdateInterface() const
 {	
 	for(int i=0; i<FigCount; i++)
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
+}
+
+void ApplicationManager::UpdateNumOfFigures()
+{
+	SelectedRects = 0, SelectedSqrs = 0, SelectedHexes = 0, SelectedTris = 0, SelectedCircs = 0;
+	NumOfRect = 0, NumOfSqr = 0, NumOfHex = 0, NumOfTri = 0, NumOfCirc = 0;
+	for (int i = 0; i <FigCount; i++)
+	{
+		if (FigList[i] != NULL)
+		{
+			switch (FigList[i]->GetFigType())
+			{
+			case HEXAGON:NumOfHex++; break;
+			case CIRCLE:NumOfCirc++; break;
+			case TRIANGLE:NumOfTri++; break;
+			case SQUARE:NumOfSqr++; break;
+			case RECTANGLE:	NumOfRect++; break;
+			}
+		}
+	}
+	for (int i = 0; i < SelectedFigCount; i++)
+	{
+		if (SelectedFigList[i] != NULL)
+		{
+			switch (SelectedFigList[i]->GetFigType())
+			{
+			case HEXAGON:SelectedHexes++; break;
+			case CIRCLE:SelectedCircs++; break;
+			case TRIANGLE:SelectedTris++; break;
+			case SQUARE:SelectedSqrs++; break;
+			case RECTANGLE:SelectedRects++; break;
+			}
+		}
+	}
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input

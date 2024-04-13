@@ -5,6 +5,8 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(Figure
 	Corner1 = P1;
 	Corner2 = P2;
 	FigType = RECTANGLE;
+	L = abs(P1.x - P2.x);
+	W = abs(P1.y - P2.y);
 }
 	
 
@@ -16,6 +18,9 @@ void CRectangle::Draw(Output* pOut) const
 
 void CRectangle::PrintInfo(Output* pOut)
 {
+	string Message = "Rectangle   ID: " + to_string(ID) + " ,Corner 1: (" + to_string(Corner1.x) + "," + to_string(Corner1.y) + ")" + " ,Corner 2: (" + to_string(Corner2.x) + "," + to_string(Corner2.y) + ")";
+	Message += ",Length: "+to_string(L)+",Width: "+to_string(W);
+	pOut->PrintMessage(Message);
 }
 
 bool CRectangle::IsClicked(int x, int y)

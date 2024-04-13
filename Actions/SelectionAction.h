@@ -8,12 +8,11 @@ class SelectionAction : public Action
 {
 private:
 	Point Click;//Clicked Point
-	CFigure* SelectedFigs[200];
-	int NumOfFigures=0;
-	int NumOfRect=0, NumOfSqr=0, NumOfHex=0, NumOfTri=0, NumOfCirc=0;
 public:
 	SelectionAction(ApplicationManager* pApp);
-	void UpdateNumOfFigures();
+	bool DeselectFigure(CFigure*);
+	bool SelectFigure(CFigure*);
+	void ClearAllSelection();
 	virtual void ReadActionParameters();
 
 	virtual void Execute();

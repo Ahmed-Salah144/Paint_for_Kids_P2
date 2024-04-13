@@ -12,6 +12,15 @@ void CFigure::SetSelected(bool s)
 bool CFigure::IsSelected() const
 {	return Selected; }
 
+bool CFigure::IsTheSame(CFigure* pFig) const
+{
+	if (pFig == NULL)
+		return false;
+	if (pFig->ID == this->ID)
+		return true;
+	return false;
+}
+
 void CFigure::ChngDrawClr(color Dclr)
 {	FigGfxInfo.DrawClr = Dclr; }
 

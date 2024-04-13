@@ -18,6 +18,7 @@ void CCircle::Draw(Output* pOut) const
 
 void CCircle::PrintInfo(Output* pOut)
 {
+	pOut->PrintMessage("Circle   ID: " + to_string(ID) + " ,Center : (" + to_string(Center.x) + "," + to_string(Center.y) + "),Radius : " + to_string(Radius));
 }
 
 bool CCircle::IsClicked(int x, int y)

@@ -12,26 +12,56 @@ SelectionAction::SelectionAction(ApplicationManager* pApp) :Action(pApp)
 {
 }
 
-void SelectionAction::UpdateNumOfFigures()
+
+bool SelectionAction::DeselectFigure(CFigure*pFig)
 {
-	NumOfHex = 0;
-	NumOfCirc = 0;
-	NumOfRect = 0;
-	NumOfSqr = 0;
-	NumOfTri = 0;
-	for (int i = 0; i < NumOfFigures; i++)
+	if (pFig == NULL)
+		return false;
+	if (pFig->IsSelected())
 	{
-		switch (SelectedFigs[i]->GetFigType())
+		pFig->SetSelected(false);
+		for (int i = 0; i < pManager->SelectedFigCount; i++)
 		{
-		case HEXAGON:NumOfHex++; break;
-		case CIRCLE:NumOfCirc++; break;
-		case TRIANGLE:NumOfRect++; break;
-		case SQUARE:NumOfSqr++; break;
-		case RECTANGLE:	NumOfTri++; break;
+			if (pFig->IsTheSame(pManager->SelectedFigList[i]))
+			{
+				pManager->SelectedFigList[i] = pManager->SelectedFigList[pManager->SelectedFigCount - 1];
+				pManager->SelectedFigList[pManager->SelectedFigCount - 1] = NULL;
+				break;
+			}
 		}
+		pManager->SelectedFigCount--;
+		pManager->UpdateNumOfFigures();
+		return true;
 	}
+	return false;
 }
 
+bool SelectionAction::SelectFigure(CFigure* pFig)
+{
+	if (pFig == NULL)
+		return false;
+	if (pManager->SelectedFigCount < 200)
+	{
+		if (!(pFig->IsSelected()))
+		{
+			pFig->SetSelected(true);
+			pManager->SelectedFigList[pManager->SelectedFigCount++] = pFig;
+			pManager->UpdateNumOfFigures();
+			return true;
+		}
+	}
+	return false;
+}
+void SelectionAction::ClearAllSelection()
+{
+	for (int i = 0; i < pManager->SelectedFigCount; i++)
+	{
+		pManager->SelectedFigList[i]->SetSelected(false);
+		pManager->SelectedFigList[i]=NULL;
+	}
+	pManager->SelectedFigCount = 0;;
+	pManager->UpdateNumOfFigures();
+}
 void SelectionAction::ReadActionParameters()
 {
 	//Get a Pointer to the Input / Output Interfaces
@@ -53,23 +83,13 @@ void SelectionAction::Execute()
 
 	CFigure* pFig = pManager->GetFigure(Click.x, Click.y);
 	Output* pOut = pManager->GetOutput();
-	if ( pFig == NULL)
-	{
-		for (int i = NumOfFigures; i >= 0; i--)
-			SelectedFigs[i] = NULL;
-		NumOfFigures = 0;
-	}
-	else if(NumOfFigures<200)
-	{
-		pFig->SetSelected(true);
-		SelectedFigs[NumOfFigures++];
-		if (NumOfFigures == 1)
-			pFig->PrintInfo(pOut);
-		else
-		{
-			UpdateNumOfFigures();
-			pOut->PrintMessage("Selected: " + to_string(NumOfRect) + " Rectangle(s)," + to_string(NumOfTri) + " triangle(s)," + to_string(NumOfHex) + " Hexagon(s), " + to_string(NumOfCirc) + " circle(s)," + to_string(NumOfSqr) + " Square(s)");
-		}
-	}
-
+	if (!(SelectFigure(pFig)))
+		if (!DeselectFigure(pFig))
+			ClearAllSelection();
+	if (pManager->SelectedFigCount == 0)
+		pOut->PrintMessage("No Selected Figures");
+	else if (pManager->SelectedFigCount == 1)
+		pManager->SelectedFigList[0]->PrintInfo(pOut);
+	else
+		pOut->PrintMessage("Selected: " + to_string(pManager->SelectedRects) + " Rectangle(s)," + to_string(pManager->SelectedTris) + " triangle(s)," + to_string(pManager->SelectedHexes) + " Hexagon(s), " + to_string(pManager->SelectedCircs) + " circle(s)," + to_string(pManager->SelectedSqrs) + " Square(s)");
 }

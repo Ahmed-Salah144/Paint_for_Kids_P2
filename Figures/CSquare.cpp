@@ -14,6 +14,7 @@ void CSquare::Draw(Output* pOut) const
 
 void CSquare::PrintInfo(Output* pOut)
 {
+	pOut->PrintMessage("Square   ID: " + to_string(ID) + " ,Center : (" + to_string(Center.x) + "," + to_string(Center.y) + "),Length : " + to_string(113));
 }
 
 bool CSquare::IsClicked(int x, int y)

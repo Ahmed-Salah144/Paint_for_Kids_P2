@@ -5,6 +5,7 @@
 #include "Figures\CFigure.h"
 #include "GUI\input.h"
 #include "GUI\output.h"
+#include "Actions\SelectionAction.h"
 
 //Main class that manages everything in the application.
 class ApplicationManager
@@ -15,7 +16,10 @@ private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
 
-	CFigure* SelectedFig; //Pointer to the selected figure
+	CFigure* SelectedFigList[MaxFigCount]; //Pointer to the selected figures(salem)
+	int SelectedFigCount;//(salem)
+	int SelectedRects = 0, SelectedSqrs = 0, SelectedHexes = 0, SelectedTris = 0, SelectedCircs = 0;//selected
+	int NumOfRect = 0, NumOfSqr = 0, NumOfHex = 0, NumOfTri = 0, NumOfCirc = 0;//total;
 
 	//Pointers to Input and Output classes
 	Input *pIn;
@@ -40,6 +44,8 @@ public:
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
 	void UpdateInterface() const;	//Redraws all the drawing window	
+	void UpdateNumOfFigures();
+	friend class SelectionAction;//Awaiting confirmation from TA(Salem)
 };
 
 #endif
