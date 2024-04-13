@@ -14,10 +14,14 @@ ApplicationManager::ApplicationManager()
 	pIn = pOut->CreateInput();
 	
 	FigCount = 0;
-		
+	SelectedFigCount = 0;
+	SelectedRects = 0; SelectedSqrs = 0; SelectedHexes = 0; SelectedTris = 0; SelectedCircs = 0;
+	NumOfRect = 0; NumOfSqr = 0; NumOfHex = 0; NumOfTri = 0; NumOfCirc = 0;
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
+	for (int i = 0; i < MaxFigCount; i++)
+		SelectedFigList[i] = NULL;
 }
 
 //==================================================================================//

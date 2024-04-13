@@ -19,7 +19,7 @@ private:
 	CFigure* SelectedFigList[MaxFigCount]; //Pointer to the selected figures(salem)
 	int SelectedFigCount;//(salem)
 	int SelectedRects, SelectedSqrs, SelectedHexes, SelectedTris, SelectedCircs ;//selected
-	int NumOfRect, NumOfSqr, NumOfHex, NumOfTri, NumOfCirc;//total;
+	int NumOfRect,NumOfSqr, NumOfHex, NumOfTri, NumOfCirc;//total;
 
 	//Pointers to Input and Output classes
 	Input *pIn;
