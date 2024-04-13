@@ -45,6 +45,7 @@ public:
 	Output *GetOutput() const; //Return pointer to the output
 
 	void UpdateInterface() const;	//Redraws all the drawing window	
+	void ClearAll();//(salem)
 	void UpdateNumOfFigures();
 	friend class SelectionAction;//Awaiting confirmation from TA(Salem)
 };

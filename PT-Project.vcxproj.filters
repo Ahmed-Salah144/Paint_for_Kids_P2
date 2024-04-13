@@ -190,6 +190,9 @@
     <ClCompile Include="Actions\FillColorAction.cpp">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\ClearAllAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -308,6 +311,9 @@
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\FillColorAction.h">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ClearAllAction.h">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
   </ItemGroup>

@@ -7,6 +7,7 @@
 #include "Actions\SelectionAction.h"
 #include "Actions\BorderColorAction.h"
 #include "Actions\FillColorAction.h"
+#include "Actions\ClearAllAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -135,8 +136,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		}
 		case CLEARED:
 		{
-			pOut->PrintMessage("Action: Clear Tool , Click anywhere");
-			break;
+			{
+				pAct = new ClearAllAction(this);
+				break;
+			}
 		}
 		case COPIED:
 		{
@@ -305,6 +308,20 @@ void ApplicationManager::UpdateNumOfFigures()
 			}
 		}
 	}
+}
+
+void ApplicationManager::ClearAll()
+{	
+	for (int i = 0; i < FigCount; i++)
+	{
+		//delete FigList[i]; T_T MEMORY MANAGMENT
+		FigList[i] = NULL;
+	}		
+	FigCount = 0;
+	for (int i = 0; i < MaxFigCount; i++)
+		SelectedFigList[i] = NULL;
+	SelectedFigCount = 0;
+	UpdateNumOfFigures();
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input
