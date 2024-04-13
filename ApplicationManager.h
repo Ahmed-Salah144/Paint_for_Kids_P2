@@ -18,8 +18,8 @@ private:
 
 	CFigure* SelectedFigList[MaxFigCount]; //Pointer to the selected figures(salem)
 	int SelectedFigCount;//(salem)
-	int SelectedRects = 0, SelectedSqrs = 0, SelectedHexes = 0, SelectedTris = 0, SelectedCircs = 0;//selected
-	int NumOfRect = 0, NumOfSqr = 0, NumOfHex = 0, NumOfTri = 0, NumOfCirc = 0;//total;
+	int SelectedRects, SelectedSqrs, SelectedHexes, SelectedTris, SelectedCircs ;//selected
+	int NumOfRect, NumOfSqr, NumOfHex, NumOfTri, NumOfCirc;//total;
 
 	//Pointers to Input and Output classes
 	Input *pIn;
