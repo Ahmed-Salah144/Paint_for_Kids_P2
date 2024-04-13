@@ -305,9 +305,8 @@ Output *ApplicationManager::GetOutput() const
 //Destructor
 ApplicationManager::~ApplicationManager()
 {
-	for(int i=0; i<FigCount; i++)
-		delete FigList[i];
+	//for (int i = 0; i < FigCount; i++)
+		//delete FigList[i];//ERROR!
 	delete pIn;
 	delete pOut;
-	
 }
