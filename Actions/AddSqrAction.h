@@ -1,10 +1,10 @@
 #ifndef ADD_SQR_ACTION_H
 #define ADD_SQR_ACTION_H
 
-#include "Action.h"
+#include "AddFigureAction.h"
 
 //Add Square Action class
-class AddSqrAction : public Action
+class AddSqrAction : public AddFigureAction
 {
 private:
 	Point P; //Square Center

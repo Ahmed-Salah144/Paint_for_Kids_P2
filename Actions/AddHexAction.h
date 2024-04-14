@@ -1,10 +1,10 @@
 #ifndef ADD_HEX_ACTION_H
 #define ADD_HEX_ACTION_H
 
-#include "Action.h"
+#include "AddFigureAction.h"
 
 //Add Hexagon Action class
-class AddHexAction : public Action
+class AddHexAction : public AddFigureAction
 {
 private:
 	Point P; //Hexagon Center

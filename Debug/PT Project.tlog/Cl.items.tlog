@@ -4,8 +4,11 @@ C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Actions\Add
 C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Actions\AddTriAction.cpp;C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Debug\AddTriAction.obj
 C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Actions\BorderColorAction.cpp;C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Debug\BorderColorAction.obj
 C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Actions\ClearAllAction.cpp;C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Debug\ClearAllAction.obj
+C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Actions\DeleteAction.cpp;C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Debug\DeleteAction.obj
 C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Actions\FillColorAction.cpp;C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Debug\FillColorAction.obj
 C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Actions\SelectionAction.cpp;C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Debug\SelectionAction.obj
+C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Actions\SendToBackAction.cpp;C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Debug\SendToBackAction.obj
+C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Actions\BringToFrontAction.cpp;C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Debug\BringToFrontAction.obj
 C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\CMUgraphicsLib\auxil.cpp;C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Debug\auxil.obj
 C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\CMUgraphicsLib\CMUgraphics.cpp;C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Debug\CMUgraphics.obj
 C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\CMUgraphicsLib\colors.cpp;C:\My PC\Project CMPS102\Phase 2\Phase2 - Code F22\Paint_for_Kids_P2\Debug\colors.obj

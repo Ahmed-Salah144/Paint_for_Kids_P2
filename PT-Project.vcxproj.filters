@@ -193,6 +193,15 @@
     <ClCompile Include="Actions\ClearAllAction.cpp">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\DeleteAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\BringToFrontAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\SendToBackAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -315,6 +324,18 @@
     </ClInclude>
     <ClInclude Include="Actions\ClearAllAction.h">
       <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\DeleteAction.h">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\BringToFrontAction.h">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SendToBackAction.h">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddFigureAction.h">
+      <Filter>Action Classes\FigureActions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

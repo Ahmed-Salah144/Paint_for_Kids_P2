@@ -16,7 +16,7 @@ void FillColorAction::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	pOut->PrintMessage("Select New Fill Color");
-	SelectedFigure = pManager->GetSelectedFigure();
+	SelectedFigure = pManager->GetSelectedFigure(0);
 	switch (pIn->GetUserAction())
 	{
 	case COLOR_BLACK:

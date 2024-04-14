@@ -6,7 +6,7 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-AddTriAction::AddTriAction(ApplicationManager* pApp) :Action(pApp)
+AddTriAction::AddTriAction(ApplicationManager* pApp) :AddFigureAction(pApp)
 {}
 
 void AddTriAction::ReadActionParameters()
@@ -48,7 +48,7 @@ void AddTriAction::Execute()
 
 	//Create a triangle with the parameters read from the user
 	CTriangle* T = new CTriangle(P1, P2,P3,TriGfxInfo);
-
+	T->SetID(FigCount + 1);
 	//Add the triangle to the list of figures
 	pManager->AddFigure(T);
 }

@@ -1,10 +1,10 @@
 #ifndef ADD_TRI_ACTION_H
 #define ADD_TRI_ACTION_H
 
-#include "Action.h"
+#include "AddFigureAction.h"
 
 //Add Triangle Action class
-class AddTriAction : public Action
+class AddTriAction : public AddFigureAction
 {
 private:
 	Point P1, P2,P3; //Triangle Vertices

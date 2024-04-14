@@ -6,7 +6,7 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-AddRectAction::AddRectAction(ApplicationManager * pApp):Action(pApp)
+AddRectAction::AddRectAction(ApplicationManager * pApp):AddFigureAction(pApp)
 {}
 
 void AddRectAction::ReadActionParameters() 
@@ -42,7 +42,7 @@ void AddRectAction::Execute()
 	
 	//Create a rectangle with the parameters read from the user
 	CRectangle *R=new CRectangle(P1, P2, RectGfxInfo);
-
+	R->SetID(FigCount + 1);
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
 }

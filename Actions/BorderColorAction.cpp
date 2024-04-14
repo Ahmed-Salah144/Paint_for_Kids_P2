@@ -16,7 +16,7 @@ void BorderColorAction::ReadActionParameters()
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
 	pOut->PrintMessage("Select New Border Color");
-	SelectedFigure = pManager->GetSelectedFigure();
+	SelectedFigure = pManager->GetSelectedFigure(0);
 	switch (pIn->GetUserAction())
 	{
 	case COLOR_BLACK:

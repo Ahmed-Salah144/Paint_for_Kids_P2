@@ -8,6 +8,9 @@
 #include "Actions\BorderColorAction.h"
 #include "Actions\FillColorAction.h"
 #include "Actions\ClearAllAction.h"
+#include "Actions\DeleteAction.h"
+#include "Actions\BringToFrontAction.h"
+#include "Actions\SendToBackAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -72,7 +75,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		}
 
-		case COLOR_BLACK:
+	/*	case COLOR_BLACK:
 		{
 			pOut->PrintMessage("Action: Black Color , Click anywhere");
 			break;
@@ -107,7 +110,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pOut->PrintMessage("Action: Blue Color , Click anywhere");
 			break;
 		}
-
+*/
 		case SELECTED:
 		{
 			pAct = new SelectionAction(this);
@@ -118,7 +121,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			if (SelectedFigCount == 1)
 				pAct = new FillColorAction(this);
 			else
-				pOut->PrintMessage("Error! You can only select one shape to change fill color");
+				pOut->PrintMessage("Error! You have to select one shape to change fill color");
 			break;
 		}
 		case COLOR_BORDERED:
@@ -126,20 +129,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			if (SelectedFigCount == 1)
 				pAct = new BorderColorAction(this);
 			else
-				pOut->PrintMessage("Error! You can only select one shape to change border color");
+				pOut->PrintMessage("Error! You have to select one shape to change border color");
 			break;
 		}
 		case DELETED:
 		{
-			pOut->PrintMessage("Action: Delete Tool , Click anywhere");
+			pAct = new DeleteAction(this);
 			break;
 		}
 		case CLEARED:
 		{
-			{
-				pAct = new ClearAllAction(this);
-				break;
-			}
+			pAct = new ClearAllAction(this);
+			break;
 		}
 		case COPIED:
 		{
@@ -158,12 +159,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		}
 		case FRONT_SENT:
 		{
-			pOut->PrintMessage("Action: Send to Front Tool , Click anywhere");
+			if (SelectedFigCount == 1)
+				pAct = new BringToFrontAction(this);
+			else
+				pOut->PrintMessage("Error! You have to select one shape to bring to front");
 			break;
 		}
 		case BACK_SENT:
 		{
-			pOut->PrintMessage("Action: Send to Back Tool , Click anywhere");
+			if (SelectedFigCount == 1)
+				pAct = new SendToBackAction(this);
+			else
+				pOut->PrintMessage("Error! You have to select one shape to send to back");
 			break;
 		}
 		case SAVED:
@@ -176,7 +183,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pOut->PrintMessage("Action: Load Tool , Click anywhere");
 			break;
 		}
-		case STATUS:
+	/*	case STATUS:
 		{
 			pOut->PrintMessage("Action: a click on the Status Bar, Click anywhere");
 			break;
@@ -191,6 +198,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pOut->PrintMessage("Action: a click on empty area in the Tool Bar, Click anywhere");
 			break;
 		}
+	*/
 		case TO_DRAW:
 		{
 			pOut->PrintMessage("Action: Switch to Draw Mode");
@@ -240,12 +248,18 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 	if (FigCount < MaxFigCount)
 	{
 		FigList[FigCount++] = pFig;
-		pFig->SetID(FigCount);//(salem)
 	}
 }
-CFigure* ApplicationManager::GetSelectedFigure()const
+void ApplicationManager::SwapFigure(int m,int n)
 {
-	return SelectedFigList[0];
+	CFigure* Temp = FigList[n];
+	FigList[n] = FigList[m];
+	FigList[m] = Temp;
+
+}
+CFigure* ApplicationManager::GetSelectedFigure(int i)const
+{
+	return SelectedFigList[i];
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
@@ -265,14 +279,60 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 	return NULL;
 }
 
+
+void ApplicationManager::RemoveFigure(CFigure* pFig)
+{
+	int RemovedFigIndex{};
+	for (int i = 0; i < FigCount; i++)
+	{
+		if (FigList[i]->IsTheSame(pFig))
+		{
+			RemovedFigIndex = i;
+			FigCount--;
+			break;
+		}
+	}
+	for (int i = RemovedFigIndex; i < FigCount; i++)
+	{
+		FigList[i] = FigList[i + 1];
+	}
+	FigList[FigCount] = NULL;
+	int RemovedSelectedFigIndex{};
+	for (int i = 0; i < SelectedFigCount; i++)
+	{
+		if (SelectedFigList[i]->IsTheSame(pFig))
+		{
+			RemovedSelectedFigIndex = i;
+			SelectedFigCount--;
+			break;
+		}
+	}
+	for (int i = RemovedSelectedFigIndex; i < SelectedFigCount; i++)
+	{
+		SelectedFigList[i] = SelectedFigList[i + 1];
+	}
+	SelectedFigList[SelectedFigCount] = NULL;
+	//pOut->ClearDrawArea();
+	UpdateNumOfFigures();
+}
+int ApplicationManager::GetSelectedFigureCount() const
+{
+	return SelectedFigCount;
+}
+int ApplicationManager::GetFigureCount()const
+{
+	return FigCount;
+}
+
 //==================================================================================//
 //							Interface Management Functions							//
 //==================================================================================//
 
 //Draw all figures on the user interface
 void ApplicationManager::UpdateInterface() const
-{	
-	for(int i=0; i<FigCount; i++)
+{
+	pOut->ClearDrawArea();//Salem
+	for (int i = 0; i < FigCount; i++)
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
 }
 

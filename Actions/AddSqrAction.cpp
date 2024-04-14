@@ -6,7 +6,7 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-AddSqrAction::AddSqrAction(ApplicationManager* pApp) :Action(pApp)
+AddSqrAction::AddSqrAction(ApplicationManager* pApp) :AddFigureAction(pApp)
 {}
 
 void AddSqrAction::ReadActionParameters()
@@ -38,7 +38,7 @@ void AddSqrAction::Execute()
 
 	//Create a square with the parameters read from the user
 	CSquare* S = new CSquare(P, SqrGfxInfo);
-
+	S->SetID(FigCount + 1);
 	//Add the square to the list of figures
 	pManager->AddFigure(S);
 }
