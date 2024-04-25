@@ -1,10 +1,10 @@
 #ifndef ADD_RECT_ACTION_H
 #define ADD_RECT_ACTION_H
 
-#include "AddFigureAction.h"
+#include "Action.h"
 
 //Add Rectangle Action class
-class AddRectAction: public AddFigureAction
+class AddRectAction: public Action
 {
 private:
 	Point P1, P2; //Rectangle Corners

@@ -1,9 +1,12 @@
 #include "CFigure.h"
 
+int CFigure::CreatedFigCount = 0;
+
 CFigure::CFigure(GfxInfo FigureGfxInfo)
 { 
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
+	ID =++CreatedFigCount;
 }
 
 void CFigure::SetSelected(bool s)

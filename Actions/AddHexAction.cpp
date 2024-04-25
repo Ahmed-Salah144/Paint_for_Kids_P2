@@ -6,7 +6,7 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-AddHexAction::AddHexAction(ApplicationManager* pApp) :AddFigureAction(pApp)
+AddHexAction::AddHexAction(ApplicationManager* pApp) :Action(pApp)
 {}
 
 void AddHexAction::ReadActionParameters()
@@ -38,7 +38,6 @@ void AddHexAction::Execute()
 	//Create a rectangle with the parameters read from the user
 
 	CHexagon* H = new CHexagon(P,HexGfxInfo);
-	H->SetID(FigCount + 1);
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(H);
 }

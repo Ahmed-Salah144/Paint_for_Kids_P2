@@ -6,7 +6,7 @@
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
-AddCircAction::AddCircAction(ApplicationManager* pApp) :AddFigureAction(pApp)
+AddCircAction::AddCircAction(ApplicationManager* pApp) :Action(pApp)
 {}
 
 void AddCircAction::ReadActionParameters()
@@ -42,7 +42,6 @@ void AddCircAction::Execute()
 
 	//Create a circle with the parameters read from the user
 	CCircle* C = new CCircle (P1, P2, CircGfxInfo);
-	C->SetID(FigCount + 1);
 	//Add the circle to the list of figures
 	pManager->AddFigure(C);
 }

@@ -1,10 +1,10 @@
 #ifndef ADD_CIRC_ACTION_H
 #define ADD_CIRC_ACTION_H
 
-#include "AddFigureAction.h"
+#include "Action.h"
 
 //Add Circle Action class
-class AddCircAction : public AddFigureAction
+class AddCircAction : public Action
 {
 private:
 	Point P1,P2; //Circle Center and Outer Point

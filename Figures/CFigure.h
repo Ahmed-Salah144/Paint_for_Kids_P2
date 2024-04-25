@@ -12,6 +12,7 @@ protected:
 	bool Selected;	//true if the figure is selected.
 	GfxInfo FigGfxInfo;	//Figure graphis info
 	FigureType FigType;
+	static int CreatedFigCount;
 	/// Add more parameters if needed.
 
 public:

@@ -30,7 +30,7 @@ void BorderColorAction::ReadActionParameters()
 		break;
 	}
 	case COLOR_ORANGE:
-	{
+	{	
 		SelectedColor = ORANGE;
 		break;
 	}
