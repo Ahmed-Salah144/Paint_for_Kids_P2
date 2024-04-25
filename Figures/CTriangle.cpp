@@ -1,4 +1,5 @@
 #include "CTriangle.h"
+#include <fstream>
 
 CTriangle::CTriangle(Point P1, Point P2,Point P3, GfxInfo TriangleGfxInfo) :
 	CFigure(TriangleGfxInfo)
@@ -41,4 +42,42 @@ double CTriangle::GetArea(int Ax, int Ay, int Bx, int By, int Cx, int Cy)
 FigureType CTriangle::GetFigType()
 {
 	return FigType;
+}
+
+void CTriangle::Save(ofstream& OutFile)
+{
+	OutFile << "TRIANGLE" << "\t" << this->ID << "\t";
+	OutFile << Vertex1.x << "\t" << Vertex1.y << "\t";
+	OutFile << Vertex2.x << "\t" << Vertex2.y << "\t";
+	OutFile << Vertex3.x << "\t" << Vertex3.y << "\t";
+
+
+	if (FigGfxInfo.DrawClr == BLACK) //prints figure's draw color
+		OutFile << "BLACK" << "\t";
+	else if (FigGfxInfo.DrawClr == YELLOW)
+		OutFile << "YELLOW" << "\t";
+	else if (FigGfxInfo.DrawClr == ORANGE)
+		OutFile << "ORANGE" << "\t";
+	else if (FigGfxInfo.DrawClr == RED)
+		OutFile << "RED" << "\t";
+	else if (FigGfxInfo.DrawClr == GREEN)
+		OutFile << "GREEN" << "\t";
+	else if (FigGfxInfo.DrawClr == BLUE)
+		OutFile << "BLUE" << "\t";
+
+	if (FigGfxInfo.isFilled == false) //prints figure's fill color
+		OutFile << "NO_FILL" << "\n";
+	else if (FigGfxInfo.FillClr == BLACK)
+		OutFile << "BLACK" << "\n";
+	else if (FigGfxInfo.FillClr == YELLOW)
+		OutFile << "YELLOW" << "\n";
+	else if (FigGfxInfo.FillClr == ORANGE)
+		OutFile << "ORANGE" << "\n";
+	else if (FigGfxInfo.FillClr == RED)
+		OutFile << "RED" << "\n";
+	else if (FigGfxInfo.FillClr == GREEN)
+		OutFile << "GREEN" << "\n";
+	else if (FigGfxInfo.FillClr == BLUE)
+		OutFile << "BLUE" << "\n";
+
 }

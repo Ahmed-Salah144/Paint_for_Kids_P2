@@ -16,6 +16,7 @@ public:
 	virtual bool IsClicked(int x, int y);
 	double GetArea(int, int, int, int, int, int);
 	virtual FigureType GetFigType();
+	virtual void Save(ofstream& OutFile);
 };
 
 #endif

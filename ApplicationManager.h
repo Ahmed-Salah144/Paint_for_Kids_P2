@@ -51,6 +51,7 @@ public:
 	void ClearAll();//(salem)
 	void UpdateNumOfFigures();
 	friend class SelectionAction;//Awaiting confirmation from TA(Salem)
+	void SaveAll(ofstream& OutFile) const; //ChecK TA Save Output changed ?? (figure name, 1 added tab) Faseeh
 };
 
 #endif
