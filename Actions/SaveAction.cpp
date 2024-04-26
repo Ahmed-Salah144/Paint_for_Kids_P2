@@ -33,7 +33,5 @@ void SaveAction::Execute()
 	}
 	else
 		pout->PrintMessage("Error: Can't save, couldn't open File");
-
-
 	
 }
