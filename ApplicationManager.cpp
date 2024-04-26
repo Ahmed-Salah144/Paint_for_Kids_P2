@@ -415,7 +415,7 @@ void ApplicationManager::ClearAll()
 {	
 	for (int i = 0; i < FigCount; i++)
 	{
-		//delete FigList[i]; T_T MEMORY MANAGMENT
+		delete FigList[i]; //T_T MEMORY MANAGMENT
 		FigList[i] = NULL;
 	}		
 	FigCount = 0;
@@ -435,8 +435,8 @@ Output *ApplicationManager::GetOutput() const
 //Destructor
 ApplicationManager::~ApplicationManager()
 {
-	//for (int i = 0; i < FigCount; i++)
-		//delete FigList[i];//ERROR!
+	for (int i = 0; i < FigCount; i++)
+		delete FigList[i];//ERROR!
 	delete pIn;
 	delete pOut;
 }
