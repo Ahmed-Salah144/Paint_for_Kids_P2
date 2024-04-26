@@ -1,4 +1,4 @@
-#include "SaveAction.h"
+#include "Actions/SaveAction.h"
 #include "Figures/CFigure.h"
 #include "ApplicationManager.h"
 #include "GUI/input.h"
@@ -14,7 +14,7 @@ void SaveAction::ReadActionParameters()
 	Input* pin = pManager->GetInput();
 	Output* pout = pManager->GetOutput();
 	pout->PrintMessage("Enter file name:");
-	string file_name = pin->GetString(pout);
+	file_name = ".\\\\Saves\\\\" + pin->GetString(pout);
 }
 
 void SaveAction::Execute()
@@ -25,9 +25,13 @@ void SaveAction::Execute()
 	Output* pout = pManager->GetOutput();
 
 	if (OutFile.is_open())
+	{
 		pManager->SaveAll(OutFile);
+		OutFile.close();
+
+		pout->PrintMessage("Saved successfuly!, to " + file_name);
+	}
 	else
 		pout->PrintMessage("Error: Can't save, couldn't open File");
-
-	OutFile.close();
+	
 }
