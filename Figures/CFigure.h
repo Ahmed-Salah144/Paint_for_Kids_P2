@@ -38,7 +38,7 @@ public:
 
 
 	virtual FigureType GetFigType()=0; //salem to check for figure type
-	//virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
+	virtual void Save(ofstream &OutFile) = 0;	//Save the figure parameters to the file
 	//virtual void Load(ifstream &Infile) = 0;	//Load the figure parameters to the file
 	virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
 };

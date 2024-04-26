@@ -1,4 +1,5 @@
 #include"CHexagon.h"
+#include <fstream>
 
 
 CHexagon::CHexagon(Point P,GfxInfo HexagonGfxInfo):
@@ -50,4 +51,39 @@ bool CHexagon::IsClicked(int x, int y)
 FigureType CHexagon::GetFigType()
 {
 	return FigType;
+}
+
+void CHexagon::Save(ofstream& OutFile)
+{
+	OutFile << "HEXAGON" << "\t" << "\t" << this->ID << "\t";
+	OutFile << Center.x << "\t" << Center.y << "\t";
+
+	if (FigGfxInfo.DrawClr == BLACK) //prints figure's draw color
+		OutFile << "BLACK" << "\t";
+	else if (FigGfxInfo.DrawClr == YELLOW)
+		OutFile << "YELLOW" << "\t";
+	else if (FigGfxInfo.DrawClr == ORANGE)
+		OutFile << "ORANGE" << "\t";
+	else if (FigGfxInfo.DrawClr == RED)
+		OutFile << "RED" << "\t";
+	else if (FigGfxInfo.DrawClr == GREEN)
+		OutFile << "GREEN" << "\t";
+	else if (FigGfxInfo.DrawClr == BLUE)
+		OutFile << "BLUE" << "\t";
+
+	if (FigGfxInfo.isFilled == false) //prints figure's fill color
+		OutFile << "NO_FILL" << "\n";
+	else if (FigGfxInfo.FillClr == BLACK)
+		OutFile << "BLACK" << "\n";
+	else if (FigGfxInfo.FillClr == YELLOW)
+		OutFile << "YELLOW" << "\n";
+	else if (FigGfxInfo.FillClr == ORANGE)
+		OutFile << "ORANGE" << "\n";
+	else if (FigGfxInfo.FillClr == RED)
+		OutFile << "RED" << "\n";
+	else if (FigGfxInfo.FillClr == GREEN)
+		OutFile << "GREEN" << "\n";
+	else if (FigGfxInfo.FillClr == BLUE)
+		OutFile << "BLUE" << "\n";
+
 }

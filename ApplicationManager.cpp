@@ -11,6 +11,7 @@
 #include "Actions\DeleteAction.h"
 #include "Actions\BringToFrontAction.h"
 #include "Actions\SendToBackAction.h"
+#include "Actions\SaveAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -175,7 +176,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		}
 		case SAVED:
 		{
-			pOut->PrintMessage("Action: Save Tool , Click anywhere");
+			pAct = new SaveAction(this);
 			break;
 		}
 		case LOADED:
@@ -367,6 +368,46 @@ void ApplicationManager::UpdateNumOfFigures()
 			case RECTANGLE:SelectedRects++; break;
 			}
 		}
+	}
+}
+
+void ApplicationManager::SaveAll(ofstream& OutFile) const
+{
+	Output* pout = this->GetOutput();
+	Input* pin = this->GetInput();	
+
+	if (UI.DrawColor == BLACK) //prints UI's draw color
+		OutFile << "BLACK" << "\t";
+	else if (UI.DrawColor == YELLOW)
+		OutFile << "YELLOW" << "\t";
+	else if (UI.DrawColor == ORANGE)
+		OutFile << "ORANGE" << "\t";
+	else if (UI.DrawColor == RED)
+		OutFile << "RED" << "\t";
+	else if (UI.DrawColor == GREEN)
+		OutFile << "GREEN" << "\t";
+	else if (UI.DrawColor == BLUE)
+		OutFile << "BLUE" << "\t";
+
+	if (UI.FillColor == BLACK)	//prints UI's fill color
+		OutFile << "BLACK" << "\n";
+	else if (UI.FillColor == YELLOW)
+		OutFile << "YELLOW" << "\n";
+	else if (UI.FillColor == ORANGE)
+		OutFile << "ORANGE" << "\n";
+	else if (UI.FillColor == RED)
+		OutFile << "RED" << "\n";
+	else if (UI.FillColor == GREEN)
+		OutFile << "GREEN" << "\n";
+	else if (UI.FillColor == BLUE)
+		OutFile << "BLUE" << "\n";
+
+	
+	OutFile << this->FigCount << "\n";
+
+	for (int i = 0; i < FigCount; i++)
+	{
+		FigList[i]->Save(OutFile);
 	}
 }
 

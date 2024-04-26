@@ -202,6 +202,9 @@
     <ClCompile Include="Actions\SendToBackAction.cpp">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClCompile>
+    <ClCompile Include="SaveAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -336,6 +339,9 @@
     </ClInclude>
     <ClInclude Include="Actions\AddFigureAction.h">
       <Filter>Action Classes\FigureActions</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveAction.h">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
