@@ -1,8 +1,8 @@
-#include "Actions/SaveAction.h"
-#include "Figures/CFigure.h"
-#include "ApplicationManager.h"
-#include "GUI/input.h"
-#include "GUI/output.h"
+#include "../Actions/SaveAction.h"
+#include "../Figures/CFigure.h"
+#include "../ApplicationManager.h"
+#include "../GUI/input.h"
+#include "../GUI/output.h"
 
 SaveAction::SaveAction(ApplicationManager* papp)
 	: Action(papp)

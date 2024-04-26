@@ -202,7 +202,7 @@
     <ClCompile Include="Actions\SendToBackAction.cpp">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClCompile>
-    <ClCompile Include="SaveAction.cpp">
+    <ClCompile Include="Actions\SaveAction.cpp">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClCompile>
   </ItemGroup>
@@ -340,7 +340,7 @@
     <ClInclude Include="Actions\AddFigureAction.h">
       <Filter>Action Classes\FigureActions</Filter>
     </ClInclude>
-    <ClInclude Include="SaveAction.h">
+    <ClInclude Include="Actions\SaveAction.h">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
   </ItemGroup>
