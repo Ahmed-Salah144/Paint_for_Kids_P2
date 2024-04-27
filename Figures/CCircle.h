@@ -12,11 +12,13 @@ private:
 	int Radius;
 public:
 	CCircle(Point,Point, GfxInfo CircleGfxInfo);
+	CCircle(ifstream& InFile);
 	virtual void Draw(Output* pOut) const;
 	virtual void PrintInfo(Output* pOut);	//print all figure info on the status bar
 	virtual bool IsClicked(int x, int y);
 	virtual FigureType GetFigType();
 	virtual void Save(ofstream& OutFile);
+	virtual void Load(ifstream& InFile);
 };
 
 #endif

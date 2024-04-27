@@ -1,5 +1,6 @@
 #include "CTriangle.h"
 #include <fstream>
+#include "../Utils.h"
 
 CTriangle::CTriangle(Point P1, Point P2,Point P3, GfxInfo TriangleGfxInfo) :
 	CFigure(TriangleGfxInfo)
@@ -8,6 +9,12 @@ CTriangle::CTriangle(Point P1, Point P2,Point P3, GfxInfo TriangleGfxInfo) :
 	Vertex2 = P2;
 	Vertex3 = P3;
 	FigType = TRIANGLE;
+}
+
+CTriangle::CTriangle(ifstream& InFile)
+	: CFigure(InFile)
+{
+	Load(InFile);
 }
 
 
@@ -50,6 +57,7 @@ void CTriangle::Save(ofstream& OutFile)
 	OutFile << Vertex1.x << "\t" << Vertex1.y << "\t";
 	OutFile << Vertex2.x << "\t" << Vertex2.y << "\t";
 	OutFile << Vertex3.x << "\t" << Vertex3.y << "\t";
+	FigType = TRIANGLE;
 
 
 	if (FigGfxInfo.DrawClr == BLACK) //prints figure's draw color
@@ -80,4 +88,70 @@ void CTriangle::Save(ofstream& OutFile)
 	else if (FigGfxInfo.FillClr == BLUE)
 		OutFile << "BLUE" << "\n";
 
+}
+
+void CTriangle::Load(ifstream& InFile)
+{
+	char input[30] = {};
+	InFile >> Vertex1.x >> Vertex1.y;
+	InFile >> Vertex2.x >> Vertex2.y;
+	InFile >> Vertex3.x >> Vertex3.y;
+	FigType = TRIANGLE;
+
+	InFile.ignore(30, '\t');
+	InFile.getline(input, 30, '\t'); //Draw Collor
+	switch (ParseColor(input))
+	{
+	case lOAD_BLACK:
+		FigGfxInfo.DrawClr = BLACK;
+		break;
+	case LOAD_YELLOW:
+		FigGfxInfo.DrawClr = YELLOW;
+		break;
+	case LOAD_ORANGE:
+		FigGfxInfo.DrawClr = ORANGE;
+		break;
+	case LOAD_RED:
+		FigGfxInfo.DrawClr = RED;
+		break;
+	case LOAD_GREEN:
+		FigGfxInfo.DrawClr = GREEN;
+		break;
+	case LOAD_BLUE:
+		FigGfxInfo.DrawClr = BLUE;
+		break;
+	default:
+		exit(1);
+		break;
+	}
+
+	InFile.getline(input, 30, '\n'); //Fill Color
+	switch (ParseColor(input))
+	{
+	case lOAD_BLACK:
+		FigGfxInfo.FillClr = BLACK;
+		break;
+	case LOAD_YELLOW:
+		FigGfxInfo.FillClr = YELLOW;
+		break;
+	case LOAD_ORANGE:
+		FigGfxInfo.FillClr = ORANGE;
+		break;
+	case LOAD_RED:
+		FigGfxInfo.FillClr = RED;
+		break;
+	case LOAD_GREEN:
+		FigGfxInfo.FillClr = GREEN;
+		break;
+	case LOAD_BLUE:
+		FigGfxInfo.FillClr = BLUE;
+		break;
+	case LOAD_NO_FILL:
+		FigGfxInfo.isFilled = false;
+		FigGfxInfo.FillClr = UI.FillColor; //initiallizes it to the UI color
+		break;
+	default:
+		exit(1);
+		break;
+	}
 }

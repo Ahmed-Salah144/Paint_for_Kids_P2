@@ -12,6 +12,7 @@
 #include "Actions\BringToFrontAction.h"
 #include "Actions\SendToBackAction.h"
 #include "Actions\SaveAction.h"
+#include "Actions\LoadAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -181,7 +182,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		}
 		case LOADED:
 		{
-			pOut->PrintMessage("Action: Load Tool , Click anywhere");
+			pAct = new LoadAction(this);
 			break;
 		}
 	/*	case STATUS:

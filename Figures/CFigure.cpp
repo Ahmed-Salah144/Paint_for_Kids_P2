@@ -1,4 +1,5 @@
 #include "CFigure.h"
+#include <fstream>
 
 int CFigure::CreatedFigCount = 0;
 
@@ -7,6 +8,14 @@ CFigure::CFigure(GfxInfo FigureGfxInfo)
 	FigGfxInfo = FigureGfxInfo;	//Default status is non-filled.
 	Selected = false;
 	ID =++CreatedFigCount;
+}
+
+CFigure::CFigure(ifstream& InFile) // initialize id and selected
+	: Selected(false)
+{
+	InFile >> ID;
+	++CreatedFigCount;
+	InFile.ignore(30, '\t');
 }
 
 void CFigure::SetSelected(bool s)

@@ -136,6 +136,7 @@
     <ClCompile Include="Actions\ClearAllAction.cpp" />
     <ClCompile Include="Actions\DeleteAction.cpp" />
     <ClCompile Include="Actions\FillColorAction.cpp" />
+    <ClCompile Include="Actions\LoadAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectionAction.cpp" />
     <ClCompile Include="Actions\SendToBackAction.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Actions\ClearAllAction.h" />
     <ClInclude Include="Actions\DeleteAction.h" />
     <ClInclude Include="Actions\FillColorAction.h" />
+    <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />
     <ClInclude Include="Actions\SelectionAction.h" />
     <ClInclude Include="Actions\SendToBackAction.h" />
@@ -235,6 +237,7 @@
     <ClInclude Include="GUI\UI_Info.h" />
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="DEFS.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

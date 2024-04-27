@@ -1,4 +1,4 @@
-#include "../Actions/SaveAction.h"
+#include "SaveAction.h"
 #include "../Figures/CFigure.h"
 #include "../ApplicationManager.h"
 #include "../GUI/input.h"
@@ -13,7 +13,7 @@ void SaveAction::ReadActionParameters()
 {
 	Input* pin = pManager->GetInput();
 	Output* pout = pManager->GetOutput();
-	pout->PrintMessage("Enter file name:");
+	pout->PrintMessage("Enter save file name:");
 	file_name = ".\\\\Saves\\\\" + pin->GetString(pout);
 }
 

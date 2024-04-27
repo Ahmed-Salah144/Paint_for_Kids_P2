@@ -1,11 +1,18 @@
 #include"CSquare.h"
 #include <fstream>
+#include "../Utils.h"
 
 CSquare::CSquare(Point P, GfxInfo SquareGfxInfo) :
 	CFigure(SquareGfxInfo)
 {
 	Center = P;
 	FigType = SQUARE;
+}
+
+CSquare::CSquare(ifstream& InFile)
+	: CFigure(InFile) // initializes ID and CFigure::selected = false
+{
+	Load(InFile);
 }
 
 void CSquare::Draw(Output* pOut) const
@@ -63,4 +70,68 @@ void CSquare::Save(ofstream& OutFile)
 	else if (FigGfxInfo.FillClr == BLUE)
 		OutFile << "BLUE" << "\n";
 
+}
+
+void CSquare::Load(ifstream& InFile)
+{
+	char input[30] = {};
+	InFile >> Center.x >> Center.y;
+	FigType = SQUARE;
+
+	InFile.ignore(30, '\t');
+	InFile.getline(input, 30, '\t'); //Draw Collor
+	switch (ParseColor(input))
+	{
+	case lOAD_BLACK:
+		FigGfxInfo.DrawClr = BLACK;
+		break;
+	case LOAD_YELLOW:
+		FigGfxInfo.DrawClr = YELLOW;
+		break;
+	case LOAD_ORANGE:
+		FigGfxInfo.DrawClr = ORANGE;
+		break;
+	case LOAD_RED:
+		FigGfxInfo.DrawClr = RED;
+		break;
+	case LOAD_GREEN:
+		FigGfxInfo.DrawClr = GREEN;
+		break;
+	case LOAD_BLUE:
+		FigGfxInfo.DrawClr = BLUE;
+		break;
+	default:
+		exit(1);
+		break;
+	}
+
+	InFile.getline(input, 30, '\n'); //Fill Color
+	switch (ParseColor(input))
+	{
+	case lOAD_BLACK:
+		FigGfxInfo.FillClr = BLACK;
+		break;
+	case LOAD_YELLOW:
+		FigGfxInfo.FillClr = YELLOW;
+		break;
+	case LOAD_ORANGE:
+		FigGfxInfo.FillClr = ORANGE;
+		break;
+	case LOAD_RED:
+		FigGfxInfo.FillClr = RED;
+		break;
+	case LOAD_GREEN:
+		FigGfxInfo.FillClr = GREEN;
+		break;
+	case LOAD_BLUE:
+		FigGfxInfo.FillClr = BLUE;
+		break;
+	case LOAD_NO_FILL:
+		FigGfxInfo.isFilled = false;
+		FigGfxInfo.FillClr = UI.FillColor; //initiallizes it to the UI color
+		break;
+	default:
+		exit(1);
+		break;
+	}
 }
