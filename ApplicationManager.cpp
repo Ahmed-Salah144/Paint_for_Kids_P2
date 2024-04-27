@@ -416,7 +416,7 @@ void ApplicationManager::ClearAll()
 {	
 	for (int i = 0; i < FigCount; i++)
 	{
-		delete FigList[i];
+		delete FigList[i]; //T_T MEMORY MANAGMENT
 		FigList[i] = NULL;
 	}		
 	FigCount = 0;
