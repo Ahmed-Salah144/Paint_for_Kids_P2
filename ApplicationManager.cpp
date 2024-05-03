@@ -13,6 +13,8 @@
 #include "Actions\SendToBackAction.h"
 #include "Actions\SaveAction.h"
 #include "Actions\LoadAction.h"
+#include "Actions\HalfSizeAction.h"
+#include "Actions\DoubleSizeAction.h"
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -183,6 +185,26 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case LOADED:
 		{
 			pAct = new LoadAction(this);
+			break;
+		}
+		case DOUBLE_SIZE:
+		{
+			if (SelectedFigCount == 1)
+				pAct = new DoubleSizeAction(this);
+			else
+				pOut->PrintMessage("Error! You can only resize one figure at a time");
+			break;
+		}
+		case HALF_SIZE:
+		{
+			if (SelectedFigCount == 1)
+				pAct = new HalfSizeAction(this);
+			else
+				pOut->PrintMessage("Error! You can only resize one figure at a time");
+			break;
+		}
+		case VOICE:
+		{
 			break;
 		}
 	/*	case STATUS:

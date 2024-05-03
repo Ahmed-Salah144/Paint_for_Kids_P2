@@ -12,10 +12,10 @@ private:
 public:
 	AddCircAction(ApplicationManager* pApp);
 
-	//Reads hexagon parameters
+	//Reads circle parameters
 	virtual void ReadActionParameters();
 
-	//Add hexagon to the ApplicationManager
+	//Add circle to the ApplicationManager
 	virtual void Execute();
 
 };

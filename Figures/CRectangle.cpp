@@ -9,6 +9,7 @@ CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(Figure
 	FigType = RECTANGLE;
 	L = abs(P1.x - P2.x);
 	W = abs(P1.y - P2.y);
+	FitInsideDrawArea();
 }
 
 CRectangle::CRectangle(ifstream& InFile)
@@ -142,4 +143,115 @@ void CRectangle::Load(ifstream& InFile)
 		exit(1);
 		break;
 	}
+}
+
+void CRectangle::FitInsideDrawArea()
+{
+	//First Corner
+
+	if (Corner1.y> (UI.height - 100 - UI.StatusBarHeight)) //Bottomside Validation(Salem) 
+	{
+		Corner2.y -= (Corner1.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 2 Inside
+		Corner1.y -= (Corner1.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 1 Inside
+	}
+	if (Corner1.y < UI.ToolBarHeight)//Topside Validation(Salem)
+	{
+		Corner2.y += (-Corner1.y + UI.ToolBarHeight + 5);//Pushing Corner 2 Inside
+		Corner1.y += (-Corner1.y + UI.ToolBarHeight + 5);//Pushing Corner 1 Inside
+	}
+	if (Corner1.x > UI.width - 25) //Rightside Validation(Salem)
+	{
+		Corner2.x -= (Corner1.x - UI.width + 25 - 5);//Pushing Corner 2 Inside
+		Corner1.x -= (Corner1.x - UI.width + 25 - 5);//Pushing Corner 1 Inside
+	}
+	if (Corner1.x < 0) //Leftside Validation(Salem)
+	{
+		Corner2.x += (-Corner1.x + 5);//Pushing Corner 2 Inside
+		Corner1.x += (-Corner1.x + 5);//Pushing Corner 1 Inside
+	}
+	//Second Corner
+	if (Corner2.y > (UI.height - UI.StatusBarHeight)) //Bottomside Validation(Salem) 
+	{
+		Corner1.y -= (Corner2.y - UI.height - UI.StatusBarHeight - 5); //Pushing Corner 1 Inside
+		Corner2.y -= (Corner2.y - UI.height - UI.StatusBarHeight - 5); //Pushing Corner 2 Inside
+	}
+	if (Corner2.y < UI.ToolBarHeight)//Topside Validation(Salem)
+	{
+		Corner1.y += (-Corner2.y + UI.ToolBarHeight + 5);//Pushing Corner 1 Inside
+		Corner2.y += (-Corner2.y + UI.ToolBarHeight + 5);//Pushing Corner 2 Inside
+	}
+	if (Corner2.x > UI.width - 25) //Rightside Validation(Salem)
+	{
+		Corner1.x -= (Corner2.x - UI.width + 25 - 5);//Pushing Corner 1 Inside
+		Corner2.x -= (Corner2.x - UI.width + 25 - 5);//Pushing Corner 2 Inside
+	}
+	if (Corner2.x < 0) //Leftside Validation(Salem)
+	{
+		Corner1.x += (-Corner2.x + 5);//Pushing Corner 1 Inside
+		Corner2.x += (-Corner2.x + 5);//Pushing Corner 2 Inside
+	}
+}
+
+bool CRectangle::DoubleSize()
+{
+	if (2*L > UI.width) //validates length
+		return false;
+	if (2*W > UI.height-UI.StatusBarHeight)//validates width
+		return false;
+	Point Center{};
+	Center.x = (Corner1.x + Corner2.x) / 2;
+	Center.y = (Corner1.y + Corner2.y) / 2;
+	//Corner 1
+	if (Corner1.x > Center.x)//Corner 1 is to the right of the center
+		Corner1.x +=(Corner1.x - Center.x);
+	if (Corner1.x < Center.x)//Corner 1 is to the left of the center
+		Corner1.x -=(Center.x - Corner1.x);
+	if (Corner1.y > Center.y)//Corner 1 is below of the center
+		Corner1.y +=(Corner1.y - Center.y);
+	if (Corner1.y < Center.y)//Corner 1 is above of the center
+		Corner1.y -=(Center.y - Corner1.y);
+	//Corner 2
+	if (Corner2.x > Center.x)//Corner 2 is to the right of the center
+		Corner2.x += (Corner2.x - Center.x);
+	if (Corner2.x < Center.x)//Corner 2 is to the left of the center
+		Corner2.x -=(Center.x - Corner2.x);
+	if (Corner2.y > Center.y)//Corner 2 is below of the center
+		Corner2.y +=(Corner2.y - Center.y);
+	if (Corner2.y < Center.y)//Corner 2 is above of the center
+		Corner2.y -=( Center.y - Corner2.y);
+	L = abs(Corner1.x - Corner2.x);
+	W = abs(Corner1.y - Corner2.y);
+	FitInsideDrawArea();
+	return true;
+}
+
+bool CRectangle::HalfSize()
+{
+	if (0.5*L*W < 200) //validates size
+		return false;
+	Point Center{};
+	Center.x = (Corner1.x + Corner2.x) / 2;
+	Center.y = (Corner1.y + Corner2.y) / 2;
+	//Corner 1
+	if (Corner1.x > Center.x)//Corner 1 is to the right of the center
+		Corner1.x -= 0.5 * (Corner1.x - Center.x);
+	if (Corner1.x < Center.x)//Corner 1 is to the left of the center
+		Corner1.x += 0.5 * (Center.x - Corner1.x);
+	if (Corner1.y > Center.y)//Corner 1 is below of the center
+		Corner1.y -= 0.5 * (Corner1.y - Center.y);
+	if (Corner1.y < Center.y)//Corner 1 is above of the center
+		Corner1.y += 0.5 * (Center.y - Corner1.y);
+	//Corner 2
+	if (Corner2.x > Center.x)//Corner 2 is to the right of the center
+		Corner2.x -= 0.5 * (Corner2.x - Center.x);
+	if (Corner2.x < Center.x)//Corner 2 is to the left of the center
+		Corner2.x += 0.5 * (Center.x - Corner2.x);
+	if (Corner2.y > Center.y)//Corner 2 is below of the center
+		Corner2.y -= 0.5 * (Corner2.y - Center.y);
+	if (Corner2.y < Center.y)//Corner 2 is above of the center
+		Corner2.y += 0.5 * (Center.y - Corner2.y);
+	L = abs(Corner1.x - Corner2.x);
+	W = abs(Corner1.y - Corner2.y);
+	FitInsideDrawArea();
+	return true;
 }

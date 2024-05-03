@@ -10,6 +10,7 @@ CCircle::CCircle(Point P1,Point P2, GfxInfo CircleGfxInfo) :
 	OuterPoint = P2;
 	FigType = CIRCLE;
 	Radius = sqrt((P1.x - P2.x)* (P1.x - P2.x) + (P1.y - P2.y)* (P1.y - P2.y));
+	FitInsideDrawArea();
 }
 
 CCircle::CCircle(ifstream& InFile)
@@ -141,4 +142,59 @@ void CCircle::Load(ifstream& InFile)
 		exit(1);
 		break;
 	}
+}
+
+void CCircle::FitInsideDrawArea()
+{
+	while (Radius > (UI.height - 100) / 2)
+	{
+		HalfSize();
+	}
+
+	if (Center.y + Radius > (UI.height-100 - UI.StatusBarHeight)) //Bottomside Validation(Salem)
+	{
+		OuterPoint.y -= (Center.y + Radius - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Outer Point Inside
+		Center.y -= (Center.y + Radius - UI.height + 100  - UI.StatusBarHeight - 5); //Pushing Center Inside
+	}
+	if (Center.y - Radius < UI.ToolBarHeight)//Topside Validation(Salem)
+	{
+		OuterPoint.y += (-Center.y + Radius + UI.ToolBarHeight + 5); //Pushing Outer Point Inside
+		Center.y += (-Center.y + Radius + UI.ToolBarHeight + 5);//Pushing Center Inside
+	}
+	if (Center.x + Radius > UI.width-25) //Rightside Validation(Salem)
+	{
+		OuterPoint.x -= (Center.x + Radius - UI.width +25 - 5); //Pushing Outer Point Inside
+		Center.x -= (Center.x + Radius - UI.width+25  - 5);//Pushing Center Inside
+	}
+	if (Center.x - Radius < 0) //Leftside Validation(Salem)
+	{
+		OuterPoint.x += (-Center.x + Radius + 5); //Pushing Outer Point Inside
+		Center.x += (-Center.x + Radius + 5);//Pushing Center Inside
+	}
+}
+
+bool CCircle::DoubleSize()
+{
+	if (Radius*2 > ((UI.height - 150) / 2))
+	{
+		return false;
+	}
+	Radius *= 2;
+	OuterPoint.x = Center.x + Radius;
+	OuterPoint.y = Center.y;
+	FitInsideDrawArea();
+	return true;
+}
+
+bool CCircle::HalfSize()
+{
+	if (Radius < 10)
+	{
+		return false;
+	}
+	Radius *= 0.5;
+	OuterPoint.x = Center.x + Radius;
+	OuterPoint.y = Center.y;
+	FitInsideDrawArea();
+	return true;
 }

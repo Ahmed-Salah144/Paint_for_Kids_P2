@@ -88,8 +88,8 @@ void SelectionAction::Execute()
 			ClearAllSelection();
 	if (pManager->SelectedFigCount == 0)
 		pOut->PrintMessage("No Selected Figures");
-	else if (pManager->SelectedFigCount == 1);
-		//pManager->SelectedFigList[0]->PrintInfo(pOut);
+	else if (pManager->SelectedFigCount == 1)
+		pManager->SelectedFigList[0]->PrintInfo(pOut);
 	else
 		pOut->PrintMessage("Selected: " + to_string(pManager->SelectedRects) + " Rectangle(s)," + to_string(pManager->SelectedTris) + " triangle(s)," + to_string(pManager->SelectedHexes) + " Hexagon(s), " + to_string(pManager->SelectedCircs) + " circle(s)," + to_string(pManager->SelectedSqrs) + " Square(s)");
 }

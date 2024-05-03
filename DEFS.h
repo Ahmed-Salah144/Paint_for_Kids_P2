@@ -82,8 +82,13 @@ enum ActionType //The actions supported (you can add more if needed)
 
 	TYPE_AND_COLOR,
 
-	DRAW_MODE
+	DRAW_MODE,
 
+	VOICE,
+
+	DOUBLE_SIZE,
+
+	HALF_SIZE,
 
 	///TODO: Add the other action types of the two modes
 };

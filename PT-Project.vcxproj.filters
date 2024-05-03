@@ -28,6 +28,9 @@
     <Filter Include="Action Classes\Miscellanious Actions">
       <UniqueIdentifier>{496cf20f-6aa2-4e05-82be-a0bca81b4108}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Action Classes\BonusActions">
+      <UniqueIdentifier>{2490ddf9-404c-4841-b37e-d63a0ef7c86a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMUgraphicsLib\auxil.cpp">
@@ -208,6 +211,15 @@
     <ClCompile Include="Actions\LoadAction.cpp">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\DoubleSizeAction.cpp">
+      <Filter>Action Classes\BonusActions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\HalfSizeAction.cpp">
+      <Filter>Action Classes\BonusActions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\VoiceAction.cpp">
+      <Filter>Action Classes\BonusActions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -350,6 +362,15 @@
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="Actions\HalfSizeAction.h">
+      <Filter>Action Classes\BonusActions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\VoiceAction.h">
+      <Filter>Action Classes\BonusActions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\DoubleSizeAction.h">
+      <Filter>Action Classes\BonusActions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

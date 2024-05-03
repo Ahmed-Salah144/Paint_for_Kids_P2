@@ -5,16 +5,16 @@ Output::Output()
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 	
-	UI.width = 1250;
-	UI.height = 650;
+	UI.width = 1500;
+	UI.height = 800;
 	UI.wx = 5;
 	UI.wy =5;
 
 	
-	UI.StatusBarHeight = 50;
-	UI.ToolBarHeight = 30;
+	UI.StatusBarHeight = 45;
+	UI.ToolBarHeight = 37;
 	UI.LineUnderTBWidth = 2;
-	UI.MenuItemWidth = 48;
+	UI.MenuItemWidth = 53;
 	
 	UI.DrawColor = BLUE;	//Drawing color
 	UI.FillColor = GREEN;	//Filling color
@@ -106,6 +106,9 @@ void Output::CreateDrawToolBar() const
 	MenuItemImages[ITM_SAVE] = "images\\MenuItems\\Menu_Save.jpg";
 	MenuItemImages[ITM_LOAD] = "images\\MenuItems\\Menu_Load.jpg";
 	MenuItemImages[ITM_PLAY_MODE] = "images\\MenuItems\\Menu_Play_Mode_2.jpg";
+	MenuItemImages[ITM_DOUBLE_SIZE] = "images\\MenuItems\\Menu_Enlarge.jpg";
+	MenuItemImages[ITM_HALF_SIZE] = "images\\MenuItems\\Menu_Minimize.jpg";
+	MenuItemImages[ITM_VOICE] = "images\\MenuItems\\Menu_Voice.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
 
 	//TODO: Prepare images for each menu item and add it to the list
@@ -139,8 +142,7 @@ void Output::CreatePlayToolBar() const
 	MenuItemImages[ITM_TYPE_AND_COLOR] ="images\\MenuItems\\color_and_type.jpg";
 	MenuItemImages[ITM_DRAW_MODE] ="images\\MenuItems\\DRAW_MODE.jpg";
 	MenuItemImages[ITM_EXIT2] = "images\\MenuItems\\Menu_Exit.jpg";
-
-
+	MenuItemImages[ITM_VOICE_2] = "images\\MenuItems\\Menu_Voice.jpg";
 
 	for (int i = 0; i < PLAY_ITM_COUNT; i++)
 	{
@@ -168,7 +170,7 @@ void Output::PrintMessage(string msg) const	//Prints a message on status bar
 	
 	pWind->SetPen(UI.MsgColor, 50);
 	pWind->SetFont(20, BOLD , BY_NAME, "Arial");   
-	pWind->DrawString(10, UI.height - (int)(UI.StatusBarHeight/1.5), msg);
+	pWind->DrawString(10, UI.height - (int)(UI.StatusBarHeight/1.25), msg);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -213,10 +215,10 @@ void Output::DrawSquare(Point P1, GfxInfo SquareGfxInfo, bool selected) const
 {
 
 	Point P2{};
-	P1.x -= 160 / 2;			// moves L/2 to the left	(getting upper left corner)
-	P1.y -= 160 / 2;			// moves L/2 upwards
-	P2.x = P1.x + 160;		// moves L to the right from upper left corner
-	P2.y = P1.y + 160;		// moves L downwards
+	P1.x -= (160*1) / 2;			// moves L/2 to the left	(getting upper left corner)
+	P1.y -= (160 * 1) / 2;			// moves L/2 upwards
+	P2.x = P1.x + (160 * 1);		// moves L to the right from upper left corner
+	P2.y = P1.y + (160 * 1);		// moves L downwards
 
 	DrawRect(P1, P2, SquareGfxInfo, selected);
 	//X positive to the right
@@ -266,22 +268,22 @@ void Output::DrawHexagon(Point P1, GfxInfo HexagonGfxInfo, bool selected)const
 
 	int Px[6] = {0,0,0,0,0,0}, Py[6] = {0,0,0,0,0,0};
 
-		Px[0] = P1.x+100;
+		Px[0] = P1.x+(1*100);
 		Py[0] = P1.y;
 
-		Px[1] = P1.x + 0.5*100;
-		Py[1] = P1.y +0.866*100;
+		Px[1] = P1.x + 0.5*(100*1);
+		Py[1] = P1.y +0.866*(100*1);
 
-		Px[2] = P1.x - 0.5 * 100;
+		Px[2] = P1.x - 0.5 * (100*1);
 		Py[2] = Py[1];
 
-		Px[3] = P1.x-100;
+		Px[3] = P1.x- (100 * 1);
 		Py[3] = P1.y;
 
-		Px[4] = P1.x-0.5*100;
-		Py[4] = P1.y-0.866*100;
+		Px[4] = P1.x-0.5* (100 * 1);
+		Py[4] = P1.y-0.866* (100 * 1);
 
-		Px[5] = P1.x + 0.5*100;
+		Px[5] = P1.x + 0.5* (100 * 1);
 		Py[5] = Py[4];
 	//Geometry Magic to get Points of Hexagon
 

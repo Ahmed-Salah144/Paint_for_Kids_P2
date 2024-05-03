@@ -19,6 +19,9 @@ public:
 	virtual FigureType GetFigType();
 	virtual void Save(ofstream& OutFile);
 	virtual void Load(ifstream& InFile);
+	virtual void FitInsideDrawArea();
+	virtual bool DoubleSize();
+	virtual bool HalfSize();
 };
 
 #endif

@@ -7,6 +7,8 @@ CHexagon::CHexagon(Point P,GfxInfo HexagonGfxInfo):
 {
 	Center = P;
 	FigType = HEXAGON;
+	//Size = 1;
+	FitInsideDrawArea();
 }
 
 CHexagon::CHexagon(ifstream& InFile)
@@ -156,4 +158,42 @@ void CHexagon::Load(ifstream& InFile)
 		exit(1);
 		break;
 	}
+}
+
+void CHexagon::FitInsideDrawArea()
+{
+	if (Center.y + 1*86.6 > (UI.height - 100 - UI.StatusBarHeight)) //Bottomside Validation(Salem)
+	{
+		Center.y -= (Center.y + 1 * 86.6 - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Center Inside
+	}
+	if (Center.y - 1 * 86.6 < UI.ToolBarHeight)//Topside Validation(Salem)
+	{
+		Center.y += (-Center.y + 1 * 86.6 + UI.ToolBarHeight + 5);//Pushing Center Inside
+	}
+	if (Center.x + 1*100 > UI.width - 25) //Rightside Validation(Salem)
+	{
+		Center.x -= (Center.x + 1 * 100 - UI.width + 25 - 5);//Pushing Center Inside
+	}
+	if (Center.x - 1 * 100 < 0) //Leftside Validation(Salem)
+	{
+		Center.x += (-Center.x + 1 * 100 + 5);//Pushing Center Inside
+	}
+}
+
+bool CHexagon::DoubleSize()
+{
+	if ((1 * 100) > (UI.height - 200) / 2)
+		return false;
+	//Size *= 2;
+	FitInsideDrawArea();
+	return true;
+}
+
+bool CHexagon::HalfSize()
+{
+	if (1<0.1)
+		return false;
+	//Size *= 0.5;
+	FitInsideDrawArea();
+	return true;
 }

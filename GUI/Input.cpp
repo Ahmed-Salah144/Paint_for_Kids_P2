@@ -76,6 +76,9 @@ ActionType Input::GetUserAction() const
 			case ITM_LOAD: return LOADED;				//abdo commands 
 			case ITM_PLAY_MODE: return TO_PLAY;				//abdo commands 
 			case ITM_EXIT: return EXIT;
+			case ITM_DOUBLE_SIZE: return DOUBLE_SIZE;
+			case ITM_HALF_SIZE: return HALF_SIZE;
+			case ITM_VOICE: return VOICE;
 
 			default: return EMPTY;	//A click on empty place in desgin toolbar
 			}
@@ -109,6 +112,8 @@ ActionType Input::GetUserAction() const
 			return TYPE_AND_COLOR;
 		case ITM_EXIT2: 
 			return EXIT;
+		case ITM_VOICE_2:
+			return VOICE;
 		default:
 			return EMPTY;
 		}

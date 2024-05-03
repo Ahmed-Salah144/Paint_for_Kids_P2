@@ -31,13 +31,13 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 	ITM_BLACK,			//Colors Faseeh
 
 	ITM_YELLOW,
-	
+
 	ITM_ORANGE,
-	
+
 	ITM_RED,
-	
+
 	ITM_GREEN,
-	
+
 	ITM_BLUE,
 
 	ITM_SELECT,			//Select item
@@ -64,6 +64,12 @@ enum DrawMenuItem //The items of the Draw menu (you should add more items)
 
 	ITM_LOAD,
 
+	ITM_DOUBLE_SIZE,
+
+	ITM_HALF_SIZE,
+
+	ITM_VOICE,
+
 	ITM_PLAY_MODE,
 
 	ITM_EXIT,		//Exit item
@@ -85,6 +91,9 @@ enum PlayMenuItem //The items of the Play menu (you should add more items) (osam
 	ITM_TYPE_AND_COLOR, //find type and color
 
 	ITM_DRAW_MODE, //draw mode
+
+	ITM_VOICE_2,
+
 	ITM_EXIT2,
 
 	PLAY_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum
