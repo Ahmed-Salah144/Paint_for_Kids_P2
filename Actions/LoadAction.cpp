@@ -10,7 +10,6 @@
 #include "../Figures/CRectangle.h"
 #include "../Figures/CSquare.h"
 #include "../Figures/CTriangle.h"
-#include "../Utils.h"
 
 LoadAction::LoadAction(ApplicationManager * papp)
 	: Action(papp)
@@ -39,59 +38,46 @@ void LoadAction::Execute()
 		return;
 	}
 		
-	char input[30] = {};		// array of characters to store user's input
+	char input[30] = {};			// array of characters to store user's input
 	fin.getline(input, 20, '\t');	// Current_Draw_Color
-	switch (ParseColor(input))
-	{
-	case lOAD_BLACK:
+	if (strcmp(input, "BLACK") == 0)
 		UI.DrawColor = BLACK;
-		break;
-	case LOAD_YELLOW:
+	else if (strcmp(input, "YELLOW") == 0)
 		UI.DrawColor = YELLOW;
-		break;
-	case LOAD_ORANGE:
+	else if (strcmp(input, "ORANGE") == 0)
 		UI.DrawColor = ORANGE;
-		break;
-	case LOAD_RED:
+	else if (strcmp(input, "RED") == 0)
 		UI.DrawColor = RED;
-		break;
-	case LOAD_GREEN:
+	else if (strcmp(input, "GREEN") == 0)
 		UI.DrawColor = GREEN;
-		break;
-	case LOAD_BLUE:
+	else if (strcmp(input, "BLUE") == 0)
 		UI.DrawColor = BLUE;
-		break;
-	}
+	else
+		exit(1);	//exit file if load file is corrupted
 
 	fin.getline(input, 20, '\n');	// Current_Fill_Color
-	switch (ParseColor(input))
-	{
-	case lOAD_BLACK:
+	if (strcmp(input, "BLACK") == 0)
 		UI.FillColor = BLACK;
-		break;
-	case LOAD_YELLOW:
+	else if (strcmp(input, "YELLOW") == 0)
 		UI.FillColor = YELLOW;
-		break;
-	case LOAD_ORANGE:
+	else if (strcmp(input, "ORANGE") == 0)
 		UI.FillColor = ORANGE;
-		break;
-	case LOAD_RED:
+	else if (strcmp(input, "RED") == 0)
 		UI.FillColor = RED;
-		break;
-	case LOAD_GREEN:
+	else if (strcmp(input, "GREEN") == 0)
 		UI.FillColor = GREEN;
-		break;
-	case LOAD_BLUE:
+	else if (strcmp(input, "BLUE") == 0)
 		UI.FillColor = BLUE;
-		break;
-	}
+	else
+		exit(1);	//exit file if load file is corrupted
 
 	int num_figures; 
 	fin >> num_figures; // Number_of_Figures_n
 	fin.ignore();
 
 	CFigure* Figure;
-	for (int i = 0; i < num_figures && fin.eof() == false; i++) // exit program with code 1 if file is corrupted (Draw color or Fill color not one of the 6 colors)
+	// exits program with code 1 if file is corrupted (Draw color or Fill color not one of the 6 colors or NO_FILL)
+	for (int i = 0; i < num_figures && fin.eof() == false; i++) //loops on each line loading and adding the figure
 	{
 		fin.getline(input, 30, '\t');
 
