@@ -15,7 +15,7 @@ class ApplicationManager
 private:
 	int FigCount;		//Actual number of figures
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
-	CFigure* SelectedFigList[MaxFigCount]; //Pointer to the selected figures(salem)
+	CFigure* SelectedFigure; //Pointer to the selected figure
 	int SelectedFigCount;//(salem)
 	int SelectedRects, SelectedSqrs, SelectedHexes, SelectedTris, SelectedCircs ;//selected
 	int NumOfRect,NumOfSqr, NumOfHex, NumOfTri, NumOfCirc;//total;
@@ -40,8 +40,10 @@ public:
 	void RemoveFigure(CFigure*); //Salem
 	void SwapFigure(int,int);//Salem for (send to back)
 
-	CFigure* GetSelectedFigure(int) const;
+	CFigure* GetSelectedFigure() const;
+	void SetSelectedFigure(CFigure*);
 	int GetSelectedFigureCount()const;
+	int GetSelectedFigureCountByType(FigureType)const;
 	int GetFigureCount()const;
 	// Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
@@ -49,8 +51,7 @@ public:
 
 	void UpdateInterface() const;	//Redraws all the drawing window	
 	void ClearAll();//(salem)
-	void UpdateNumOfFigures();
-	friend class SelectionAction;//Awaiting confirmation from TA(Salem)
+	void UpdateFigureData();
 	void SaveAll(ofstream& OutFile) const; //ChecK TA Save Output changed ?? (figure name, 1 added tab) Faseeh
 };
 

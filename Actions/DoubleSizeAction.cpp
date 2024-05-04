@@ -11,7 +11,7 @@ DoubleSizeAction::DoubleSizeAction(ApplicationManager* pApp) :Action(pApp)
 
 void DoubleSizeAction::ReadActionParameters()
 {
-	SelectedFig = pManager->GetSelectedFigure(0);
+	SelectedFig = pManager->GetSelectedFigure();
 }
 
 void DoubleSizeAction::Execute()

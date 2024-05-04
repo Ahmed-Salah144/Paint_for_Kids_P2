@@ -12,27 +12,26 @@ DeleteAction::DeleteAction(ApplicationManager* pApp) :Action(pApp)
 
 void DeleteAction::ReadActionParameters()
 {
-	Output* pOut = pManager->GetOutput();
-	SelectedFigCount = pManager->GetSelectedFigureCount();
-	if (SelectedFigCount == 0)
-	{
-		pOut->PrintMessage("No Figures Selected");
-		return;
-	}
-	for (int i = 0; i < SelectedFigCount; i++)
-	{
-		SelectedFigList[i] = pManager->GetSelectedFigure(i);
-	}
-	pOut->PrintMessage(to_string(SelectedFigCount) + " figure(s) have been deleted");
+
 }
 
 void DeleteAction::Execute()
 {
+	Output* pOut = pManager->GetOutput();
 	ReadActionParameters();
-	for (int i = 0; i < SelectedFigCount; i++)
+	if (pManager->GetSelectedFigureCount() == 0)
 	{
-		pManager->RemoveFigure(SelectedFigList[i]);
-		delete SelectedFigList[i];
-		SelectedFigList[i] = NULL;
+		pOut->PrintMessage("No Figures Selected");
+		return;
 	}
+	int DeletedFigCount = 0;
+	while (pManager->GetSelectedFigureCount() > 0)
+	{
+		FigureToDelete = pManager->GetSelectedFigure();
+		pManager->RemoveFigure(FigureToDelete);
+		delete FigureToDelete;
+		DeletedFigCount++;
+
+	}
+	pOut->PrintMessage(to_string(DeletedFigCount) + " figure(s) have been deleted");
 }

@@ -12,7 +12,7 @@ BringToFrontAction::BringToFrontAction(ApplicationManager* pApp) :Action(pApp)
 void BringToFrontAction::ReadActionParameters()
 {
 	Output* pOut = pManager->GetOutput();
-	SelectedFig=pManager->GetSelectedFigure(0);
+	SelectedFig=pManager->GetSelectedFigure();
 }
 
 void BringToFrontAction::Execute()
