@@ -7,7 +7,7 @@ class CSquare : public CFigure
 {
 private:
 	Point Center;
-	//double Size;
+	int* Size;
 public:
 	CSquare(Point, GfxInfo SquareGfxInfo);
 	CSquare(ifstream& InFile);
@@ -20,6 +20,7 @@ public:
 	virtual void FitInsideDrawArea();
 	virtual bool DoubleSize();
 	virtual bool HalfSize();
+	~CSquare();
 };
 
 #endif

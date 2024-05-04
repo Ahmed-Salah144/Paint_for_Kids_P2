@@ -211,14 +211,14 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	
 }
 
-void Output::DrawSquare(Point P1, GfxInfo SquareGfxInfo, bool selected) const
+void Output::DrawSquare(Point P1, GfxInfo SquareGfxInfo,int Size, bool selected) const
 {
 
 	Point P2{};
-	P1.x -= (160*1) / 2;			// moves L/2 to the left	(getting upper left corner)
-	P1.y -= (160 * 1) / 2;			// moves L/2 upwards
-	P2.x = P1.x + (160 * 1);		// moves L to the right from upper left corner
-	P2.y = P1.y + (160 * 1);		// moves L downwards
+	P1.x -= (Size*2.5) / 2;			// moves L/2 to the left	(getting upper left corner)
+	P1.y -= (Size *2.5) / 2;		// moves L/2 upwards
+	P2.x = P1.x + (Size * 2.5);		// moves L to the right from upper left corner
+	P2.y = P1.y + (Size * 2.5);		// moves L downwards
 
 	DrawRect(P1, P2, SquareGfxInfo, selected);
 	//X positive to the right
@@ -247,7 +247,7 @@ void Output::DrawTriangle(Point P1, Point P2, Point P3, GfxInfo TriangleGfxInfo,
 	pWind->DrawTriangle(P1.x, P1.y, P2.x, P2.y,P3.x,P3.y, style); //Check Implemntation
 }
 
-void Output::DrawHexagon(Point P1, GfxInfo HexagonGfxInfo, bool selected)const
+void Output::DrawHexagon(Point P1, GfxInfo HexagonGfxInfo,int Size, bool selected)const
 {
 	color DrawingClr;
 	if (selected)
@@ -268,22 +268,22 @@ void Output::DrawHexagon(Point P1, GfxInfo HexagonGfxInfo, bool selected)const
 
 	int Px[6] = {0,0,0,0,0,0}, Py[6] = {0,0,0,0,0,0};
 
-		Px[0] = P1.x+(1*100);
+		Px[0] = P1.x+(2*Size);
 		Py[0] = P1.y;
 
-		Px[1] = P1.x + 0.5*(100*1);
-		Py[1] = P1.y +0.866*(100*1);
+		Px[1] = P1.x + 0.5*(2*Size);
+		Py[1] = P1.y +0.866*(2*Size);
 
-		Px[2] = P1.x - 0.5 * (100*1);
+		Px[2] = P1.x - 0.5 * (2*Size);
 		Py[2] = Py[1];
 
-		Px[3] = P1.x- (100 * 1);
+		Px[3] = P1.x- (2*Size);
 		Py[3] = P1.y;
 
-		Px[4] = P1.x-0.5* (100 * 1);
-		Py[4] = P1.y-0.866* (100 * 1);
+		Px[4] = P1.x-0.5* (2*Size);
+		Py[4] = P1.y-0.866* (2*Size);
 
-		Px[5] = P1.x + 0.5* (100 * 1);
+		Px[5] = P1.x + 0.5* (2*Size);
 		Py[5] = Py[4];
 	//Geometry Magic to get Points of Hexagon
 
