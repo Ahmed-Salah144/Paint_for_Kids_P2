@@ -14,8 +14,6 @@ CHexagon::CHexagon(Point P,GfxInfo HexagonGfxInfo):
 CHexagon::CHexagon(ifstream& InFile)
 	: CFigure(InFile)
 {
-	Size = new int;
-	*Size = 64;
 	Load(InFile);
 }
 
@@ -66,14 +64,15 @@ FigureType CHexagon::GetFigType()
 void CHexagon::Save(ofstream& OutFile)
 {
 	OutFile << "HEXAGON" << "\t" << "\t" << this->ID << "\t"; //extra tab to make file more readable for user
-	OutFile << Center.x << "\t" << Center.y << "\t";
+	OutFile << Center.x << "\t" << Center.y << "\t"<<*Size<<"\t";
 	CFigure::Save(OutFile);
 }
 
 void CHexagon::Load(ifstream& InFile)
 {
 	char input[30] = {};
-	InFile >> Center.x >> Center.y;
+	Size = new int;
+	InFile >> Center.x >> Center.y>>*Size;
 	FigType = HEXAGON;
 	CFigure::Load(InFile);
 }

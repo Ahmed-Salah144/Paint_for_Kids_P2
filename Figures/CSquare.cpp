@@ -14,8 +14,6 @@ CSquare::CSquare(Point P, GfxInfo SquareGfxInfo) :
 CSquare::CSquare(ifstream& InFile)
 	: CFigure(InFile) // initializes ID and CFigure::selected = false
 {
-	Size = new int;
-	*Size = 64;//until fixed somehow(salem)
 	Load(InFile);
 }
 
@@ -44,14 +42,15 @@ FigureType CSquare::GetFigType()
 void CSquare::Save(ofstream& OutFile)
 {
 	OutFile << "SQUARE" << "\t" << "\t" << this->ID << "\t";	//extra tab to make file more readable for user
-	OutFile << Center.x << "\t" << Center.y << "\t";
+	OutFile << Center.x << "\t" << Center.y << "\t" << *Size << "\t";
 	CFigure::Save(OutFile);	//Saves Draw, Fill color
 }
 
 void CSquare::Load(ifstream& InFile)
 {
 	char input[30] = {};
-	InFile >> Center.x >> Center.y;
+	Size = new int;
+	InFile >> Center.x >> Center.y>>*Size;
 	FigType = SQUARE;
 	CFigure::Load(InFile);	//Loades Draw, Fill color
 }
