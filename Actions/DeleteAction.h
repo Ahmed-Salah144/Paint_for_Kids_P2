@@ -6,8 +6,7 @@
 //Delete Action (Salem)
 class DeleteAction : public Action
 {
-	CFigure* SelectedFigList[200];
-	int SelectedFigCount;
+	CFigure* FigureToDelete;
 public:
 	DeleteAction(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

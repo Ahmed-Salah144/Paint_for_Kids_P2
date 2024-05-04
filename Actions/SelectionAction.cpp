@@ -20,17 +20,8 @@ bool SelectionAction::DeselectFigure(CFigure*pFig)
 	if (pFig->IsSelected())
 	{
 		pFig->SetSelected(false);
-		for (int i = 0; i < pManager->SelectedFigCount; i++)
-		{
-			if (pFig->IsTheSame(pManager->SelectedFigList[i]))
-			{
-				pManager->SelectedFigList[i] = pManager->SelectedFigList[pManager->SelectedFigCount - 1];
-				pManager->SelectedFigList[pManager->SelectedFigCount - 1] = NULL;
-				break;
-			}
-		}
-		pManager->SelectedFigCount--;
-		pManager->UpdateNumOfFigures();
+
+		pManager->UpdateFigureData();
 		return true;
 	}
 	return false;
@@ -40,13 +31,12 @@ bool SelectionAction::SelectFigure(CFigure* pFig)
 {
 	if (pFig == NULL)
 		return false;
-	if (pManager->SelectedFigCount < 200)
+	if (pManager->GetSelectedFigureCount() < 200)
 	{
 		if (!(pFig->IsSelected()))
 		{
 			pFig->SetSelected(true);
-			pManager->SelectedFigList[pManager->SelectedFigCount++] = pFig;
-			pManager->UpdateNumOfFigures();
+			pManager->UpdateFigureData();
 			return true;
 		}
 	}
@@ -54,13 +44,10 @@ bool SelectionAction::SelectFigure(CFigure* pFig)
 }
 void SelectionAction::ClearAllSelection()
 {
-	for (int i = 0; i < pManager->SelectedFigCount; i++)
+	while(pManager->GetSelectedFigureCount()>0)
 	{
-		pManager->SelectedFigList[i]->SetSelected(false);
-		pManager->SelectedFigList[i]=NULL;
+		DeselectFigure(pManager->GetSelectedFigure());
 	}
-	pManager->SelectedFigCount = 0;;
-	pManager->UpdateNumOfFigures();
 }
 void SelectionAction::ReadActionParameters()
 {
@@ -86,10 +73,23 @@ void SelectionAction::Execute()
 	if (!(SelectFigure(pFig)))
 		if (!DeselectFigure(pFig))
 			ClearAllSelection();
-	if (pManager->SelectedFigCount == 0)
+	if (pManager->GetSelectedFigureCount() == 0)
 		pOut->PrintMessage("No Selected Figures");
-	else if (pManager->SelectedFigCount == 1)
-		pManager->SelectedFigList[0]->PrintInfo(pOut);
+	else if (pManager->GetSelectedFigureCount() == 1)
+		pManager->GetSelectedFigure()->PrintInfo(pOut);
 	else
-		pOut->PrintMessage("Selected: " + to_string(pManager->SelectedRects) + " Rectangle(s)," + to_string(pManager->SelectedTris) + " triangle(s)," + to_string(pManager->SelectedHexes) + " Hexagon(s), " + to_string(pManager->SelectedCircs) + " circle(s)," + to_string(pManager->SelectedSqrs) + " Square(s)");
+	{
+		string Message = "Selected: ";
+			if (pManager->GetSelectedFigureCountByType(RECTANGLE) > 0)
+				Message = Message + to_string(pManager->GetSelectedFigureCountByType(RECTANGLE)) + " Rectangle(s),";
+			if (pManager->GetSelectedFigureCountByType(TRIANGLE) > 0)
+				Message = Message + to_string(pManager->GetSelectedFigureCountByType(TRIANGLE)) + " Triangle(s),";
+			if (pManager->GetSelectedFigureCountByType(HEXAGON) > 0)
+				Message = Message + to_string(pManager->GetSelectedFigureCountByType(HEXAGON)) + " Hexagon(s),";
+			if (pManager->GetSelectedFigureCountByType(CIRCLE) > 0)
+				Message = Message + to_string(pManager->GetSelectedFigureCountByType(CIRCLE)) + " Circle(s),";
+			if (pManager->GetSelectedFigureCountByType(SQUARE) > 0)
+				Message = Message + to_string(pManager->GetSelectedFigureCountByType(SQUARE)) + " Square(s),";
+			pOut->PrintMessage(Message);
+	}
 }

@@ -12,7 +12,7 @@ HalfSizeAction::HalfSizeAction(ApplicationManager* pApp) :Action(pApp)
 void HalfSizeAction::ReadActionParameters()
 {
 	Output* pOut = pManager->GetOutput();
-	SelectedFig = pManager->GetSelectedFigure(0);
+	SelectedFig = pManager->GetSelectedFigure();
 }
 
 void HalfSizeAction::Execute()

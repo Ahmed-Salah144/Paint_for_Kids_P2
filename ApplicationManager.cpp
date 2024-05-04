@@ -38,8 +38,6 @@ ApplicationManager::ApplicationManager()
 	//Create an array of figure pointers and set them to NULL		
 	for(int i=0; i<MaxFigCount; i++)
 		FigList[i] = NULL;	
-	for (int i = 0; i < MaxFigCount; i++)
-		SelectedFigList[i] = NULL;
 }
 
 //==================================================================================//
@@ -283,6 +281,10 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 		FigList[FigCount++] = pFig;
 	}
 }
+int ApplicationManager::GetFigureCount()const
+{
+	return FigCount;
+}
 void ApplicationManager::SwapFigure(int m,int n)
 {
 	CFigure* Temp = FigList[n];
@@ -290,9 +292,9 @@ void ApplicationManager::SwapFigure(int m,int n)
 	FigList[m] = Temp;
 
 }
-CFigure* ApplicationManager::GetSelectedFigure(int i)const
+CFigure* ApplicationManager::GetSelectedFigure()const
 {
-	return SelectedFigList[i];
+		return SelectedFigure;
 }
 ////////////////////////////////////////////////////////////////////////////////////
 CFigure *ApplicationManager::GetFigure(int x, int y) const
@@ -330,31 +332,11 @@ void ApplicationManager::RemoveFigure(CFigure* pFig)
 		FigList[i] = FigList[i + 1];
 	}
 	FigList[FigCount] = NULL;
-	int RemovedSelectedFigIndex{};
-	for (int i = 0; i < SelectedFigCount; i++)
-	{
-		if (SelectedFigList[i]->IsTheSame(pFig))
-		{
-			RemovedSelectedFigIndex = i;
-			SelectedFigCount--;
-			break;
-		}
-	}
-	for (int i = RemovedSelectedFigIndex; i < SelectedFigCount; i++)
-	{
-		SelectedFigList[i] = SelectedFigList[i + 1];
-	}
-	SelectedFigList[SelectedFigCount] = NULL;
-	//pOut->ClearDrawArea();
-	UpdateNumOfFigures();
+	UpdateFigureData();
 }
 int ApplicationManager::GetSelectedFigureCount() const
 {
 	return SelectedFigCount;
-}
-int ApplicationManager::GetFigureCount()const
-{
-	return FigCount;
 }
 
 //==================================================================================//
@@ -369,35 +351,64 @@ void ApplicationManager::UpdateInterface() const
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
 }
 
-void ApplicationManager::UpdateNumOfFigures()
+
+
+void ApplicationManager::UpdateFigureData()
 {
 	SelectedRects = 0, SelectedSqrs = 0, SelectedHexes = 0, SelectedTris = 0, SelectedCircs = 0;
-	NumOfRect = 0, NumOfSqr = 0, NumOfHex = 0, NumOfTri = 0, NumOfCirc = 0;
+	NumOfRect = 0, NumOfSqr = 0, NumOfHex = 0, NumOfTri = 0, NumOfCirc = 0; SelectedFigCount = 0;
+	SelectedFigure = NULL;
 	for (int i = 0; i <FigCount; i++)
 	{
 		if (FigList[i] != NULL)
 		{
 			switch (FigList[i]->GetFigType())
 			{
-			case HEXAGON:NumOfHex++; break;
-			case CIRCLE:NumOfCirc++; break;
-			case TRIANGLE:NumOfTri++; break;
-			case SQUARE:NumOfSqr++; break;
-			case RECTANGLE:	NumOfRect++; break;
-			}
-		}
-	}
-	for (int i = 0; i < SelectedFigCount; i++)
-	{
-		if (SelectedFigList[i] != NULL)
-		{
-			switch (SelectedFigList[i]->GetFigType())
-			{
-			case HEXAGON:SelectedHexes++; break;
-			case CIRCLE:SelectedCircs++; break;
-			case TRIANGLE:SelectedTris++; break;
-			case SQUARE:SelectedSqrs++; break;
-			case RECTANGLE:SelectedRects++; break;
+			case HEXAGON:
+				NumOfHex++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedHexes++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case CIRCLE:
+				NumOfCirc++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedCircs++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case TRIANGLE:
+				NumOfTri++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedTris++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case SQUARE:
+				NumOfSqr++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedSqrs++;
+					SelectedFigure = FigList[i];
+				}
+				break;
+			case RECTANGLE:
+				NumOfRect++;
+				if (FigList[i]->IsSelected())
+				{
+					SelectedFigCount++;
+					SelectedRects++;
+					SelectedFigure = FigList[i];
+				}
+				break;
 			}
 		}
 	}
@@ -444,45 +455,39 @@ void ApplicationManager::SaveAll(ofstream& OutFile) const
 }
 
 void ApplicationManager::ClearAll()
-{	
+{
 	for (int i = 0; i < FigCount; i++)
 	{
-		switch (FigList[i]->GetFigType())
-		{
-		/*case(SQUARE):
-			delete (CSquare*)FigList[i];
-			break;
-		case(RECTANGLE):
-			delete (CRectangle*)FigList[i];
-			break;
-		case(HEXAGON):
-			delete (CHexagon*)FigList[i];
-			break;
-		case(TRIANGLE):
-			delete (CTriangle*)FigList[i];
-			break;
-		case(CIRCLE):
-			delete (CCircle*)FigList[i];
-			break;*/
-		default:
-			delete FigList[i];
-			break;
-		}
+		delete FigList[i];
 		FigList[i] = NULL;
-	}		
+	}
 	FigCount = 0;
-	for (int i = 0; i < MaxFigCount; i++)
-		SelectedFigList[i] = NULL;
-	SelectedFigCount = 0;
-	UpdateNumOfFigures();
+	SelectedFigure = NULL;
+	UpdateFigureData();
 }
 ////////////////////////////////////////////////////////////////////////////////////
 //Return a pointer to the input
 Input *ApplicationManager::GetInput() const
 {	return pIn; }
+void ApplicationManager::SetSelectedFigure(CFigure* pFig)
+{
+	SelectedFigure = pFig;
+}
 //Return a pointer to the output
 Output *ApplicationManager::GetOutput() const
 {	return pOut; }
+int ApplicationManager::GetSelectedFigureCountByType(FigureType Fig) const
+{
+	switch (Fig)
+	{
+	case HEXAGON:return SelectedHexes;
+	case CIRCLE:return SelectedCircs;
+	case TRIANGLE:return SelectedTris;
+	case SQUARE:return SelectedSqrs;
+	case RECTANGLE:return SelectedRects;
+	default: return 0;
+	}
+}
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor
 ApplicationManager::~ApplicationManager()

@@ -13,7 +13,7 @@ SendToBackAction::SendToBackAction(ApplicationManager* pApp) :Action(pApp)
 void SendToBackAction::ReadActionParameters()
 {
 	Output* pOut = pManager->GetOutput();
-	SelectedFig = pManager->GetSelectedFigure(0);
+	SelectedFig = pManager->GetSelectedFigure();
 }
 
 void SendToBackAction::Execute()
