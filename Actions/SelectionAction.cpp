@@ -79,7 +79,17 @@ void SelectionAction::Execute()
 		pManager->GetSelectedFigure()->PrintInfo(pOut);
 	else
 	{
-		pOut->PrintMessage("Selected: " + to_string(pManager->GetSelectedFigureCountByType(RECTANGLE)) + " Rectangle(s)," + to_string(pManager->GetSelectedFigureCountByType(TRIANGLE))
-		+ " triangle(s)," + to_string(pManager->GetSelectedFigureCountByType(HEXAGON)) + " Hexagon(s), " + to_string(pManager->GetSelectedFigureCountByType(CIRCLE)) + " circle(s)," + to_string(pManager->GetSelectedFigureCountByType(SQUARE)) + " Square(s)");
+		string Message = "Selected: ";
+			if (pManager->GetSelectedFigureCountByType(RECTANGLE) > 0)
+				Message = Message + to_string(pManager->GetSelectedFigureCountByType(RECTANGLE)) + " Rectangle(s),";
+			if (pManager->GetSelectedFigureCountByType(TRIANGLE) > 0)
+				Message = Message + to_string(pManager->GetSelectedFigureCountByType(TRIANGLE)) + " Triangle(s),";
+			if (pManager->GetSelectedFigureCountByType(HEXAGON) > 0)
+				Message = Message + to_string(pManager->GetSelectedFigureCountByType(HEXAGON)) + " Hexagon(s),";
+			if (pManager->GetSelectedFigureCountByType(CIRCLE) > 0)
+				Message = Message + to_string(pManager->GetSelectedFigureCountByType(CIRCLE)) + " Circle(s),";
+			if (pManager->GetSelectedFigureCountByType(SQUARE) > 0)
+				Message = Message + to_string(pManager->GetSelectedFigureCountByType(SQUARE)) + " Square(s),";
+			pOut->PrintMessage(Message);
 	}
 }
