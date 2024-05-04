@@ -1,13 +1,11 @@
 #include"CHexagon.h"
 #include <fstream>
-
 CHexagon::CHexagon(Point P,GfxInfo HexagonGfxInfo):
 	CFigure(HexagonGfxInfo)
 {
 	Center = P;
 	FigType = HEXAGON;
-	Size = new int;
-	*Size = 64;
+	Size = new int(64);
 	FitInsideDrawArea();
 }
 

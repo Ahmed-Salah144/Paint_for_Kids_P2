@@ -32,7 +32,7 @@ void DeleteAction::Execute()
 	for (int i = 0; i < SelectedFigCount; i++)
 	{
 		pManager->RemoveFigure(SelectedFigList[i]);
-		//delete SelectedFigList[i];
+		delete SelectedFigList[i];
 		SelectedFigList[i] = NULL;
 	}
 }

@@ -1,13 +1,11 @@
 #include"CSquare.h"
 #include <fstream>
-
 CSquare::CSquare(Point P, GfxInfo SquareGfxInfo) :
 	CFigure(SquareGfxInfo)
 {
 	Center = P;
 	FigType = SQUARE;
-	Size = new int;
-	*Size = 64;//until fixed somehow(salem)
+	Size = new int(64);
 	FitInsideDrawArea();
 }
 
