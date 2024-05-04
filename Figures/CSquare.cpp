@@ -5,7 +5,7 @@ CSquare::CSquare(Point P, GfxInfo SquareGfxInfo) :
 {
 	Center = P;
 	FigType = SQUARE;
-	Size = new int(64);
+	Size = 64;
 	FitInsideDrawArea();
 }
 
@@ -17,17 +17,17 @@ CSquare::CSquare(ifstream& InFile)
 
 void CSquare::Draw(Output* pOut) const
 {
-	pOut->DrawSquare(Center, FigGfxInfo, *Size,Selected);
+	pOut->DrawSquare(Center, FigGfxInfo, Size,Selected);
 }
 
 void CSquare::PrintInfo(Output* pOut)
 {
-	pOut->PrintMessage("Square   ID: " + to_string(ID) + " ,Center : (" + to_string(Center.x) + "," + to_string(Center.y) + "),Length : " + to_string((int)(*Size *2.5)));
+	pOut->PrintMessage("Square   ID: " + to_string(ID) + " ,Center : (" + to_string(Center.x) + "," + to_string(Center.y) + "),Length : " + to_string((int)(Size *2.5)));
 }
 
 bool CSquare::IsClicked(int x, int y)
 {
-	if (x >= Center.x - *Size *1.25 && x <= Center.x + *Size * 1.25 && y >= Center.y - *Size * 1.25 && y <= Center.y + *Size * 1.25)
+	if (x >= Center.x - Size *1.25 && x <= Center.x + Size * 1.25 && y >= Center.y - Size * 1.25 && y <= Center.y + Size * 1.25)
 		return true;
 	return false;
 }
@@ -40,57 +40,51 @@ FigureType CSquare::GetFigType()
 void CSquare::Save(ofstream& OutFile)
 {
 	OutFile << "SQUARE" << "\t" << "\t" << this->ID << "\t";	//extra tab to make file more readable for user
-	OutFile << Center.x << "\t" << Center.y << "\t" << *Size << "\t";
+	OutFile << Center.x << "\t" << Center.y << "\t" << Size << "\t";
 	CFigure::Save(OutFile);	//Saves Draw, Fill color
 }
 
 void CSquare::Load(ifstream& InFile)
 {
 	char input[30] = {};
-	Size = new int;
-	InFile >> Center.x >> Center.y>>*Size;
+	InFile >> Center.x >> Center.y >> Size;
 	FigType = SQUARE;
 	CFigure::Load(InFile);	//Loades Draw, Fill color
 }
 void CSquare::FitInsideDrawArea()
 {
-	if (Center.y + *Size * 1.25 > (UI.height - 100 - UI.StatusBarHeight)) //Bottomside Validation(Salem)
+	if (Center.y + Size * 1.25 > (UI.height - 100 - UI.StatusBarHeight)) //Bottomside Validation(Salem)
 	{
-		Center.y -= (Center.y + *Size * 1.25 - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Center Inside
+		Center.y -= (Center.y + Size * 1.25 - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Center Inside
 	}
-	if (Center.y - *Size * 1.25 < UI.ToolBarHeight)//Topside Validation(Salem)
+	if (Center.y - Size * 1.25 < UI.ToolBarHeight)//Topside Validation(Salem)
 	{
-		Center.y += (-Center.y + *Size * 1.25 + UI.ToolBarHeight + 5);//Pushing Center Inside
+		Center.y += (-Center.y + Size * 1.25 + UI.ToolBarHeight + 5);//Pushing Center Inside
 	}
-	if (Center.x + *Size * 1.25 > UI.width - 25) //Rightside Validation(Salem)
+	if (Center.x + Size * 1.25 > UI.width - 25) //Rightside Validation(Salem)
 	{
-		Center.x -= (Center.x + *Size * 1.25 - UI.width + 25 - 5);//Pushing Center Inside
+		Center.x -= (Center.x + Size * 1.25 - UI.width + 25 - 5);//Pushing Center Inside
 	}
-	if (Center.x - *Size * 1.25 < 0) //Leftside Validation(Salem)
+	if (Center.x - Size * 1.25 < 0) //Leftside Validation(Salem)
 	{
-		Center.x += (-Center.x + *Size * 1.25 + 5);//Pushing Center Inside
+		Center.x += (-Center.x + Size * 1.25 + 5);//Pushing Center Inside
 	}
 }
 
 bool CSquare::DoubleSize()
 {
-	if ((*Size * 1.25) > (UI.height - 200) / 2)
+	if ((Size * 1.25) > (UI.height - 200) / 2)
 		return false;
-	*Size *= 2;
+	Size *= 2;
 	FitInsideDrawArea();
 	return true;
 }
 
 bool CSquare::HalfSize()
 {
-	if (*Size < 8 )
+	if (Size < 8 )
 		return false;
-	*Size *= 0.5;
+	Size *= 0.5;
 	FitInsideDrawArea();
 	return true;
-}
-
-CSquare::~CSquare()
-{
-	delete Size;
 }

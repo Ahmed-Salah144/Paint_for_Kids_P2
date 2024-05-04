@@ -8,7 +8,7 @@ class CHexagon : public CFigure
 {
 private:
 	Point Center;
-	int* Size;
+	int Size;
 public:
 	CHexagon(Point ,GfxInfo HexagonGfxInfo);
 	CHexagon(ifstream& InFile);
@@ -21,7 +21,6 @@ public:
 	virtual void FitInsideDrawArea();
 	virtual bool DoubleSize();
 	virtual bool HalfSize();
-	~CHexagon();
 };
 
 #endif

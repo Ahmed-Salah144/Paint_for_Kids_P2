@@ -26,10 +26,8 @@ void LoadAction::ReadActionParameters()
 
 void LoadAction::Execute()
 {
-	this->ReadActionParameters();
-	pManager->ExecuteAction(CLEARED);
-
-	ifstream fin(file_name); //file input
+	this->ReadActionParameters();	//Reads file_name from user
+	ifstream fin(file_name);		//file input
 	Output* pout = pManager->GetOutput();
 
 	if (fin.is_open() == false)
@@ -37,10 +35,11 @@ void LoadAction::Execute()
 		pout->PrintMessage("Error: Can't load, couldn't open File");
 		return;
 	}
-		
-	char input[30] = {};			// array of characters to store user's input
-	fin.getline(input, 20, '\t');	// Current_Draw_Color
-	if (strcmp(input, "BLACK") == 0)
+	
+	pManager->ExecuteAction(CLEARED);	//clears draw area before loading
+	char input[30] = {};				//array of characters to store user's input
+	fin.getline(input, 30, '\t');		//Current_Draw_Color
+	if (strcmp(input, "BLACK") == 0)	//Sets Current_Draw_Color
 		UI.DrawColor = BLACK;
 	else if (strcmp(input, "YELLOW") == 0)
 		UI.DrawColor = YELLOW;
@@ -55,8 +54,8 @@ void LoadAction::Execute()
 	else
 		exit(1);	//exit file if load file is corrupted
 
-	fin.getline(input, 20, '\n');	// Current_Fill_Color
-	if (strcmp(input, "BLACK") == 0)
+	fin.getline(input, 30, '\n');		// Current_Fill_Color
+	if (strcmp(input, "BLACK") == 0)	//Sets Current_Fill_Color
 		UI.FillColor = BLACK;
 	else if (strcmp(input, "YELLOW") == 0)
 		UI.FillColor = YELLOW;

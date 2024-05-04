@@ -125,3 +125,7 @@ void CFigure::Load(ifstream& InFile)
 		FigGfxInfo.isFilled = false;
 	}
 }
+
+CFigure::~CFigure()
+{
+}

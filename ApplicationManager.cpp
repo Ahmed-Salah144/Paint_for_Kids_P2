@@ -15,6 +15,12 @@
 #include "Actions\LoadAction.h"
 #include "Actions\HalfSizeAction.h"
 #include "Actions\DoubleSizeAction.h"
+#include "Figures\CSquare.h"
+#include "Figures\CRectangle.h"
+#include "Figures\CHexagon.h"
+#include "Figures\CTriangle.h"
+#include "Figures\CCircle.h"
+
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -438,7 +444,27 @@ void ApplicationManager::ClearAll()
 {	
 	for (int i = 0; i < FigCount; i++)
 	{
-		delete FigList[i]; //T_T MEMORY MANAGMENT
+		switch (FigList[i]->GetFigType())
+		{
+		/*case(SQUARE):
+			delete (CSquare*)FigList[i];
+			break;
+		case(RECTANGLE):
+			delete (CRectangle*)FigList[i];
+			break;
+		case(HEXAGON):
+			delete (CHexagon*)FigList[i];
+			break;
+		case(TRIANGLE):
+			delete (CTriangle*)FigList[i];
+			break;
+		case(CIRCLE):
+			delete (CCircle*)FigList[i];
+			break;*/
+		default:
+			delete FigList[i];
+			break;
+		}
 		FigList[i] = NULL;
 	}		
 	FigCount = 0;
