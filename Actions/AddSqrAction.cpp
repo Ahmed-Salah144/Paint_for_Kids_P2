@@ -1,10 +1,9 @@
 #include "AddSqrAction.h"
 #include "..\Figures\CSquare.h"
-
 #include "..\ApplicationManager.h"
-
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
+#include "VoiceAction.h"
 
 AddSqrAction::AddSqrAction(ApplicationManager* pApp) :Action(pApp)
 {}
@@ -38,6 +37,11 @@ void AddSqrAction::Execute()
 
 	//Create a square with the parameters read from the user
 	CSquare* S = new CSquare(P, SqrGfxInfo);
+	if (VoiceAction::GetVoiceOn() == true) //plays Voice if enabled
+	{
+		PlaySound(TEXT("Voice/SquareAdded"), NULL, SND_FILENAME | SND_SYNC);
+		PlaySound(TEXT("Voice/BGM"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	}
 	//Add the square to the list of figures
 	pManager->AddFigure(S);
 }

@@ -1,10 +1,9 @@
 #include "AddTriAction.h"
 #include "..\Figures\CTriangle.h"
-
 #include "..\ApplicationManager.h"
-
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
+#include "VoiceAction.h"
 
 AddTriAction::AddTriAction(ApplicationManager* pApp) : Action(pApp)
 {}
@@ -48,6 +47,11 @@ void AddTriAction::Execute()
 
 	//Create a triangle with the parameters read from the user
 	CTriangle* T = new CTriangle(P1, P2,P3,TriGfxInfo);
+	if (VoiceAction::GetVoiceOn() == true) //plays Voice if enabled
+	{
+		PlaySound(TEXT("Voice/Triangle"), NULL, SND_FILENAME | SND_SYNC);
+		PlaySound(TEXT("Voice/BGM"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	}
 	//Add the triangle to the list of figures
 	pManager->AddFigure(T);
 }

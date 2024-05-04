@@ -48,7 +48,7 @@ public:
 	Output *GetOutput() const; //Return pointer to the output
 
 	void UpdateInterface() const;	//Redraws all the drawing window	
-	void ClearAll();//(salem)
+	void ClearAll();
 	void UpdateNumOfFigures();
 	friend class SelectionAction;//Awaiting confirmation from TA(Salem)
 	void SaveAll(ofstream& OutFile) const; //ChecK TA Save Output changed ?? (figure name, 1 added tab) Faseeh

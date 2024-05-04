@@ -1,10 +1,9 @@
 #include "AddCircAction.h"
 #include "..\Figures\CCircle.h"
-
 #include "..\ApplicationManager.h"
-
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
+#include "VoiceAction.h"
 
 AddCircAction::AddCircAction(ApplicationManager* pApp) :Action(pApp)
 {}
@@ -41,7 +40,12 @@ void AddCircAction::Execute()
 	ReadActionParameters();
 
 	//Create a circle with the parameters read from the user
-	CCircle* C = new CCircle (P1, P2, CircGfxInfo);
+	CCircle* C = new CCircle (P1, P2, CircGfxInfo);	
+	if (VoiceAction::GetVoiceOn() == true)
+	{
+		PlaySound(TEXT("Voice/AddedCircle"), NULL, SND_FILENAME | SND_SYNC);
+		PlaySound(TEXT("Voice/BGM"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	}
 	//Add the circle to the list of figures
 	pManager->AddFigure(C);
 }

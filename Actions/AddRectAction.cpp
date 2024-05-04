@@ -1,10 +1,9 @@
 #include "AddRectAction.h"
 #include "..\Figures\CRectangle.h"
-
 #include "..\ApplicationManager.h"
-
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
+#include "VoiceAction.h"
 
 AddRectAction::AddRectAction(ApplicationManager * pApp):Action(pApp)
 {}
@@ -42,6 +41,11 @@ void AddRectAction::Execute()
 	
 	//Create a rectangle with the parameters read from the user
 	CRectangle *R=new CRectangle(P1, P2, RectGfxInfo);
+	if (VoiceAction::GetVoiceOn() == true) //plays Voice if enabled
+	{
+		PlaySound(TEXT("Voice/RectangleAdded"), NULL, SND_FILENAME | SND_SYNC);
+		PlaySound(TEXT("Voice/BGM"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	}
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(R);
 }

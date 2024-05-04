@@ -1,4 +1,10 @@
 #include "ApplicationManager.h"
+#include "Figures\CFigure.h"
+#include "Figures\CSquare.h"
+#include "Figures\CRectangle.h"
+#include "Figures\CHexagon.h"
+#include "Figures\CTriangle.h"
+#include "Figures\CCircle.h"
 #include "Actions\AddRectAction.h"
 #include "Actions\AddSqrAction.h"
 #include "Actions\AddTriAction.h"
@@ -15,11 +21,7 @@
 #include "Actions\LoadAction.h"
 #include "Actions\HalfSizeAction.h"
 #include "Actions\DoubleSizeAction.h"
-#include "Figures\CSquare.h"
-#include "Figures\CRectangle.h"
-#include "Figures\CHexagon.h"
-#include "Figures\CTriangle.h"
-#include "Figures\CCircle.h"
+#include "Actions\VoiceAction.h"
 
 
 //Constructor
@@ -211,6 +213,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		}
 		case VOICE:
 		{
+			pAct = new VoiceAction(this);
 			break;
 		}
 	/*	case STATUS:

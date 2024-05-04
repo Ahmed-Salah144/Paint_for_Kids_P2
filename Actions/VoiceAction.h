@@ -5,10 +5,14 @@
 
 class VoiceAction : public Action
 {
+public:
+	enum Sound { RectangleAdded, SquareAdded, CircleAdded};
 private:
-
+	static bool sound_on;
 public:
 	VoiceAction(ApplicationManager* pApp);
+
+	static bool GetVoiceOn();
 
 	virtual void ReadActionParameters();
 

@@ -1,10 +1,9 @@
 #include "AddHexAction.h"
 #include "..\Figures\CHexagon.h"
-
 #include "..\ApplicationManager.h"
-
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
+#include "VoiceAction.h"
 
 AddHexAction::AddHexAction(ApplicationManager* pApp) :Action(pApp)
 {}
@@ -38,6 +37,11 @@ void AddHexAction::Execute()
 	//Create a rectangle with the parameters read from the user
 
 	CHexagon* H = new CHexagon(P,HexGfxInfo);
+	if (VoiceAction::GetVoiceOn() == true) //plays Voice if enabled
+	{
+		PlaySound(TEXT("Voice/Hexagon"), NULL, SND_FILENAME | SND_SYNC);
+		PlaySound(TEXT("Voice/BGM"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+	}
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(H);
 }
