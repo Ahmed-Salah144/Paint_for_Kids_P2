@@ -134,12 +134,9 @@
     <ClCompile Include="Actions\AddTriAction.cpp" />
     <ClCompile Include="Actions\BorderColorAction.cpp" />
     <ClCompile Include="Actions\ClearAllAction.cpp" />
-    <ClCompile Include="Actions\CopyAction.cpp" />
-    <ClCompile Include="Actions\CutAction.cpp" />
     <ClCompile Include="Actions\DeleteAction.cpp" />
     <ClCompile Include="Actions\FillColorAction.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
-    <ClCompile Include="Actions\PasteAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectionAction.cpp" />
     <ClCompile Include="Actions\SendToBackAction.cpp" />
@@ -203,13 +200,10 @@
     <ClInclude Include="Actions\AddTriAction.h" />
     <ClInclude Include="Actions\BorderColorAction.h" />
     <ClInclude Include="Actions\ClearAllAction.h" />
-    <ClInclude Include="Actions\CopyAction.h" />
-    <ClInclude Include="Actions\CutAction.h" />
     <ClInclude Include="Actions\DeleteAction.h" />
     <ClInclude Include="Actions\FillColorAction.h" />
     <ClInclude Include="Actions\DoubleSizeAction.h" />
     <ClInclude Include="Actions\HalfSizeAction.h" />
-    <ClInclude Include="Actions\PasteAction.h" />
     <ClInclude Include="Actions\VoiceAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />

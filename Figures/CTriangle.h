@@ -10,7 +10,6 @@ private:
 	Point Vertex2;
 	Point Vertex3;
 public:
-	CTriangle(CTriangle*); //overriding constructor (needed for clipboard copy)// (abdo)
 	CTriangle(Point, Point, Point, GfxInfo TriangleGfxInfo);
 	CTriangle(ifstream& InFile);
 	virtual void Draw(Output* pOut) const;

@@ -10,7 +10,6 @@ private:
 	Point Corner2;
 	int L, W;//Length an width(needed in selection)
 public:
-	CRectangle(CRectangle*); //overriding constructor (needed for clipboard copy)// (abdo)
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	CRectangle(ifstream& fin);
 	virtual void Draw(Output* pOut) const;

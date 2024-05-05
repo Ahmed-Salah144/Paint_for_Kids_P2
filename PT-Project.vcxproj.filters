@@ -220,15 +220,6 @@
     <ClCompile Include="Actions\VoiceAction.cpp">
       <Filter>Action Classes\BonusActions</Filter>
     </ClCompile>
-    <ClCompile Include="Actions\CopyAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\CutAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\PasteAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -370,6 +361,7 @@
     <ClInclude Include="Actions\LoadAction.h">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
+    <ClInclude Include="Utils.h" />
     <ClInclude Include="Actions\HalfSizeAction.h">
       <Filter>Action Classes\BonusActions</Filter>
     </ClInclude>
@@ -378,15 +370,6 @@
     </ClInclude>
     <ClInclude Include="Actions\DoubleSizeAction.h">
       <Filter>Action Classes\BonusActions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\CopyAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\CutAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\PasteAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

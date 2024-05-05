@@ -1,10 +1,5 @@
 #include"CSquare.h"
 #include <fstream>
-
-CSquare::CSquare(CSquare* S) : CFigure(S->FigGfxInfo) {
-	this->Center = S->Center;
-	FigType = SQUARE;
-}
 CSquare::CSquare(Point P, GfxInfo SquareGfxInfo) :
 	CFigure(SquareGfxInfo)
 {

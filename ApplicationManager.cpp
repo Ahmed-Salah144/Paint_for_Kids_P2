@@ -22,9 +22,6 @@
 #include "Actions\HalfSizeAction.h"
 #include "Actions\DoubleSizeAction.h"
 #include "Actions\VoiceAction.h"
-#include "Actions\CopyAction.h"
-#include "Actions\CutAction.h"
-#include "Actions\PasteAction.h"
 
 
 //Constructor
@@ -34,8 +31,6 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output;
 	pIn = pOut->CreateInput();
 	
-	ClipboardID = 0;
-	Clipboard = NULL;
 	FigCount = 0;
 	SelectedFigCount = 0;
 	SelectedRects = 0; SelectedSqrs = 0; SelectedHexes = 0; SelectedTris = 0; SelectedCircs = 0;
@@ -159,17 +154,17 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		}
 		case COPIED:
 		{
-			pAct = new CopyAction(this);
+			pOut->PrintMessage("Action: Copy Tool , Click anywhere");
 			break;
 		}
 		case CUT:
 		{
-			pAct = new CutAction(this);
+			pOut->PrintMessage("Action: Cut Tool , Click anywhere");
 			break;
 		}
 		case PASTED:
 		{
-			pAct = new PasteAction(this);
+			pOut->PrintMessage("Action: Paste Tool , Click anywhere");
 			break;
 		}
 		case FRONT_SENT:
@@ -342,19 +337,6 @@ void ApplicationManager::RemoveFigure(CFigure* pFig)
 int ApplicationManager::GetSelectedFigureCount() const
 {
 	return SelectedFigCount;
-}
-
-void ApplicationManager::SetClipboard(CFigure* CF) {
-	Clipboard = CF;
-}
-CFigure* ApplicationManager::GetClipboard() {
-	return Clipboard;
-}
-void ApplicationManager::SetClipboardID(int i) {
-	ClipboardID = i;
-}
-int ApplicationManager::GetClipboardID() {
-	return ClipboardID;
 }
 
 //==================================================================================//
