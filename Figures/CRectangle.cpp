@@ -1,13 +1,6 @@
 #include "CRectangle.h"
 #include "fstream"
 
-CRectangle::CRectangle(CRectangle* R) : CFigure(R->FigGfxInfo) {
-	this->Corner1 = R->Corner1;
-	this->Corner2 = R->Corner2;
-	FigType = RECTANGLE;
-	this->L = R->L;
-	this->W = R->W;
-}
 CRectangle::CRectangle(Point P1, Point P2, GfxInfo FigureGfxInfo):CFigure(FigureGfxInfo)
 {
 	Corner1 = P1;

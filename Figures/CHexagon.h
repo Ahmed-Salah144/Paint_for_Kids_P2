@@ -10,7 +10,6 @@ private:
 	Point Center;
 	int Size;
 public:
-	CHexagon(CHexagon*); //overriding constructor (needed for clipboard copy)// (abdo)
 	CHexagon(Point ,GfxInfo HexagonGfxInfo);
 	CHexagon(ifstream& InFile);
 	virtual void Draw(Output* pOut) const;

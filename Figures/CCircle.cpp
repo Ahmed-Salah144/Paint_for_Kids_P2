@@ -1,12 +1,6 @@
 #include"CCircle.h"
 #include <fstream>
 
-CCircle::CCircle(CCircle* C) : CFigure(C->FigGfxInfo) {
-	this->Center = C->Center;
-	this->OuterPoint = C->OuterPoint;
-	this->Radius = C->Radius;
-	FigType = CIRCLE; 
-} 
 CCircle::CCircle(Point P1,Point P2, GfxInfo CircleGfxInfo) :
 	CFigure(CircleGfxInfo)
 {
