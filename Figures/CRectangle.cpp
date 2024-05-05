@@ -24,6 +24,15 @@ void CRectangle::Draw(Output* pOut) const
 	pOut->DrawRect(Corner1, Corner2, FigGfxInfo, Selected);
 }
 
+void CRectangle::MoveFigure(int x, int y)
+{
+	Corner1.x = x + (L / 2);
+	Corner1.y = y + (W / 2);
+	Corner2.x = x - (L / 2);
+	Corner2.y = y - (W / 2);
+
+}
+
 void CRectangle::PrintInfo(Output* pOut)
 {
 	string Message = "Rectangle   ID: " + to_string(ID) + " ,Corner 1: (" + to_string(Corner1.x) + "," + to_string(Corner1.y) + ")" + " ,Corner 2: (" + to_string(Corner2.x) + "," + to_string(Corner2.y) + ")";

@@ -13,6 +13,7 @@ public:
 	CRectangle(Point , Point, GfxInfo FigureGfxInfo );
 	CRectangle(ifstream& fin);
 	virtual void Draw(Output* pOut) const;
+	virtual void MoveFigure(int, int);
 	virtual void PrintInfo(Output* pOut);	//print all figure info on the status bar
 	virtual bool IsClicked(int x, int y);
 	virtual FigureType GetFigType();
