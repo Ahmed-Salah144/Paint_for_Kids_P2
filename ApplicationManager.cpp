@@ -485,6 +485,8 @@ void ApplicationManager::ClearAll()
 		delete FigList[i];
 		FigList[i] = NULL;
 	}
+	delete Clipboard;
+	Clipboard = NULL;
 	FigCount = 0;
 	SelectedFigure = NULL;
 	UpdateFigureData();
@@ -512,12 +514,24 @@ int ApplicationManager::GetSelectedFigureCountByType(FigureType Fig) const
 	default: return 0;
 	}
 }
+int ApplicationManager::GetFigureCountByType(FigureType Fig) const
+{
+	switch (Fig)
+	{
+	case HEXAGON:return NumOfHex;
+	case CIRCLE:return NumOfCirc;
+	case TRIANGLE:return NumOfTri;
+	case SQUARE:return NumOfSqr;
+	case RECTANGLE:return NumOfRect;
+	default: return 0;
+	}
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor
 ApplicationManager::~ApplicationManager()
 {
 	for (int i = 0; i < FigCount; i++)
 		delete FigList[i];//ERROR!
+	delete Clipboard;
 	delete pIn;
 	delete pOut;
 }

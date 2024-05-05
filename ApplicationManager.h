@@ -43,6 +43,7 @@ public:
 	CFigure* GetSelectedFigure() const;
 	void SetSelectedFigure(CFigure*);
 	int GetSelectedFigureCount()const;
+	int GetFigureCountByType(FigureType)const;
 	int GetSelectedFigureCountByType(FigureType)const;
 	int GetFigureCount()const;
 	// Interface Management Functions
