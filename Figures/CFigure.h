@@ -30,7 +30,7 @@ public:
 	color GetDrawClr(); //(Salem)
 	color GetFillClr();//(Salem)
 	void SetID(int);//(salem)
-
+	int GetID() ; //(abdo)
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 

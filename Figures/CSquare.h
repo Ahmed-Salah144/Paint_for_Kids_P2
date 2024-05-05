@@ -9,6 +9,7 @@ private:
 	Point Center;
 	int Size;
 public:
+	CSquare(CSquare*); //overriding constructor (needed for clipboard copy)// (abdo)
 	CSquare(Point, GfxInfo SquareGfxInfo);
 	CSquare(ifstream& InFile);
 	virtual void Draw(Output* pOut) const;

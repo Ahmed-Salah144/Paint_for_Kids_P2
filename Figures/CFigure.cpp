@@ -56,7 +56,9 @@ void CFigure::SetID(int id)
 {
 	ID = id;
 }
-
+int CFigure::GetID() {
+	return ID;
+}
 void CFigure::Save(ofstream& OutFile)
 {
 	if (FigGfxInfo.DrawClr == BLACK) //prints figure's draw color

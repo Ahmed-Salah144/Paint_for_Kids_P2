@@ -1,5 +1,10 @@
 #include"CHexagon.h"
 #include <fstream>
+
+CHexagon::CHexagon(CHexagon* H) :CFigure(H->FigGfxInfo) {
+	this->Center = H->Center;
+	FigType = HEXAGON;
+}
 CHexagon::CHexagon(Point P,GfxInfo HexagonGfxInfo):
 	CFigure(HexagonGfxInfo)
 {
