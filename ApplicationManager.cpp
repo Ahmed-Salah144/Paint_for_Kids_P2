@@ -328,7 +328,7 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 
 void ApplicationManager::RemoveFigure(int ID)
 {
-	int RemovedFigIndex{};
+	int RemovedFigIndex=FigCount;
 	for (int i = 0; i < FigCount; i++)
 	{
 		if (FigList[i]->GetID()==ID)
