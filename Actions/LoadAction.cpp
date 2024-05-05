@@ -12,7 +12,12 @@
 #include "../Figures/CTriangle.h"
 
 LoadAction::LoadAction(ApplicationManager * papp)
-	: Action(papp)
+	: Action(papp), playmode(false)
+{
+}
+
+LoadAction::LoadAction(ApplicationManager* papp, int)
+	: Action(papp), file_name(".\\\\Saves\\\\PlayModeSave\\\\PLAYMODE.txt"), playmode(true)
 {
 }
 
@@ -26,7 +31,9 @@ void LoadAction::ReadActionParameters()
 
 void LoadAction::Execute()
 {
-	this->ReadActionParameters();	//Reads file_name from user
+	if(playmode == false)
+		this->ReadActionParameters();	//Reads file_name from user
+
 	ifstream fin(file_name);		//file input
 	Output* pout = pManager->GetOutput();
 

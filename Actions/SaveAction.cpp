@@ -5,7 +5,12 @@
 #include "../GUI/output.h"
 
 SaveAction::SaveAction(ApplicationManager* papp)
-	: Action(papp)
+	: Action(papp), playmode(false)
+{
+}
+
+SaveAction::SaveAction(ApplicationManager* papp, int)
+	: Action(papp), file_name(".\\\\Saves\\\\PlayModeSave\\\\PLAYMODE.txt"), playmode(true)
 {
 }
 
@@ -19,7 +24,8 @@ void SaveAction::ReadActionParameters()
 
 void SaveAction::Execute()
 {
-	this->ReadActionParameters();
+	if (playmode == false)
+		this->ReadActionParameters();
 
 	ofstream OutFile(file_name);
 	Output* pout = pManager->GetOutput();
