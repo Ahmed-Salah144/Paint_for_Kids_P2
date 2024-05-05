@@ -19,7 +19,7 @@ private:
 	int SelectedFigCount;//(salem)
 	int SelectedRects, SelectedSqrs, SelectedHexes, SelectedTris, SelectedCircs ;//selected
 	int NumOfRect,NumOfSqr, NumOfHex, NumOfTri, NumOfCirc;//total;
-
+	int ClipboardID; //ID of the figure in clipboard (abdo)
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
@@ -48,6 +48,12 @@ public:
 	// Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
+
+	
+	void SetClipboard(CFigure*);  ////Taking a copy of the selected figure to clipboard (abdo)
+	CFigure* GetClipboard();	 //Getter for clipboard
+	void SetClipboardID(int);   //Setter for the figure's ID in clipboard
+	int GetClipboardID();	   //Getter for the figure's ID in clipboard
 
 	void UpdateInterface() const;	//Redraws all the drawing window	
 	void ClearAll();//(salem)
