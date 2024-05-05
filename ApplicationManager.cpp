@@ -525,6 +525,7 @@ int ApplicationManager::GetFigureCountByType(FigureType Fig) const
 	case RECTANGLE:return NumOfRect;
 	default: return 0;
 	}
+}
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor
 ApplicationManager::~ApplicationManager()
