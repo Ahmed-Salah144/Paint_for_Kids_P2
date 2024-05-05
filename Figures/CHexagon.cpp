@@ -4,6 +4,7 @@
 CHexagon::CHexagon(CHexagon* H) :CFigure(H->FigGfxInfo) {
 	this->Center = H->Center;
 	FigType = HEXAGON;
+	this->Size = H->Size;
 }
 CHexagon::CHexagon(Point P,GfxInfo HexagonGfxInfo):
 	CFigure(HexagonGfxInfo)

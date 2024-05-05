@@ -4,6 +4,7 @@
 CSquare::CSquare(CSquare* S) : CFigure(S->FigGfxInfo) {
 	this->Center = S->Center;
 	FigType = SQUARE;
+	this->Size = S->Size;
 }
 CSquare::CSquare(Point P, GfxInfo SquareGfxInfo) :
 	CFigure(SquareGfxInfo)

@@ -19,7 +19,7 @@ void SendToBackAction::ReadActionParameters()
 void SendToBackAction::Execute()
 {
 	ReadActionParameters();
-	pManager->RemoveFigure(SelectedFig);
+	pManager->RemoveFigure(SelectedFig->GetID());
 	pManager->AddFigure(SelectedFig);
 	for (int i = FigCount-1; i > 0; i--)
 	{
