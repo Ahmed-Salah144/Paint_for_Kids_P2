@@ -29,6 +29,7 @@ public:
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
 	color GetDrawClr(); //(Salem)
 	color GetFillClr();//(Salem)
+	bool IsFilled();
 	void SetID(int);//(salem)
 	int GetID() ; //(abdo)
 	///The following functions should be supported by the figure class

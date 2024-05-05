@@ -325,6 +325,17 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 	return NULL;
 }
 
+CFigure* ApplicationManager::GetFigureByColor(color c)const 
+{
+	for (int i = FigCount - 1; i >= 0; i--)
+	{
+		if(FigList[i]->IsFilled())
+			if (FigList[i]->GetFillClr() == c)
+				return FigList[i];
+	}
+	return NULL;
+}
+
 
 void ApplicationManager::RemoveFigure(int ID)
 {
