@@ -4,6 +4,7 @@
 CSquare::CSquare(CSquare* S) : CFigure(S->FigGfxInfo) {
 	this->Center = S->Center;
 	FigType = SQUARE;
+	this->Size = S->Size;
 }
 CSquare::CSquare(Point P, GfxInfo SquareGfxInfo) :
 	CFigure(SquareGfxInfo)
@@ -28,6 +29,13 @@ void CSquare::Draw(Output* pOut) const
 void CSquare::PrintInfo(Output* pOut)
 {
 	pOut->PrintMessage("Square   ID: " + to_string(ID) + " ,Center : (" + to_string(Center.x) + "," + to_string(Center.y) + "),Length : " + to_string((int)(Size *2.5)));
+}
+
+void CSquare::MoveFigure(int x, int y)
+{
+	Center.x = x;
+	Center.y = y;
+	FitInsideDrawArea();
 }
 
 bool CSquare::IsClicked(int x, int y)

@@ -14,6 +14,7 @@ public:
 	CTriangle(Point, Point, Point, GfxInfo TriangleGfxInfo);
 	CTriangle(ifstream& InFile);
 	virtual void Draw(Output* pOut) const;
+	virtual void MoveFigure(int, int);
 	virtual void PrintInfo(Output* pOut);	//print all figure info on the status bar
 	virtual bool IsClicked(int x, int y);
 	double GetArea(int, int, int, int, int, int);

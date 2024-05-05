@@ -34,7 +34,7 @@ ApplicationManager::ApplicationManager()
 	pOut = new Output;
 	pIn = pOut->CreateInput();
 	
-	ClipboardID = 0;
+	CutFigureID = -1;
 	Clipboard = NULL;
 	FigCount = 0;
 	SelectedFigCount = 0;
@@ -159,12 +159,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		}
 		case COPIED:
 		{
-			pAct = new CopyAction(this);
+			if (SelectedFigCount == 1)
+				pAct = new CopyAction(this);
+			else
+				pOut->PrintMessage("Error! You have to select one figure to copy");
 			break;
 		}
 		case CUT:
 		{
-			pAct = new CutAction(this);
+			if (SelectedFigCount == 1)
+				pAct = new CutAction(this);
+			else
+				pOut->PrintMessage("Error! You have to select one figure to cut");
 			break;
 		}
 		case PASTED:
@@ -177,7 +183,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			if (SelectedFigCount == 1)
 				pAct = new BringToFrontAction(this);
 			else
-				pOut->PrintMessage("Error! You have to select one shape to bring to front");
+				pOut->PrintMessage("Error! You have to select one figure to bring to front");
 			break;
 		}
 		case BACK_SENT:
@@ -185,7 +191,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			if (SelectedFigCount == 1)
 				pAct = new SendToBackAction(this);
 			else
-				pOut->PrintMessage("Error! You have to select one shape to send to back");
+				pOut->PrintMessage("Error! You have to select one figure to send to back");
 			break;
 		}
 		case SAVED:
@@ -319,13 +325,24 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 	return NULL;
 }
 
-
-void ApplicationManager::RemoveFigure(CFigure* pFig)
+CFigure* ApplicationManager::GetFigureByColor(color c)const 
 {
-	int RemovedFigIndex{};
+	for (int i = FigCount - 1; i >= 0; i--)
+	{
+		if(FigList[i]->IsFilled())
+			if (FigList[i]->GetFillClr() == c)
+				return FigList[i];
+	}
+	return NULL;
+}
+
+
+void ApplicationManager::RemoveFigure(int ID)
+{
+	int RemovedFigIndex=FigCount;
 	for (int i = 0; i < FigCount; i++)
 	{
-		if (FigList[i]->IsTheSame(pFig))
+		if (FigList[i]->GetID()==ID)
 		{
 			RemovedFigIndex = i;
 			FigCount--;
@@ -350,11 +367,11 @@ void ApplicationManager::SetClipboard(CFigure* CF) {
 CFigure* ApplicationManager::GetClipboard() {
 	return Clipboard;
 }
-void ApplicationManager::SetClipboardID(int i) {
-	ClipboardID = i;
+void ApplicationManager::SetCutFigureID(int i) {
+	CutFigureID = i;
 }
-int ApplicationManager::GetClipboardID() {
-	return ClipboardID;
+int ApplicationManager::GetCutFigureID() {
+	return CutFigureID;
 }
 
 //==================================================================================//
@@ -479,6 +496,8 @@ void ApplicationManager::ClearAll()
 		delete FigList[i];
 		FigList[i] = NULL;
 	}
+	delete Clipboard;
+	Clipboard = NULL;
 	FigCount = 0;
 	SelectedFigure = NULL;
 	UpdateFigureData();
@@ -506,12 +525,25 @@ int ApplicationManager::GetSelectedFigureCountByType(FigureType Fig) const
 	default: return 0;
 	}
 }
+int ApplicationManager::GetFigureCountByType(FigureType Fig) const
+{
+	switch (Fig)
+	{
+	case HEXAGON:return NumOfHex;
+	case CIRCLE:return NumOfCirc;
+	case TRIANGLE:return NumOfTri;
+	case SQUARE:return NumOfSqr;
+	case RECTANGLE:return NumOfRect;
+	default: return 0;
+	}
+}
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor
 ApplicationManager::~ApplicationManager()
 {
 	for (int i = 0; i < FigCount; i++)
 		delete FigList[i];//ERROR!
+	delete Clipboard;
 	delete pIn;
 	delete pOut;
 }
