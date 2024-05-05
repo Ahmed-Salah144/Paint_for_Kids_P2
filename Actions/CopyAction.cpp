@@ -30,5 +30,6 @@ void CopyAction::Execute()
 	case RECTANGLE: CopiedFig = new CRectangle((CRectangle*)SelectedFig); break;
 
 	}
-	pManager->SetClipboardID(0);
+	pManager->SetCutFigureID(-1);
+	pManager->SetClipboard(CopiedFig);
 }

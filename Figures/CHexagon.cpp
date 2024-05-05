@@ -4,6 +4,7 @@
 CHexagon::CHexagon(CHexagon* H) :CFigure(H->FigGfxInfo) {
 	this->Center = H->Center;
 	FigType = HEXAGON;
+	this->Size = H->Size;
 }
 CHexagon::CHexagon(Point P,GfxInfo HexagonGfxInfo):
 	CFigure(HexagonGfxInfo)
@@ -29,6 +30,13 @@ void CHexagon::Draw(Output* pOut) const
 void CHexagon::PrintInfo(Output* pOut)
 {
 	pOut->PrintMessage("Hexagon   ID: " + to_string(ID) + " ,Center : (" + to_string(Center.x) + "," + to_string(Center.y) + "),Side Length : " + to_string(2* Size));
+}
+
+void CHexagon::MoveFigure(int x, int y)
+{
+	Center.x = x;
+	Center.y = y;
+	FitInsideDrawArea();
 }
 
 bool CHexagon::IsClicked(int x, int y)
