@@ -11,6 +11,7 @@ private:
 	Point OuterPoint;
 	int Radius;
 public:
+	CCircle(CCircle*); //overriding constructor (needed for clipboard copy)// (abdo)
 	CCircle(Point,Point, GfxInfo CircleGfxInfo);
 	CCircle(ifstream& InFile);
 	virtual void Draw(Output* pOut) const;
