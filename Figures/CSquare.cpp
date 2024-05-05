@@ -30,6 +30,13 @@ void CSquare::PrintInfo(Output* pOut)
 	pOut->PrintMessage("Square   ID: " + to_string(ID) + " ,Center : (" + to_string(Center.x) + "," + to_string(Center.y) + "),Length : " + to_string((int)(Size *2.5)));
 }
 
+void CSquare::MoveFigure(int x, int y)
+{
+	Center.x = x;
+	Center.y = y;
+	FitInsideDrawArea();
+}
+
 bool CSquare::IsClicked(int x, int y)
 {
 	if (x >= Center.x - Size *1.25 && x <= Center.x + Size * 1.25 && y >= Center.y - Size * 1.25 && y <= Center.y + Size * 1.25)

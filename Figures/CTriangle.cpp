@@ -29,6 +29,10 @@ void CTriangle::Draw(Output* pOut) const
 	pOut->DrawTriangle(Vertex1, Vertex2, Vertex3, FigGfxInfo, Selected);
 }
 
+void CTriangle::MoveFigure(int x, int y)
+{
+}
+
 void CTriangle::PrintInfo(Output* pOut)
 {
 	string Message = "Triangle   ID: " + to_string(ID) + " ,Vertex 1: (" + to_string(Vertex1.x) + "," + to_string(Vertex1.y) + ")" + " ,Vertex 2: (" + to_string(Vertex2.x) + "," + to_string(Vertex2.y) + "),Vertex 3: (" + to_string(Vertex3.x) + "," + to_string(Vertex3.y)+")";
