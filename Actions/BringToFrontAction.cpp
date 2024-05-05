@@ -18,7 +18,7 @@ void BringToFrontAction::ReadActionParameters()
 void BringToFrontAction::Execute()
 {
 	ReadActionParameters();
-	pManager->RemoveFigure(SelectedFig->GetID());
+	pManager->RemoveFigure(SelectedFig);
 	pManager->AddFigure(SelectedFig);
 	SelectedFig->SetSelected(false);
 }

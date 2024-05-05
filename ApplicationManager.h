@@ -19,7 +19,7 @@ private:
 	int SelectedFigCount;//(salem)
 	int SelectedRects, SelectedSqrs, SelectedHexes, SelectedTris, SelectedCircs ;//selected
 	int NumOfRect,NumOfSqr, NumOfHex, NumOfTri, NumOfCirc;//total;
-	int CutFigureID; //ID of the figure in clipboard (abdo)
+	int ClipboardID; //ID of the figure in clipboard (abdo)
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
@@ -37,14 +37,12 @@ public:
 	// -- Figures Management Functions
 	void AddFigure(CFigure*);         //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
-	CFigure* GetFigureByColor(color)const;
-	void RemoveFigure(int); //Salem
+	void RemoveFigure(CFigure*); //Salem
 	void SwapFigure(int,int);//Salem for (send to back)
 
 	CFigure* GetSelectedFigure() const;
 	void SetSelectedFigure(CFigure*);
 	int GetSelectedFigureCount()const;
-	int GetFigureCountByType(FigureType)const;
 	int GetSelectedFigureCountByType(FigureType)const;
 	int GetFigureCount()const;
 	// Interface Management Functions
@@ -54,8 +52,8 @@ public:
 	
 	void SetClipboard(CFigure*);  ////Taking a copy of the selected figure to clipboard (abdo)
 	CFigure* GetClipboard();	 //Getter for clipboard
-	void SetCutFigureID(int);   //Setter for the figure's ID in clipboard
-	int GetCutFigureID();	   //Getter for the figure's ID in clipboard
+	void SetClipboardID(int);   //Setter for the figure's ID in clipboard
+	int GetClipboardID();	   //Getter for the figure's ID in clipboard
 
 	void UpdateInterface() const;	//Redraws all the drawing window	
 	void ClearAll();//(salem)

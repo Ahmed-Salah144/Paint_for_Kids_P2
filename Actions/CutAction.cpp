@@ -31,7 +31,5 @@ void CutAction::Execute()
 	}
 	SelectedFig->SetSelected(false);
 	SelectedFig->ChngDrawClr(GRAY);
-	pManager->SetCutFigureID(SelectedFig->GetID());
-	pManager->SetClipboard(CopiedFig);
-	pManager->UpdateFigureData();
+	pManager->SetClipboardID(SelectedFig->GetID());
 }

@@ -52,11 +52,6 @@ color CFigure::GetFillClr()
 	return FigGfxInfo.FillClr;
 }
 
-bool CFigure::IsFilled()
-{
-	return FigGfxInfo.isFilled;
-}
-
 void CFigure::SetID(int id)
 {
 	ID = id;

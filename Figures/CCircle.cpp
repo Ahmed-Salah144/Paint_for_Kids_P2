@@ -29,15 +29,6 @@ void CCircle::Draw(Output* pOut) const
 	pOut->DrawCircle(Center,OuterPoint,FigGfxInfo, Selected);
 }
 
-void CCircle::MoveFigure(int x, int y)
-{
-	Center.x = x;
-	Center.y = y;
-	OuterPoint.x = x + Radius;
-	OuterPoint.y = y;
-	FitInsideDrawArea();
-}
-
 void CCircle::PrintInfo(Output* pOut)
 {
 	pOut->PrintMessage("Circle   ID: " + to_string(ID) + " ,Center : (" + to_string(Center.x) + "," + to_string(Center.y) + "),Radius : " + to_string(Radius));

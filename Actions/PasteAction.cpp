@@ -1,6 +1,7 @@
 #include "PasteAction.h"
 #include "..\Figures\CFigure.h"
 #include "..\ApplicationManager.h"
+
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
 
@@ -14,11 +15,7 @@ void PasteAction::ReadActionParameters()
 {
 	Output* pOut = pManager->GetOutput();
 	Input* pIn = pManager->GetInput();
-	if (ClipboardFigure == NULL)
-	{
-		pOut->PrintMessage("No Figures in Clipboard");
-		return;
-	}
+	SelectedFig = pManager->GetSelectedFigure();
 	pOut->PrintMessage("Click anywhere to paste!");
 	pIn->GetPointClicked(Clicked.x, Clicked.y);
 	pOut->ClearStatusBar();
@@ -27,10 +24,6 @@ void PasteAction::ReadActionParameters()
 void PasteAction::Execute()
 {
 	ReadActionParameters();
-	if (ClipboardFigure == NULL)
-	{
-		return;
-	}
 	CFigure* PastedFig = NULL;
 	switch (ClipboardFigure->GetFigType()) {
 	case HEXAGON: PastedFig = new CHexagon((CHexagon*)ClipboardFigure); break;
@@ -39,10 +32,8 @@ void PasteAction::Execute()
 	case SQUARE: PastedFig = new CSquare((CSquare*)ClipboardFigure); break;
 	case RECTANGLE: PastedFig = new CRectangle((CRectangle*)ClipboardFigure); break;
 	}
-	PastedFig->MoveFigure(Clicked.x,Clicked.y);
 	pManager->AddFigure(PastedFig);
-	if (pManager->GetCutFigureID() != -1) 
-	{
-		pManager->RemoveFigure(pManager->GetCutFigureID());
+	if (PastedFig->GetID() == SelectedFig->GetID()) {
+		pManager->RemoveFigure(SelectedFig);
 	}
 }

@@ -28,7 +28,7 @@ void DeleteAction::Execute()
 	while (pManager->GetSelectedFigureCount() > 0)
 	{
 		FigureToDelete = pManager->GetSelectedFigure();
-		pManager->RemoveFigure(FigureToDelete->GetID());
+		pManager->RemoveFigure(FigureToDelete);
 		delete FigureToDelete;
 		DeletedFigCount++;
 

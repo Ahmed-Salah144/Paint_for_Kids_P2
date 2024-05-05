@@ -13,6 +13,7 @@
 class PasteAction : public Action
 {
 	Point Clicked;     
+	CFigure* SelectedFig ;
 	CFigure* ClipboardFigure;
 public:
 	PasteAction(ApplicationManager* pApp); 
