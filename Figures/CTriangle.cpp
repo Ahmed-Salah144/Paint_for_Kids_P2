@@ -1,6 +1,12 @@
 #include "CTriangle.h"
 #include <fstream>
 
+CTriangle::CTriangle(CTriangle* T) : CFigure(T->FigGfxInfo) {
+	this->Vertex1 = T->Vertex1;
+	this->Vertex2 = T->Vertex2;
+	this->Vertex3 = T->Vertex3;
+	FigType = TRIANGLE;
+}
 CTriangle::CTriangle(Point P1, Point P2,Point P3, GfxInfo TriangleGfxInfo) :
 	CFigure(TriangleGfxInfo)
 {
