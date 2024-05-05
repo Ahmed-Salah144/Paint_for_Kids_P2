@@ -25,6 +25,15 @@ void CTriangle::Draw(Output* pOut) const
 
 void CTriangle::MoveFigure(int x, int y)
 {
+	int Centroidx = (Vertex1.x + Vertex2.x + Vertex3.x) / 3;
+	int Centroidy = (Vertex1.y + Vertex2.y + Vertex3.y) / 3;
+	Vertex1.x += x - Centroidx;
+	Vertex1.y += y - Centroidy;
+	Vertex2.x += x - Centroidx;
+	Vertex2.y += y - Centroidy;
+	Vertex3.x += x - Centroidx;
+	Vertex3.y += y - Centroidy;
+	FitInsideDrawArea();
 }
 
 void CTriangle::PrintInfo(Output* pOut)

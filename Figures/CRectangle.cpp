@@ -30,6 +30,7 @@ void CRectangle::MoveFigure(int x, int y)
 	Corner1.y = y + (W / 2);
 	Corner2.x = x - (L / 2);
 	Corner2.y = y - (W / 2);
+	FitInsideDrawArea();
 
 }
 
