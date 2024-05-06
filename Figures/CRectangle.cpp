@@ -66,13 +66,14 @@ void CRectangle::Save(ofstream& OutFile)
 	OutFile << "RECTANGLE" << "\t" << this->ID << "\t";
 	OutFile << Corner1.x << "\t" << Corner1.y << "\t";
 	OutFile << Corner2.x << "\t" << Corner2.y << "\t";
+	OutFile << L << "\t" << W << "\t";
 	CFigure::Save(OutFile);	//Saves Draw, Fill color
 }
 
 void CRectangle::Load(ifstream& InFile)
 {
 	char input[30] = {};
-	InFile >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y;
+	InFile >> Corner1.x >> Corner1.y >> Corner2.x >> Corner2.y>>L>>W;
 	FigType = RECTANGLE;
 	CFigure::Load(InFile);	//Loades Draw, Fill Color
 }

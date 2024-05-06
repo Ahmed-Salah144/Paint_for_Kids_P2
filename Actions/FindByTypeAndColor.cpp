@@ -289,7 +289,7 @@ void FindByTypeAndColor::PickFigureAndColorAction() {
 		}
 	}
 
-	if (pManager->GetFigureCountByType(SelectedShape) == 0|| pManager->GetFigureByColor(SelectedColor) == NULL)
+	if (pManager->GetFigureCountByType(SelectedShape) == 0 || pManager->GetFigureByColor(SelectedColor) == NULL)
 	{
 		Action* pAct = new LoadAction(pManager, 1);
 		pAct->Execute();
