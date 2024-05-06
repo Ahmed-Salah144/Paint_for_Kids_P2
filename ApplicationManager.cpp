@@ -26,7 +26,8 @@
 #include "Actions\CutAction.h"
 #include "Actions\PasteAction.h"
 #include "Actions\FindByType.h"
-
+#include <cstdlib> 
+#include<iostream>
 
 //Constructor
 ApplicationManager::ApplicationManager()
@@ -366,6 +367,13 @@ void ApplicationManager::RemoveFigure(int ID)
 int ApplicationManager::GetSelectedFigureCount() const
 {
 	return SelectedFigCount;
+}
+
+CFigure* ApplicationManager::GetRandomFigure() const
+{
+	srand(time(NULL));
+	int RandNum = rand() % FigCount;
+	return FigList[RandNum];
 }
 
 void ApplicationManager::SetClipboard(CFigure* CF) {
