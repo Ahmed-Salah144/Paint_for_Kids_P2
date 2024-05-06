@@ -12,121 +12,59 @@
 FindByColor::FindByColor(ApplicationManager* pApp) : Action(pApp) {
 	RightCount = 0;
 	WrongCount = 0;
-	SelectedColor = WHITE;
 	srand(time(NULL));
 	RandNum = rand() % 6;
-	Restart = false;
-	Exit = false;
 }
 
-void FindByColor::GenRandColor2()
-{
-	int count = 0;
-	Output* pOut = pManager->GetOutput();
-	if (pManager->GetFigureCount() == 0)
-	{
-		pOut->PrintMessage("No Figures");
-		return;
-	}
-	if (pManager->GetFigureByColor(YELLOW) == NULL &&
-		pManager->GetFigureByColor(RED) == NULL &&
-		pManager->GetFigureByColor(BLACK) == NULL &&
-		pManager->GetFigureByColor(GREEN) == NULL &&
-		pManager->GetFigureByColor(ORANGE) == NULL &&
-		pManager->GetFigureByColor(BLUE) == NULL)
-	{
-		pOut->PrintMessage("No colored figures");
-		return;
-	}
-	CFigure* TempFig;
-	do { TempFig = pManager->GetRandomFigure();
-	pOut->PrintMessage(to_string(count++));
-	} while (!TempFig->IsFilled());
-
-	SelectedColor = TempFig->GetFillClr();
-	if (SelectedColor==GREEN)
-	{
-		pOut->PrintMessage("Select all Green figures");
-		SelectedColor = GREEN;
-	}
-	else if (SelectedColor == YELLOW)
-	{
-		pOut->PrintMessage("Select all Yellow figures");
-		SelectedColor = YELLOW;
-	}
-	else if (SelectedColor == ORANGE)
-	{
-		pOut->PrintMessage("Select all Orange figures");
-		SelectedColor = ORANGE;
-	}
-	else if (SelectedColor == BLUE)
-	{
-		pOut->PrintMessage("Select all Blue figures");
-		SelectedColor = BLUE;
-	}
-	else if (SelectedColor == RED)
-	{
-		pOut->PrintMessage("Select all Red figures");
-		SelectedColor = RED;
-	}
-	else if (SelectedColor == BLACK)
-	{
-		pOut->PrintMessage("Select all Black figures");
-		SelectedColor = BLACK;
-	}
-}
 void FindByColor::GenRandColor() {
 	Output* pOut = pManager->GetOutput();
-	//color Colors[6] = { GREEN ,RED,BLUE,BLACK,YELLOW,ORANGE };
-
-	if (pManager->GetFigureByColor(YELLOW) == NULL && pManager->GetFigureByColor(RED) == NULL && pManager->GetFigureByColor(BLACK) == NULL && pManager->GetFigureByColor(GREEN) == NULL && pManager->GetFigureByColor(ORANGE) == NULL && pManager->GetFigureByColor(RED) == NULL)
+	if (pManager->GetFigureByColor(SelectedColor) == NULL)
 	{
-		pOut->PrintMessage("No colored figures");
+		pOut->PrintMessage("no colored figures");
 		return;
 	}
-	//int count = 0;
+
 	while (true)
 	{
 		srand(time(NULL));
 		RandNum = rand() % 6;
-		//pOut->PrintMessage(to_string(count++));
 
 		if (RandNum == 0 && pManager->GetFigureByColor(SelectedColor) != NULL)
 		{
 			pOut->ClearStatusBar();
-			pOut->PrintMessage("Select all black figures");
+			pOut->PrintMessage("select all black figures");
 			SelectedColor = BLACK;
 			break;
 		}
 		else if (RandNum == 1 && pManager->GetFigureByColor(SelectedColor) != NULL) {
 			pOut->ClearStatusBar();
-			pOut->PrintMessage("Select all yellow figures");
+			pOut->PrintMessage("select all yellow figures");
 			SelectedColor = YELLOW;
 			break;
 		}
 		else if (RandNum == 2 && pManager->GetFigureByColor(SelectedColor) != NULL)
 		{
 			pOut->ClearStatusBar();
-			pOut->PrintMessage("Select all orange figures");
+			pOut->PrintMessage("select all orange figures");
 			SelectedColor = ORANGE;
 			break;
 		}
 		else if (RandNum == 3 && pManager->GetFigureByColor(SelectedColor) != NULL)
 		{
 			pOut->ClearStatusBar();
-			pOut->PrintMessage("Select all red figures");
+			pOut->PrintMessage("select all red figures");
 			SelectedColor = RED;
 			break;
 		}
 		else if (RandNum == 4 && pManager->GetFigureByColor(SelectedColor) != NULL) {
 			pOut->ClearStatusBar();
-			pOut->PrintMessage("Select all green figures");
+			pOut->PrintMessage("select all green FIGURES");
 			SelectedColor = GREEN;
 			break;
 		}
 		else if (RandNum == 5 && pManager->GetFigureByColor(SelectedColor) != NULL) {
 			pOut->ClearStatusBar();
-			pOut->PrintMessage("Select all blue figures");
+			pOut->PrintMessage("select all blue figures");
 			SelectedColor = BLUE;
 			break;
 		}
@@ -161,27 +99,23 @@ void FindByColor::ReadActionParameters()
 
 void FindByColor::Execute()
 {
-	Action* pAct = new LoadAction(pManager, 1);
-	pAct->Execute();
-	delete pAct;
+	Restart = false;
 	Output* pOut = pManager->GetOutput();
-	pOut->ClearStatusBar();
-	pManager->UpdateInterface();
 	//pOut->PrintMessage("execute command");
 	//CFigure* pFig = pManager->GetFigure(Click.x, Click.y);
-	//GenRandShape();
-	GenRandColor2();
+	Action* pAct = new SaveAction(pManager, 1);
+	pAct->Execute();
+	delete pAct;
+	pOut->ClearStatusBar();
+	GenRandColor();
 	PickColorAction();
 	if (Restart)
 	{
-		RightCount = 0;
-		WrongCount = 0;
-		SelectedColor = WHITE;
-		srand(time(NULL));
-		RandNum = rand() % 6;
-		Restart = false;
-		Exit = false;
-		this->Execute();
+		Action* pAct = new LoadAction(pManager, 1);
+		pAct->Execute();
+		delete pAct;
+		pOut->ClearStatusBar();
+		FindByColor::Execute();
 	}
 }
 
@@ -198,30 +132,22 @@ void FindByColor::PickColorAction() {
 		ReadActionParameters();
 		if (Exit)
 		{
-			pOut->ClearStatusBar();
 			break;
 		}
-		PickedFigure = pManager->GetFigure(Click.x, Click.y);
-		if (PickedFigure== NULL)
-		{
-			WrongCount++;
-			pOut->PrintMessage("no figure Selected");
-		}
-		else if (!PickedFigure->IsFilled())
-		{
-			WrongCount++;
-			pManager->RemoveFigure(PickedFigure->GetID());
-			delete PickedFigure;
-			pOut->PrintMessage("selected wrong figure");
-			pManager->UpdateInterface();
-		}
-		else if (PickedFigure->GetFillClr() != SelectedColor)
+		if (pManager->GetFigure(Click.x, Click.y) == NULL || pManager->GetFigure(Click.x, Click.y)->GetDrawClr() != SelectedColor)
 		{
 
 			pOut->PrintMessage("selected wrong figure");
 			WrongCount++;
-			pManager->RemoveFigure(PickedFigure->GetID());
-			delete PickedFigure;
+			if (pManager->GetFigure(Click.x, Click.y) == NULL)
+			{
+				pOut->PrintMessage("no figure Selected");
+			}
+			else
+			{
+				pManager->RemoveFigure(PickedFigure->GetID());
+				delete PickedFigure;
+			}
 			pManager->UpdateInterface();
 		}
 		else
@@ -241,7 +167,7 @@ void FindByColor::PickColorAction() {
 		pAct->Execute();
 		delete pAct;
 		pOut->ClearStatusBar();
-		pOut->PrintMessage("You got right times: " + to_string(RightCount) + " You got wrong times: " + to_string(WrongCount));
+		pOut->PrintMessage("you got right times: " + to_string(RightCount) + " you got wrong times: " + to_string(WrongCount));
 
 	}
 

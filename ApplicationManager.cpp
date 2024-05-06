@@ -25,7 +25,6 @@
 #include "Actions\CopyAction.h"
 #include "Actions\CutAction.h"
 #include "Actions\PasteAction.h"
-#include "Actions\FindByColor.h"
 #include "Actions\FindByType.h"
 #include <cstdlib> 
 #include<iostream>
@@ -269,11 +268,12 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	}
 	case TYPE_AND_COLOR:
 	{
+		pAct = new FindByColor(this);
 		break;
 	}
 	case COLOR:
 	{
-		pAct = new FindByColor(this);
+		pOut->PrintMessage("Action: click on find by color");
 		break;
 	}
 	case EXIT:

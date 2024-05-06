@@ -21,6 +21,5 @@ public:
 	void FindByColor::Execute();
 
 	void GenRandColor();
-	void GenRandColor2();
 	void PickColorAction();
 };
