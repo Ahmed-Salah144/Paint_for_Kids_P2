@@ -38,27 +38,29 @@ void FindByType::ReadActionParameters()
 		Exit = true;
 		Restart = true;
 	}
+	else if (Click.x > UI.MenuItemWidth * 1 && Click.x < UI.MenuItemWidth * 3 && Click.y < UI.ToolBarHeight)
+	{
+		Exit = true;
+	}
 }
 
 void FindByType::Execute()
 {
 	Restart = false;
-	Output* pOut = pManager->GetOutput();
-	//pOut->PrintMessage("execute command");
-	//CFigure* pFig = pManager->GetFigure(Click.x, Click.y);
-	Action* pAct = new SaveAction(pManager, 1);
+	Exit = false;
+	Action* pAct = new LoadAction(pManager, 1);
 	pAct->Execute();
 	delete pAct;
+	Output* pOut = pManager->GetOutput();
 	pOut->ClearStatusBar();
+	pManager->UpdateInterface();
+	//pOut->PrintMessage("execute command");
+	//CFigure* pFig = pManager->GetFigure(Click.x, Click.y);
 	GenRandShape();
 	PickFigureAction();
-	if (Restart)
+	if(Restart)
 	{
-		Action* pAct = new LoadAction(pManager, 1);
-		pAct->Execute();
-		delete pAct;
-		pOut->ClearStatusBar();
-		FindByType::Execute();
+		this->Execute();
 	}
 }
 
@@ -80,33 +82,33 @@ void FindByType::GenRandShape() {
 		RandNum = rand() % 5;
 		if (RandNum == 0 && pManager->GetFigureCountByType(SQUARE) != 0)
 		{
-			pOut->ClearStatusBar();
+			//pOut->ClearStatusBar();
 			pOut->PrintMessage("select all squares");
 			SelectedShape = SQUARE;
 			break;
 		}
 		else if (RandNum == 1 && pManager->GetFigureCountByType(RECTANGLE) != 0) {
-			pOut->ClearStatusBar();
+			//pOut->ClearStatusBar();
 			pOut->PrintMessage("select all rectangles");
 			SelectedShape = RECTANGLE;
 			break;
 		}
 		else if (RandNum == 2 && pManager->GetFigureCountByType(HEXAGON) != 0)
 		{
-			pOut->ClearStatusBar();
+			//pOut->ClearStatusBar();
 			pOut->PrintMessage("select all hexagons");
 			SelectedShape = HEXAGON;
 			break;
 		}
 		else if (RandNum == 3 && pManager->GetFigureCountByType(TRIANGLE) != 0)
 		{
-			pOut->ClearStatusBar();
+			//pOut->ClearStatusBar();
 			pOut->PrintMessage("select all triangles");
 			SelectedShape = TRIANGLE;
 			break;
 		}
 		else if (RandNum == 4 && pManager->GetFigureCountByType(CIRCLE) != 0) {
-			pOut->ClearStatusBar();
+			//pOut->ClearStatusBar();
 			pOut->PrintMessage("select all circles");
 			SelectedShape = CIRCLE;
 			break;
@@ -126,7 +128,10 @@ void FindByType::PickFigureAction() {
 	{
 		ReadActionParameters();
 		if (Exit)
+		{
+			pOut->ClearStatusBar();
 			break;
+		}
 		//pIn->GetPointClicked(x, y);
 
 		if (pManager->GetFigure(Click.x, Click.y) == NULL || pManager->GetFigure(Click.x, Click.y)->GetFigType() != SelectedShape)
@@ -161,7 +166,7 @@ void FindByType::PickFigureAction() {
 		Action* pAct = new LoadAction(pManager, 1);
 		pAct->Execute();
 		delete pAct;
-		pOut->ClearStatusBar();
+		//pOut->ClearStatusBar();
 		pOut->PrintMessage("you got right times: " + to_string(RightCount) + " you got wrong times: " + to_string(WrongCount));
 	}
 }

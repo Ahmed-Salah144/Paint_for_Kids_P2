@@ -244,12 +244,18 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	*/
 	case TO_DRAW:
 	{
+		LoadAction* pLoad = new LoadAction(this, 1);
+		pLoad->Execute();
+		delete pLoad;
 		pOut->PrintMessage("Action: Switch to Draw Mode");
 		pOut->CreateDrawToolBar();
 		break;
 	}
 	case TO_PLAY:
 	{
+		SaveAction* pSave = new SaveAction(this, 1);
+		pSave->Execute();
+		delete pSave;
 		pOut->PrintMessage("Action: Switch to Play Mode");
 		pOut->CreatePlayToolBar();
 		break;
