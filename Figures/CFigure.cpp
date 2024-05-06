@@ -49,7 +49,9 @@ color CFigure::GetDrawClr()
 
 color CFigure::GetFillClr()
 {
-	return FigGfxInfo.FillClr;
+	if (IsFilled())
+		return FigGfxInfo.FillClr;
+	return SNOW;
 }
 
 bool CFigure::IsFilled()

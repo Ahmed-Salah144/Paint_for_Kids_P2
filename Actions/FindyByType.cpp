@@ -59,8 +59,14 @@ void FindByType::Execute()
 	//GenRandShape();
 	GenRandShape2();
 	PickFigureAction();
-	if(Restart)
+	if (Restart)
 	{
+		RightCount = 0;
+		WrongCount = 0;
+		srand(time(NULL));
+		RandNum = rand() % 6;
+		Restart = false;
+		Exit = false;
 		this->Execute();
 	}
 }
@@ -76,11 +82,11 @@ void FindByType::GenRandShape2()
 	SelectedShape=pManager->GetRandomFigure()->GetFigType();
 	switch (SelectedShape)
 	{
-	case SQUARE:pOut->PrintMessage("Select All Squares"); break;
-	case HEXAGON:pOut->PrintMessage("Select All Hexagons"); break;
-	case CIRCLE:pOut->PrintMessage("Select All Circles"); break;
-	case RECTANGLE:pOut->PrintMessage("Select All Rectangles"); break;
-	case TRIANGLE:pOut->PrintMessage("Select All Triangles"); break;
+	case SQUARE:pOut->PrintMessage("Select All Squares");break;
+	case HEXAGON:pOut->PrintMessage("Select All Hexagons");break;
+	case CIRCLE:pOut->PrintMessage("Select All Circles");break;
+	case RECTANGLE:pOut->PrintMessage("Select All Rectangles");break;
+	case TRIANGLE:pOut->PrintMessage("Select All Triangles");break;
 	}
 }
 
