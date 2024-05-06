@@ -1,20 +1,26 @@
-//#pragma once
-//#include "Action.h"
-//#include "num.h"
-//#include <iostream>
-//
-//class FindByTypeAndColor : public Action, public RandNum {
-//private:
-//	int RightCount;
-//	int WrongCount;
-//	RandNum x;
-//	int rands;
-//	int randc;
-//	FigureType SelectedShape;
-//	CFigure* FigureToDelete;
-//public:
-//	FindByTypeAndColor(ApplicationManager* pApp);
-//
-//	void GenRandShapeAndColor();
-//	void PickFigureAndColorAction(CFigure* pFig)
-//};
+#pragma once
+#include <iostream>
+#include"..\Figures\CFigure.h"
+#include <cstdlib> 
+#include "Action.h"
+
+class FindByTypeAndColor : public Action{
+private:
+	int RightCount;
+	int WrongCount;
+	int RandNum;
+	color SelectedColor;
+	FigureType SelectedShape;
+	CFigure* PickedFigure;
+	Point Click;
+	bool Exit;
+	bool Restart;
+public:
+	void FindByTypeAndColor::GenRandColor2();
+	FindByTypeAndColor(ApplicationManager* pApp);
+
+	void FindByTypeAndColor::ReadActionParameters();
+	void FindByTypeAndColor::Execute();
+
+	void FindByTypeAndColor::PickFigureAndColorAction();
+};

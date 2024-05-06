@@ -27,6 +27,7 @@
 #include "Actions\PasteAction.h"
 #include "Actions\FindByColor.h"
 #include "Actions\FindByType.h"
+#include "Actions\FindByTypeAndColor.h"
 #include <cstdlib> 
 #include<iostream>
 
@@ -269,6 +270,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	}
 	case TYPE_AND_COLOR:
 	{
+		pAct = new FindByTypeAndColor(this);
 		break;
 	}
 	case COLOR:
