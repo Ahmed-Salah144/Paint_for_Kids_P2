@@ -409,6 +409,9 @@
     <ClInclude Include="Actions\FindByColor.h">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
+    <ClInclude Include="Actions\FindByTypeAndColor.h">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

@@ -214,6 +214,7 @@
     <ClInclude Include="Actions\DoubleSizeAction.h" />
     <ClInclude Include="Actions\FindByColor.h" />
     <ClInclude Include="Actions\FindByType.h" />
+    <ClInclude Include="Actions\FindByTypeAndColor.h" />
     <ClInclude Include="Actions\HalfSizeAction.h" />
     <ClInclude Include="Actions\RandNum.h" />
     <ClInclude Include="Actions\PasteAction.h" />

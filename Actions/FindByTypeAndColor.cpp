@@ -49,29 +49,29 @@ void FindByTypeAndColor::GenRandColor2()
 	} while (!TempFig->IsFilled());
 
 	SelectedColor = TempFig->GetFillClr();
+	SelectedShape = TempFig->GetFigType();
 
 
-	if (TempFig->GetFigType() == TRIANGLE)
+	if (SelectedShape == TRIANGLE)
 	{
 		s2 = "triangle";
 	}
-	else if (TempFig->GetFigType() == SQUARE)
+	else if (SelectedShape == SQUARE)
 	{
 		s2 = "square";
 	}
-	else if (TempFig->GetFigType() == CIRCLE)
+	else if (SelectedShape == CIRCLE)
 	{
 		s2 = "circle";
 	}
-	else if (TempFig->GetFigType() == HEXAGON)
+	else if (SelectedShape == HEXAGON)
 	{
 		s2 = "hexagon";
 	}
-	else if (TempFig->GetFigType() == RECTANGLE)
+	else if (SelectedShape == RECTANGLE)
 	{
 		s2 = "rectangle";
 	}
-	SelectedShape = TempFig->GetFigType();
 
 	if (SelectedColor == GREEN)
 	{
@@ -101,7 +101,7 @@ void FindByTypeAndColor::GenRandColor2()
 
 
 
-	pOut->PrintMessage("Select all " + s1 + s2 + " figures");
+	pOut->PrintMessage("Select all " + s1 + s2 + "s");
 
 
 
@@ -200,7 +200,7 @@ void FindByTypeAndColor::ReadActionParameters()
 	{
 		Exit = true;
 	}
-	else if (Click.x > UI.MenuItemWidth * 1 && Click.x < UI.MenuItemWidth * 2 && Click.y < UI.ToolBarHeight)
+	else if (Click.x > UI.MenuItemWidth * 2 && Click.x < UI.MenuItemWidth * 3 && Click.y < UI.ToolBarHeight)
 	{
 		Exit = true;
 		Restart = true;
@@ -278,7 +278,7 @@ void FindByTypeAndColor::PickFigureAndColorAction() {
 			delete PickedFigure;
 			pManager->UpdateInterface();
 		}
-		else if(PickedFigure->GetFillClr() == SelectedColor && PickedFigure->GetFigType() == SelectedShape)
+		else if (PickedFigure->GetFillClr() == SelectedColor && PickedFigure->GetFigType() == SelectedShape)
 		{
 			pOut->PrintMessage("Selected right figure");
 			PickedFigure = pManager->GetFigure(Click.x, Click.y);
@@ -289,7 +289,7 @@ void FindByTypeAndColor::PickFigureAndColorAction() {
 		}
 	}
 
-	if (pManager->GetFigureCountByType(SelectedShape) == 0 && pManager->GetFigureByColor(SelectedColor) == NULL)
+	if (pManager->GetFigureCountByType(SelectedShape) == 0|| pManager->GetFigureByColor(SelectedColor) == NULL)
 	{
 		Action* pAct = new LoadAction(pManager, 1);
 		pAct->Execute();
