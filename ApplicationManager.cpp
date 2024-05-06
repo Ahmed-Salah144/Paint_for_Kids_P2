@@ -267,7 +267,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	}
 	case TYPE_AND_COLOR:
 	{
-		pOut->PrintMessage("Action: click on find by type and color");
+		pAct = new FindByColor(this);
 		break;
 	}
 	case COLOR:
