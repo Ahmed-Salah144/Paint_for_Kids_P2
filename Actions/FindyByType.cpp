@@ -38,10 +38,10 @@ void FindByType::ReadActionParameters()
 		Exit = true;
 		Restart = true;
 	}
-	else if (Click.x > UI.MenuItemWidth * 1 && Click.x < UI.MenuItemWidth * 3 && Click.y < UI.ToolBarHeight)
-	{
-		Exit = true;
-	}
+	//else if (Click.x > UI.MenuItemWidth * 1 && Click.x < UI.MenuItemWidth * 3 && Click.y < UI.ToolBarHeight)
+	//{
+		//Exit = true;
+	//}
 }
 
 void FindByType::Execute()
@@ -56,11 +56,31 @@ void FindByType::Execute()
 	pManager->UpdateInterface();
 	//pOut->PrintMessage("execute command");
 	//CFigure* pFig = pManager->GetFigure(Click.x, Click.y);
-	GenRandShape();
+	//GenRandShape();
+	GenRandShape2();
 	PickFigureAction();
 	if(Restart)
 	{
 		this->Execute();
+	}
+}
+
+void FindByType::GenRandShape2()
+{
+	Output* pOut = pManager->GetOutput();
+	if (pManager->GetFigureCount() == 0)
+	{
+		pOut->PrintMessage("No Figures");
+		return;
+	}
+	SelectedShape=pManager->GetRandomFigure()->GetFigType();
+	switch (SelectedShape)
+	{
+	case SQUARE:pOut->PrintMessage("Select All Squares"); break;
+	case HEXAGON:pOut->PrintMessage("Select All Hexagons"); break;
+	case CIRCLE:pOut->PrintMessage("Select All Circles"); break;
+	case RECTANGLE:pOut->PrintMessage("Select All Rectangles"); break;
+	case TRIANGLE:pOut->PrintMessage("Select All Triangles"); break;
 	}
 }
 
