@@ -14,12 +14,14 @@ private:
 	int RandNum;
 	FigureType SelectedShape;
 	Point Click;
-	CFigure* FigureToDelete;
+	CFigure* PickedFigure;
+	bool Exit;
+	bool Restart;
 public:
 	FindByType(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
 	virtual void Execute();
 
 	void GenRandShape();
-	void PickFigureAction(CFigure* pFig);
+	void PickFigureAction();
 };

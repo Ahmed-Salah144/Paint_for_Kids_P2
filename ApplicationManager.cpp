@@ -63,33 +63,33 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 	//According to Action Type, create the corresponding action object
 	switch (ActType)   //(salem) 5adt el switch case men phase 1 we 3mlt implement le el Add figures
 	{
-		case DRAW_RECT:
-		{
-			pAct = new AddRectAction(this);
-			break;
-		}
-		case DRAW_SQUARE:
-		{
-			pAct = new AddSqrAction(this);
-			break;
-		}
-		case DRAW_TRIANGLE:
-		{
-			pAct = new AddTriAction(this);
-			break;
-		}
+	case DRAW_RECT:
+	{
+		pAct = new AddRectAction(this);
+		break;
+	}
+	case DRAW_SQUARE:
+	{
+		pAct = new AddSqrAction(this);
+		break;
+	}
+	case DRAW_TRIANGLE:
+	{
+		pAct = new AddTriAction(this);
+		break;
+	}
 
-		case DRAW_CIRCLE:
-		{
-			pAct = new AddCircAction(this);
-			break;
-		}
+	case DRAW_CIRCLE:
+	{
+		pAct = new AddCircAction(this);
+		break;
+	}
 
-		case DRAW_HEXAGON:
-		{
-			pAct = new AddHexAction(this);
-			break;
-		}
+	case DRAW_HEXAGON:
+	{
+		pAct = new AddHexAction(this);
+		break;
+	}
 
 	/*	case COLOR_BLACK:
 		{
@@ -127,105 +127,105 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		}
 */
-		case SELECTED:
-		{
-			pAct = new SelectionAction(this);
-			break;
-		}
-		case COLOR_FILLED:
-		{
-			if (SelectedFigCount == 1)
-				pAct = new FillColorAction(this);
-			else
-				pOut->PrintMessage("Error! You have to select one shape to change fill color");
-			break;
-		}
-		case COLOR_BORDERED:
-		{
-			if (SelectedFigCount == 1)
-				pAct = new BorderColorAction(this);
-			else
-				pOut->PrintMessage("Error! You have to select one shape to change border color");
-			break;
-		}
-		case DELETED:
-		{
-			pAct = new DeleteAction(this);
-			break;
-		}
-		case CLEARED:
-		{
-			pAct = new ClearAllAction(this);
-			break;
-		}
-		case COPIED:
-		{
-			if (SelectedFigCount == 1)
-				pAct = new CopyAction(this);
-			else
-				pOut->PrintMessage("Error! You have to select one figure to copy");
-			break;
-		}
-		case CUT:
-		{
-			if (SelectedFigCount == 1)
-				pAct = new CutAction(this);
-			else
-				pOut->PrintMessage("Error! You have to select one figure to cut");
-			break;
-		}
-		case PASTED:
-		{
-			pAct = new PasteAction(this);
-			break;
-		}
-		case FRONT_SENT:
-		{
-			if (SelectedFigCount == 1)
-				pAct = new BringToFrontAction(this);
-			else
-				pOut->PrintMessage("Error! You have to select one figure to bring to front");
-			break;
-		}
-		case BACK_SENT:
-		{
-			if (SelectedFigCount == 1)
-				pAct = new SendToBackAction(this);
-			else
-				pOut->PrintMessage("Error! You have to select one figure to send to back");
-			break;
-		}
-		case SAVED:
-		{
-			pAct = new SaveAction(this);
-			break;
-		}
-		case LOADED:
-		{
-			pAct = new LoadAction(this);
-			break;
-		}
-		case DOUBLE_SIZE:
-		{
-			if (SelectedFigCount == 1)
-				pAct = new DoubleSizeAction(this);
-			else
-				pOut->PrintMessage("Error! You can only resize one figure at a time");
-			break;
-		}
-		case HALF_SIZE:
-		{
-			if (SelectedFigCount == 1)
-				pAct = new HalfSizeAction(this);
-			else
-				pOut->PrintMessage("Error! You can only resize one figure at a time");
-			break;
-		}
-		case VOICE:
-		{
-			pAct = new VoiceAction(this);
-			break;
-		}
+	case SELECTED:
+	{
+		pAct = new SelectionAction(this);
+		break;
+	}
+	case COLOR_FILLED:
+	{
+		if (SelectedFigCount == 1)
+			pAct = new FillColorAction(this);
+		else
+			pOut->PrintMessage("Error! You have to select one shape to change fill color");
+		break;
+	}
+	case COLOR_BORDERED:
+	{
+		if (SelectedFigCount == 1)
+			pAct = new BorderColorAction(this);
+		else
+			pOut->PrintMessage("Error! You have to select one shape to change border color");
+		break;
+	}
+	case DELETED:
+	{
+		pAct = new DeleteAction(this);
+		break;
+	}
+	case CLEARED:
+	{
+		pAct = new ClearAllAction(this);
+		break;
+	}
+	case COPIED:
+	{
+		if (SelectedFigCount == 1)
+			pAct = new CopyAction(this);
+		else
+			pOut->PrintMessage("Error! You have to select one figure to copy");
+		break;
+	}
+	case CUT:
+	{
+		if (SelectedFigCount == 1)
+			pAct = new CutAction(this);
+		else
+			pOut->PrintMessage("Error! You have to select one figure to cut");
+		break;
+	}
+	case PASTED:
+	{
+		pAct = new PasteAction(this);
+		break;
+	}
+	case FRONT_SENT:
+	{
+		if (SelectedFigCount == 1)
+			pAct = new BringToFrontAction(this);
+		else
+			pOut->PrintMessage("Error! You have to select one figure to bring to front");
+		break;
+	}
+	case BACK_SENT:
+	{
+		if (SelectedFigCount == 1)
+			pAct = new SendToBackAction(this);
+		else
+			pOut->PrintMessage("Error! You have to select one figure to send to back");
+		break;
+	}
+	case SAVED:
+	{
+		pAct = new SaveAction(this);
+		break;
+	}
+	case LOADED:
+	{
+		pAct = new LoadAction(this);
+		break;
+	}
+	case DOUBLE_SIZE:
+	{
+		if (SelectedFigCount == 1)
+			pAct = new DoubleSizeAction(this);
+		else
+			pOut->PrintMessage("Error! You can only resize one figure at a time");
+		break;
+	}
+	case HALF_SIZE:
+	{
+		if (SelectedFigCount == 1)
+			pAct = new HalfSizeAction(this);
+		else
+			pOut->PrintMessage("Error! You can only resize one figure at a time");
+		break;
+	}
+	case VOICE:
+	{
+		pAct = new VoiceAction(this);
+		break;
+	}
 	/*	case STATUS:
 		{
 			pOut->PrintMessage("Action: a click on the Status Bar, Click anywhere");
@@ -242,35 +242,35 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		}
 	*/
-		case TO_DRAW:
-		{
-			pOut->PrintMessage("Action: Switch to Draw Mode");
-			pOut->CreateDrawToolBar();
-			break;
-		}
-		case TO_PLAY:
-		{
-			pOut->PrintMessage("Action: Switch to Play Mode");
-			pOut->CreatePlayToolBar();
-			break;
-		}
-		case TYPE:
-		{
-			pAct = new FindByType(this);
-			break;
-		}
-		case TYPE_AND_COLOR:
-		{
-			pOut->PrintMessage("Action: click on find by type and color");
-			break;
-		}
-		case COLOR:
-		{
-			pOut->PrintMessage("Action: click on find by color");
-			break;
-		}
-		case EXIT:
-			break;
+	case TO_DRAW:
+	{
+		pOut->PrintMessage("Action: Switch to Draw Mode");
+		pOut->CreateDrawToolBar();
+		break;
+	}
+	case TO_PLAY:
+	{
+		pOut->PrintMessage("Action: Switch to Play Mode");
+		pOut->CreatePlayToolBar();
+		break;
+	}
+	case TYPE:
+	{
+		pAct = new FindByType(this);
+		break;
+	}
+	case TYPE_AND_COLOR:
+	{
+		pOut->PrintMessage("Action: click on find by type and color");
+		break;
+	}
+	case COLOR:
+	{
+		pOut->PrintMessage("Action: click on find by color");
+		break;
+	}
+	case EXIT:
+		break;
 	}
 	
 	//Execute the created action
