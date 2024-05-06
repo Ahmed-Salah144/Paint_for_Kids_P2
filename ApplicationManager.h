@@ -19,6 +19,7 @@ private:
 	int SelectedFigCount;//(salem)
 	int SelectedRects, SelectedSqrs, SelectedHexes, SelectedTris, SelectedCircs ;//selected
 	int NumOfRect,NumOfSqr, NumOfHex, NumOfTri, NumOfCirc;//total;
+	int NumOfBlack, NumOfYellow,NumOfOrange,NumOfRed,NumOfGreen,NumOfBlue; //change by osama to get num of each color
 	int CutFigureID; //ID of the figure in clipboard (abdo)
 	//Pointers to Input and Output classes
 	Input *pIn;
@@ -44,8 +45,9 @@ public:
 	CFigure* GetSelectedFigure() const;
 	void SetSelectedFigure(CFigure*);
 	int GetSelectedFigureCount()const;
-	int GetFigureCountByType(FigureType)const;
+	int GetFigureCountByType(FigureType);
 	int GetSelectedFigureCountByType(FigureType)const;
+	int ApplicationManager::GetFigureCountByColor(ActionType Fig); //get the number of figure by color (osama)
 	int GetFigureCount()const;
 	// Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input

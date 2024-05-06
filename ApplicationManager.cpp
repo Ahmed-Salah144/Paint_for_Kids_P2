@@ -25,6 +25,7 @@
 #include "Actions\CopyAction.h"
 #include "Actions\CutAction.h"
 #include "Actions\PasteAction.h"
+#include "Actions\FindByType.h"
 
 
 //Constructor
@@ -255,7 +256,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		}
 		case TYPE:
 		{
-			pOut->PrintMessage("Action: click on find by type");
+			pAct = new FindByType(this);
 			break;
 		}
 		case TYPE_AND_COLOR:
@@ -525,8 +526,9 @@ int ApplicationManager::GetSelectedFigureCountByType(FigureType Fig) const
 	default: return 0;
 	}
 }
-int ApplicationManager::GetFigureCountByType(FigureType Fig) const
+int ApplicationManager::GetFigureCountByType(FigureType Fig)
 {
+	UpdateFigureData();
 	switch (Fig)
 	{
 	case HEXAGON:return NumOfHex;
@@ -537,6 +539,25 @@ int ApplicationManager::GetFigureCountByType(FigureType Fig) const
 	default: return 0;
 	}
 }
+
+int ApplicationManager::GetFigureCountByColor(ActionType Fig) //dh temporarly le 7d ma yet3melo implment
+{
+	UpdateFigureData();
+	switch (Fig)
+	{
+	case COLOR_BLACK:return NumOfBlack;
+	case COLOR_YELLOW:return NumOfYellow;
+	case COLOR_ORANGE:return NumOfOrange;
+	case COLOR_RED:return NumOfRed;
+	case COLOR_GREEN:return NumOfGreen;
+	case COLOR_BLUE:return NumOfBlue;
+	default: return 0;
+	}
+}
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////
 //Destructor
 ApplicationManager::~ApplicationManager()
