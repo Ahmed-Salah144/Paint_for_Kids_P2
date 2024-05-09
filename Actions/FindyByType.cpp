@@ -79,7 +79,7 @@ void FindByType::GenRandShape2()
 		pOut->PrintMessage("No Figures");
 		return;
 	}
-	SelectedShape=pManager->GetRandomFigure()->GetFigType();
+	SelectedShape=pManager->GetRandomFigure(false)->GetFigType();
 	switch (SelectedShape)
 	{
 	case SQUARE:pOut->PrintMessage("Select All Squares");break;

@@ -41,7 +41,7 @@ public:
 	void AddFigure(CFigure*);         //Adds a new figure to the FigList
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
 	CFigure* GetFigureByColor(color)const;
-	CFigure* GetRandomFigure()const;
+	CFigure* GetRandomFigure(bool=false)const;
 	void RemoveFigure(int); //Salem
 	CFigure* GetFigureByID(int); //Salem
 	void SwapFigure(int,int);//Salem for (send to back)

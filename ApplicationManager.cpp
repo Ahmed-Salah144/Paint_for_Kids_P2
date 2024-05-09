@@ -378,11 +378,22 @@ void ApplicationManager::ClearClipboard()
 	CutFigureID = -1;
 }
 
-CFigure* ApplicationManager::GetRandomFigure() const
+CFigure* ApplicationManager::GetRandomFigure(bool isFilled) const
 {
 	srand(time(NULL));
 	int RandNum = rand() % FigCount;
-	return FigList[RandNum];
+	if (!isFilled)
+		return FigList[RandNum];
+	else
+	{
+		for (int i = RandNum; i < FigCount; i++)
+			if (FigList[i]->IsFilled())
+				return FigList[i];
+		for (int i = RandNum; i >= 0; i--)
+			if (FigList[i]->IsFilled())
+				return FigList[i];
+	}
+	return NULL;
 }
 CFigure* ApplicationManager::GetFigureByID(int ID) 
 {

@@ -28,7 +28,7 @@ void FindByColor::GenRandColor2()
 		pOut->PrintMessage("No Figures");
 		return;
 	}
-	if (pManager->GetFigureByColor(YELLOW) == NULL &&
+/*	if (pManager->GetFigureByColor(YELLOW) == NULL &&
 		pManager->GetFigureByColor(RED) == NULL &&
 		pManager->GetFigureByColor(BLACK) == NULL &&
 		pManager->GetFigureByColor(GREEN) == NULL &&
@@ -37,11 +37,19 @@ void FindByColor::GenRandColor2()
 	{
 		pOut->PrintMessage("No colored figures");
 		return;
+	}*/
+	CFigure* TempFig = NULL;
+	//do {
+	TempFig = pManager->GetRandomFigure(true);
+	//pOut->PrintMessage(to_string(count++));
+//} while (!TempFig->IsFilled());
+
+	if (TempFig == NULL)
+	{
+		pOut->PrintMessage("No colored figures");
+		return;
 	}
-	CFigure* TempFig;
-	do { TempFig = pManager->GetRandomFigure();
-	pOut->PrintMessage(to_string(count++));
-	} while (!TempFig->IsFilled());
+
 
 	SelectedColor = TempFig->GetFillClr();
 	if (SelectedColor==GREEN)
