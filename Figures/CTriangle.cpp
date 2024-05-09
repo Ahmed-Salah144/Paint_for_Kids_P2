@@ -94,11 +94,11 @@ void CTriangle::FitInsideDrawArea()
 {
 	//First Corner
 
-	if (Vertex1.y > (UI.height - 100 - UI.StatusBarHeight)) //Bottomside Validation(Salem) 
+	if (Vertex1.y > (UI.height  - UI.StatusBarHeight)) //Bottomside Validation(Salem) 
 	{
-		Vertex3.y -= (Vertex1.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 3 Inside
-		Vertex2.y -= (Vertex1.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 2 Inside
-		Vertex1.y -= (Vertex1.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 1 Inside
+		Vertex3.y -= (Vertex1.y - UI.height + UI.StatusBarHeight); //Pushing Corner 3 Inside
+		Vertex2.y -= (Vertex1.y - UI.height  + UI.StatusBarHeight); //Pushing Corner 2 Inside
+		Vertex1.y -= (Vertex1.y - UI.height + UI.StatusBarHeight); //Pushing Corner 1 Inside
 	}
 	if (Vertex1.y < UI.ToolBarHeight)//Topside Validation(Salem)
 	{
@@ -120,11 +120,11 @@ void CTriangle::FitInsideDrawArea()
 	}
 	//Second Corner
 
-	if (Vertex2.y > (UI.height - 100 - UI.StatusBarHeight)) //Bottomside Validation(Salem) 
+	if (Vertex2.y > (UI.height - UI.StatusBarHeight)) //Bottomside Validation(Salem) 
 	{
-		Vertex3.y -= (Vertex2.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 3 Inside
-		Vertex1.y -= (Vertex2.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 1 Inside
-		Vertex2.y -= (Vertex2.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 2 Inside
+		Vertex3.y -= (Vertex2.y - UI.height  + UI.StatusBarHeight); //Pushing Corner 3 Inside
+		Vertex1.y -= (Vertex2.y - UI.height  + UI.StatusBarHeight); //Pushing Corner 1 Inside
+		Vertex2.y -= (Vertex2.y - UI.height  + UI.StatusBarHeight); //Pushing Corner 2 Inside
 	}
 	if (Vertex2.y < UI.ToolBarHeight)//Topside Validation(Salem)
 	{
@@ -146,11 +146,11 @@ void CTriangle::FitInsideDrawArea()
 	}
 	//Third Corner
 
-	if (Vertex3.y > (UI.height - 100 - UI.StatusBarHeight)) //Bottomside Validation(Salem) 
+	if (Vertex3.y > (UI.height - UI.StatusBarHeight)) //Bottomside Validation(Salem) 
 	{
-		Vertex1.y -= (Vertex3.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 1 Inside
-		Vertex2.y -= (Vertex3.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 2 Inside
-		Vertex3.y -= (Vertex3.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 3 Inside
+		Vertex1.y -= (Vertex3.y - UI.height  + UI.StatusBarHeight); //Pushing Corner 1 Inside
+		Vertex2.y -= (Vertex3.y - UI.height  + UI.StatusBarHeight); //Pushing Corner 2 Inside
+		Vertex3.y -= (Vertex3.y - UI.height  + UI.StatusBarHeight); //Pushing Corner 3 Inside
 	}
 	if (Vertex3.y < UI.ToolBarHeight)//Topside Validation(Salem)
 	{
@@ -174,17 +174,17 @@ void CTriangle::FitInsideDrawArea()
 
 bool CTriangle::DoubleSize()
 {
-	if (2 * abs(Vertex1.x-Vertex2.x) > UI.width) //horizontal validation
+	if (2 * abs(Vertex1.x - Vertex2.x) > UI.width-30) //horizontal validation
 		return false;
-	if (2 * abs(Vertex2.x - Vertex3.x) > UI.width) //horizontal validation
+	if (2 * abs(Vertex2.x - Vertex3.x) > UI.width-30) //horizontal validation
 		return false;
-	if (2 * abs(Vertex1.x - Vertex3.x) > UI.width) //horizontal validation
+	if (2 * abs(Vertex1.x - Vertex3.x) > UI.width-30) //horizontal validation
 		return false;
-	if (2 * abs(Vertex1.y - Vertex2.y) > UI.height - UI.StatusBarHeight) //vertical validation
+	if (2 * abs(Vertex1.y - Vertex2.y) > UI.height - UI.StatusBarHeight-100) //vertical validation
 		return false;
-	if (2 * abs(Vertex2.y - Vertex3.y) > UI.height - UI.StatusBarHeight) //vertical validation
+	if (2 * abs(Vertex2.y - Vertex3.y) > UI.height - UI.StatusBarHeight-100) //vertical validation
 		return false;
-	if (2 * abs(Vertex1.y - Vertex3.y) > UI.height - UI.StatusBarHeight) //vertical validation
+	if (2 * abs(Vertex1.y - Vertex3.y) > UI.height - UI.StatusBarHeight-100) //vertical validation
 		return false;
 
 	Point Center{};
@@ -224,21 +224,17 @@ bool CTriangle::DoubleSize()
 
 bool CTriangle::HalfSize()
 {
-	if (2 * abs(Vertex1.x - Vertex2.x) <10) //horizontal validation
-		return false;
-	if (2 * abs(Vertex2.x - Vertex3.x) < 10) //horizontal validation
-		return false;
-	if (2 * abs(Vertex1.x - Vertex3.x) < 10) //horizontal validation
-		return false;
-	if (2 * abs(Vertex1.y - Vertex2.y) < 10) //vertical validation
-		return false;
-	if (2 * abs(Vertex2.y - Vertex3.y) < 10) //vertical validation
-		return false;
-	if (2 * abs(Vertex1.y - Vertex3.y) < 10) //vertical validation
-		return false;
 	Point Center{};
 	Center.x = (Vertex1.x + Vertex2.x + Vertex3.x) / 3;
 	Center.y = (Vertex2.y + Vertex2.y + Vertex3.y) / 3;
+
+	if (abs(Center.x - Vertex1.x) < 5 && abs(Center.y - Vertex1.y) < 5) //Vertex 1 validation
+		return false;
+	if (abs(Center.x - Vertex2.x) < 5 && abs(Center.y - Vertex2.y) < 5) //Vertex 2 validation
+		return false;
+	if (abs(Center.x - Vertex3.x) < 5 && abs(Center.y - Vertex3.y) < 5) //Vertex 3 validation
+		return false;
+
 	//Corner 1
 	if (Vertex1.x > Center.x)//Corner 1 is to the right of the center
 		Vertex1.x -= 0.5 * (Vertex1.x - Center.x);
@@ -259,7 +255,7 @@ bool CTriangle::HalfSize()
 	if (Vertex2.y < Center.y)//Corner 2 is above of the center
 		Vertex2.y += 0.5 * (Center.y - Vertex2.y);
 
-	//Corner 2
+	//Corner 3
 	if (Vertex3.x > Center.x)//Corner 3 is to the right of the center
 		Vertex3.x -= 0.5 * (Vertex3.x - Center.x);
 	if (Vertex3.x < Center.x)//Corner 3 is to the left of the center

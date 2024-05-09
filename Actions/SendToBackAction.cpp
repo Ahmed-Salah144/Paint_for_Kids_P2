@@ -24,6 +24,4 @@ void SendToBackAction::Execute()
 	{
 		pManager->SwapFigure(i,i-1);
 	}
-	SelectedFig->SetSelected(false);
-	pManager->UpdateFigureData();
 }
