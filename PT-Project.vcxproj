@@ -150,6 +150,8 @@
     <ClCompile Include="Actions\BringToFrontAction.cpp" />
     <ClCompile Include="Actions\DoubleSizeAction.cpp" />
     <ClCompile Include="Actions\HalfSizeAction.cpp" />
+    <ClCompile Include="Actions\SwitchToDrawModeAction.cpp" />
+    <ClCompile Include="Actions\SwitchToPlayModeAction.cpp" />
     <ClCompile Include="Actions\VoiceAction.cpp" />
     <ClCompile Include="CMUgraphicsLib\auxil.cpp" />
     <ClCompile Include="CMUgraphicsLib\CMUgraphics.cpp" />
@@ -218,6 +220,8 @@
     <ClInclude Include="Actions\HalfSizeAction.h" />
     <ClInclude Include="Actions\RandNum.h" />
     <ClInclude Include="Actions\PasteAction.h" />
+    <ClInclude Include="Actions\SwitchToDrawModeAction.h" />
+    <ClInclude Include="Actions\SwitchToPlayModeAction.h" />
     <ClInclude Include="Actions\VoiceAction.h" />
     <ClInclude Include="Actions\LoadAction.h" />
     <ClInclude Include="Actions\SaveAction.h" />

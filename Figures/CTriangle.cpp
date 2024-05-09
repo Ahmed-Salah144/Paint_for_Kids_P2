@@ -96,7 +96,7 @@ void CTriangle::FitInsideDrawArea()
 
 	if (Vertex1.y > (UI.height - 100 - UI.StatusBarHeight)) //Bottomside Validation(Salem) 
 	{
-		Vertex3.y -= (Vertex1.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 2 Inside
+		Vertex3.y -= (Vertex1.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 3 Inside
 		Vertex2.y -= (Vertex1.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 2 Inside
 		Vertex1.y -= (Vertex1.y - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Corner 1 Inside
 	}

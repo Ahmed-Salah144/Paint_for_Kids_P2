@@ -28,6 +28,8 @@
 #include "Actions\FindByColor.h"
 #include "Actions\FindByType.h"
 #include "Actions\FindByTypeAndColor.h"
+#include "Actions\SwitchToDrawModeAction.h"
+#include "Actions\SwitchToPlayModeAction.h"
 #include <cstdlib> 
 #include<iostream>
 
@@ -93,43 +95,6 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new AddHexAction(this);
 		break;
 	}
-
-	/*	case COLOR_BLACK:
-		{
-			pOut->PrintMessage("Action: Black Color , Click anywhere");
-			break;
-		}
-
-		case COLOR_YELLOW:
-		{
-			pOut->PrintMessage("Action: Yellow Color , Click anywhere");
-			break;
-		}
-
-		case COLOR_ORANGE:
-		{
-			pOut->PrintMessage("Action: Orange Color , Click anywhere");
-			break;
-		}
-
-		case COLOR_RED:
-		{
-			pOut->PrintMessage("Action: Red Color , Click anywhere");
-			break;
-		}
-
-		case COLOR_GREEN:
-		{
-			pOut->PrintMessage("Action: Green Color , Click anywhere");
-			break;
-		}
-
-		case COLOR_BLUE:
-		{
-			pOut->PrintMessage("Action: Blue Color , Click anywhere");
-			break;
-		}
-*/
 	case SELECTED:
 	{
 		pAct = new SelectionAction(this);
@@ -229,38 +194,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = new VoiceAction(this);
 		break;
 	}
-	/*	case STATUS:
-		{
-			pOut->PrintMessage("Action: a click on the Status Bar, Click anywhere");
-			break;
-		}
-		case DRAWING_AREA:
-		{
-			pOut->PrintMessage("Action: a click on the Drawing Area, Click anywhere");
-			break;
-		}
-		case EMPTY:
-		{
-			pOut->PrintMessage("Action: a click on empty area in the Tool Bar, Click anywhere");
-			break;
-		}
-	*/
 	case TO_DRAW:
 	{
-		LoadAction* pLoad = new LoadAction(this, 1);
-		pLoad->Execute();
-		delete pLoad;
-		pOut->PrintMessage("Action: Switch to Draw Mode");
-		pOut->CreateDrawToolBar();
+		pAct = new SwitchToDrawModeAction(this);
 		break;
 	}
 	case TO_PLAY:
 	{
-		SaveAction* pSave = new SaveAction(this, 1);
-		pSave->Execute();
-		delete pSave;
-		pOut->PrintMessage("Action: Switch to Play Mode");
-		pOut->CreatePlayToolBar();
+		pAct = new SwitchToPlayModeAction(this);
 		break;
 	}
 	case TYPE:
@@ -279,6 +220,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		break;
 	}
 	case EXIT:
+		ClearAll();
 		break;
 	}
 	

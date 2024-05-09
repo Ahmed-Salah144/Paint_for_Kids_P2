@@ -11,7 +11,6 @@ BringToFrontAction::BringToFrontAction(ApplicationManager* pApp) :Action(pApp)
 
 void BringToFrontAction::ReadActionParameters()
 {
-	Output* pOut = pManager->GetOutput();
 	SelectedFig=pManager->GetSelectedFigure();
 }
 
@@ -21,4 +20,5 @@ void BringToFrontAction::Execute()
 	pManager->RemoveFigure(SelectedFig->GetID());
 	pManager->AddFigure(SelectedFig);
 	SelectedFig->SetSelected(false);
+	pManager->UpdateFigureData();
 }

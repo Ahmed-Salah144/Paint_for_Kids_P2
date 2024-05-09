@@ -8,6 +8,7 @@
 
 FillColorAction::FillColorAction(ApplicationManager* pApp) :Action(pApp)
 {
+	SelectedColor = WHITE;
 }
 
 void FillColorAction::ReadActionParameters()
@@ -51,8 +52,8 @@ void FillColorAction::ReadActionParameters()
 	}
 
 	default:
-	{	
-		SelectedColor = SelectedFigure->GetFillClr();
+	{	if(SelectedFigure->IsFilled())
+			SelectedColor = SelectedFigure->GetFillClr();
 		pOut->PrintMessage("No Color Selected");
 	}
 	}
@@ -62,8 +63,10 @@ void FillColorAction::ReadActionParameters()
 void FillColorAction::Execute()
 {
 	ReadActionParameters();
-	SelectedFigure->ChngFillClr(SelectedColor);
-	SelectionAction* pAct = new SelectionAction(pManager);
-	pAct->DeselectFigure(SelectedFigure);
-	delete pAct;
+	if (SelectedColor != WHITE)
+	{
+		SelectedFigure->ChngFillClr(SelectedColor);
+		SelectedFigure->SetSelected(false);
+		pManager->UpdateFigureData();
+	}
 }

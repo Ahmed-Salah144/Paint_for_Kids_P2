@@ -12,7 +12,6 @@ SendToBackAction::SendToBackAction(ApplicationManager* pApp) :Action(pApp)
 
 void SendToBackAction::ReadActionParameters()
 {
-	Output* pOut = pManager->GetOutput();
 	SelectedFig = pManager->GetSelectedFigure();
 }
 
@@ -26,4 +25,5 @@ void SendToBackAction::Execute()
 		pManager->SwapFigure(i,i-1);
 	}
 	SelectedFig->SetSelected(false);
+	pManager->UpdateFigureData();
 }

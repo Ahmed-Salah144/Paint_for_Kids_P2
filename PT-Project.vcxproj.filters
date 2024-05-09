@@ -241,6 +241,12 @@
     <ClCompile Include="Actions\FindByColor.cpp">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\SwitchToDrawModeAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\SwitchToPlayModeAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CMUgraphicsLib\auxil.h">
@@ -410,6 +416,12 @@
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\FindByTypeAndColor.h">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SwitchToDrawModeAction.h">
+      <Filter>Action Classes\Miscellanious Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SwitchToPlayModeAction.h">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
   </ItemGroup>
