@@ -30,6 +30,24 @@ void CopyAction::Execute()
 	case RECTANGLE: CopiedFig = new CRectangle((CRectangle*)SelectedFig); break;
 
 	}
-	pManager->SetCutFigureID(-1);
+	if (pManager->GetCutFigureID() != -1)
+	{
+		CFigure* PreviouslyCutFigure = pManager->GetFigureByID(pManager->GetCutFigureID());
+		CFigure* Clipboard = pManager->GetClipboard();
+		PreviouslyCutFigure->ChngDrawClr(Clipboard->GetDrawClr());
+		if (Clipboard->IsFilled())
+			PreviouslyCutFigure->ChngFillClr(Clipboard->GetFillClr());
+		else
+			PreviouslyCutFigure->UnFill();
+		if (SelectedFig->GetID() == PreviouslyCutFigure->GetID())
+		{
+			CopiedFig->ChngDrawClr(Clipboard->GetDrawClr());
+			if (Clipboard->IsFilled())
+				CopiedFig->ChngFillClr(Clipboard->GetFillClr());
+			else
+				CopiedFig->UnFill();
+		}
+	}
+	pManager->ClearClipboard();
 	pManager->SetClipboard(CopiedFig);
 }

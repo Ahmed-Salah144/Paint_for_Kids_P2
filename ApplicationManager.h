@@ -20,7 +20,9 @@ private:
 	int SelectedRects, SelectedSqrs, SelectedHexes, SelectedTris, SelectedCircs ;//selected
 	int NumOfRect,NumOfSqr, NumOfHex, NumOfTri, NumOfCirc;//total;
 	int NumOfBlack, NumOfYellow,NumOfOrange,NumOfRed,NumOfGreen,NumOfBlue; //change by osama to get num of each color
-	int CutFigureID; //ID of the figure in clipboard (abdo)
+	int CutFigureID; //ID of the figure in clipboard if it was cut (abdo)
+	//GfxInfo CutFigureGfxInfo; //Appearance of cut figure in clipboard
+
 	//Pointers to Input and Output classes
 	Input *pIn;
 	Output *pOut;
@@ -41,10 +43,13 @@ public:
 	CFigure* GetFigureByColor(color)const;
 	CFigure* GetRandomFigure()const;
 	void RemoveFigure(int); //Salem
+	CFigure* GetFigureByID(int); //Salem
 	void SwapFigure(int,int);//Salem for (send to back)
-
+	void ClearClipboard();
 	CFigure* GetSelectedFigure() const;
 	void SetSelectedFigure(CFigure*);
+	//void SetCutFigureGfxInfo(CFigure*);
+	//GfxInfo GetCutFigureGfxInfo();
 	int GetSelectedFigureCount()const;
 	int GetFigureCountByType(FigureType);
 	int GetSelectedFigureCountByType(FigureType)const;

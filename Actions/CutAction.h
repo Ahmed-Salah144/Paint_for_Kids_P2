@@ -13,8 +13,7 @@
 class CutAction : public Action
 {
 	CFigure* SelectedFig;
-	char selected;
-
+	//char selected;
 
 public:
 	CutAction(ApplicationManager* pApp);

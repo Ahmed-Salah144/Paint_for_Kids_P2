@@ -371,11 +371,27 @@ int ApplicationManager::GetSelectedFigureCount() const
 	return SelectedFigCount;
 }
 
+void ApplicationManager::ClearClipboard()
+{
+	delete Clipboard;
+	Clipboard = NULL;
+	CutFigureID = -1;
+}
+
 CFigure* ApplicationManager::GetRandomFigure() const
 {
 	srand(time(NULL));
 	int RandNum = rand() % FigCount;
 	return FigList[RandNum];
+}
+CFigure* ApplicationManager::GetFigureByID(int ID) 
+{
+	for (int i = FigCount - 1; i >= 0; i--)
+	{
+		if (FigList[i]->GetID()==ID)
+			return FigList[i];
+	}
+	return NULL;
 }
 
 void ApplicationManager::SetClipboard(CFigure* CF) {
@@ -516,7 +532,6 @@ void ApplicationManager::ClearAll()
 	delete Clipboard;
 	Clipboard = NULL;
 	FigCount = 0;
-	SelectedFigure = NULL;
 	UpdateFigureData();
 }
 ////////////////////////////////////////////////////////////////////////////////////
