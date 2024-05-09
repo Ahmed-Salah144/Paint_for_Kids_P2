@@ -19,7 +19,7 @@ FindByColor::FindByColor(ApplicationManager* pApp) : Action(pApp) {
 	Exit = false;
 }
 
-void FindByColor::GenRandColor2()
+void FindByColor::GenRandColor2()  //generates random color
 {
 	int count = 0;
 	Output* pOut = pManager->GetOutput();
@@ -28,7 +28,7 @@ void FindByColor::GenRandColor2()
 		pOut->PrintMessage("No Figures");
 		return;
 	}
-	if (pManager->GetFigureByColor(YELLOW) == NULL &&
+	if (pManager->GetFigureByColor(YELLOW) == NULL &&         //checks that there are colored figures on the screen
 		pManager->GetFigureByColor(RED) == NULL &&
 		pManager->GetFigureByColor(BLACK) == NULL &&
 		pManager->GetFigureByColor(GREEN) == NULL &&
@@ -39,7 +39,7 @@ void FindByColor::GenRandColor2()
 		return;
 	}
 	CFigure* TempFig;
-	do { TempFig = pManager->GetRandomFigure();
+	do { TempFig = pManager->GetRandomFigure();               //gets random color from the user
 	pOut->PrintMessage(to_string(count++));
 	} while (!TempFig->IsFilled());
 
@@ -75,71 +75,12 @@ void FindByColor::GenRandColor2()
 		SelectedColor = BLACK;
 	}
 }
-void FindByColor::GenRandColor() {
-	Output* pOut = pManager->GetOutput();
-	//color Colors[6] = { GREEN ,RED,BLUE,BLACK,YELLOW,ORANGE };
 
-	if (pManager->GetFigureByColor(YELLOW) == NULL && pManager->GetFigureByColor(RED) == NULL && pManager->GetFigureByColor(BLACK) == NULL && pManager->GetFigureByColor(GREEN) == NULL && pManager->GetFigureByColor(ORANGE) == NULL && pManager->GetFigureByColor(RED) == NULL)
-	{
-		pOut->PrintMessage("No colored figures");
-		return;
-	}
-	//int count = 0;
-	while (true)
-	{
-		srand(time(NULL));
-		RandNum = rand() % 6;
-		//pOut->PrintMessage(to_string(count++));
-
-		if (RandNum == 0 && pManager->GetFigureByColor(SelectedColor) != NULL)
-		{
-			pOut->ClearStatusBar();
-			pOut->PrintMessage("Select all black figures");
-			SelectedColor = BLACK;
-			break;
-		}
-		else if (RandNum == 1 && pManager->GetFigureByColor(SelectedColor) != NULL) {
-			pOut->ClearStatusBar();
-			pOut->PrintMessage("Select all yellow figures");
-			SelectedColor = YELLOW;
-			break;
-		}
-		else if (RandNum == 2 && pManager->GetFigureByColor(SelectedColor) != NULL)
-		{
-			pOut->ClearStatusBar();
-			pOut->PrintMessage("Select all orange figures");
-			SelectedColor = ORANGE;
-			break;
-		}
-		else if (RandNum == 3 && pManager->GetFigureByColor(SelectedColor) != NULL)
-		{
-			pOut->ClearStatusBar();
-			pOut->PrintMessage("Select all red figures");
-			SelectedColor = RED;
-			break;
-		}
-		else if (RandNum == 4 && pManager->GetFigureByColor(SelectedColor) != NULL) {
-			pOut->ClearStatusBar();
-			pOut->PrintMessage("Select all green figures");
-			SelectedColor = GREEN;
-			break;
-		}
-		else if (RandNum == 5 && pManager->GetFigureByColor(SelectedColor) != NULL) {
-			pOut->ClearStatusBar();
-			pOut->PrintMessage("Select all blue figures");
-			SelectedColor = BLUE;
-			break;
-		}
-	}
-
-};
 
 void FindByColor::ReadActionParameters()
 {
-	//Output* pOut = pManager->GetOutput();
-	//Input* pIn = pManager->GetInput();
 	pManager->GetInput()->GetPointClicked(Click.x, Click.y);
-	if (Click.x > UI.MenuItemWidth * 3 && Click.x < UI.MenuItemWidth * 4 && Click.y < UI.ToolBarHeight)
+	if (Click.x > UI.MenuItemWidth * 3 && Click.x < UI.MenuItemWidth * 4 && Click.y < UI.ToolBarHeight) // switch to draw mode
 	{
 		Exit = true;
 		pManager->ExecuteAction(TO_DRAW);
@@ -147,15 +88,17 @@ void FindByColor::ReadActionParameters()
 		pAct->Execute();
 		delete pAct;
 	}
-	else if (Click.x > UI.MenuItemWidth * 5 && Click.x < UI.MenuItemWidth * 6 && Click.y < UI.ToolBarHeight)
+	else if (Click.x > UI.MenuItemWidth * 5 && Click.x < UI.MenuItemWidth * 6 && Click.y < UI.ToolBarHeight) // exits the program
 	{
 		Exit = true;
 	}
-	else if (Click.x > UI.MenuItemWidth * 1 && Click.x < UI.MenuItemWidth * 2 && Click.y < UI.ToolBarHeight)
+	else if (Click.x > UI.MenuItemWidth * 0 && Click.x < UI.MenuItemWidth * 1 && Click.y < UI.ToolBarHeight) // switches to find by type
 	{
 		Exit = true;
 		Restart = true;
+		pManager->ExecuteAction(TYPE);
 	}
+
 }
 
 
@@ -167,9 +110,6 @@ void FindByColor::Execute()
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearStatusBar();
 	pManager->UpdateInterface();
-	//pOut->PrintMessage("execute command");
-	//CFigure* pFig = pManager->GetFigure(Click.x, Click.y);
-	//GenRandShape();
 	GenRandColor2();
 	PickColorAction();
 	if (Restart)
@@ -193,21 +133,21 @@ void FindByColor::PickColorAction() {
 	Input* pIn = pManager->GetInput();
 
 
-	while (pManager->GetFigureByColor(SelectedColor) != NULL)
+	while (pManager->GetFigureByColor(SelectedColor) != NULL) // while a colored figure from the picked color exists 
 	{
-		ReadActionParameters();
+		ReadActionParameters(); // if the user clicks on exit while running the program exits find by color
 		if (Exit)
 		{
-			pOut->ClearStatusBar();
+			pOut->PrintMessage("Exited find by color");
 			break;
 		}
 		PickedFigure = pManager->GetFigure(Click.x, Click.y);
-		if (PickedFigure== NULL)
+		if (PickedFigure== NULL)    //checks if the kid clicked on the background
 		{
 			WrongCount++;
 			pOut->PrintMessage("no figure Selected");
 		}
-		else if (!PickedFigure->IsFilled())
+		else if (!PickedFigure->IsFilled())   //checks if the kid clicked on a non filleed figure
 		{
 			WrongCount++;
 			pManager->RemoveFigure(PickedFigure->GetID());
@@ -215,7 +155,7 @@ void FindByColor::PickColorAction() {
 			pOut->PrintMessage("selected wrong figure");
 			pManager->UpdateInterface();
 		}
-		else if (PickedFigure->GetFillClr() != SelectedColor)
+		else if (PickedFigure->GetFillClr() != SelectedColor) //checks if the kid clicked on the non picked color
 		{
 
 			pOut->PrintMessage("selected wrong figure");
@@ -226,7 +166,7 @@ void FindByColor::PickColorAction() {
 		}
 		else
 		{
-			pOut->PrintMessage("Selected right figure");
+			pOut->PrintMessage("Selected right figure");  //checks if the figure clicked is correct and increments the counter
 			PickedFigure = pManager->GetFigure(Click.x, Click.y);
 			pManager->RemoveFigure(PickedFigure->GetID());
 			delete PickedFigure;
@@ -235,7 +175,7 @@ void FindByColor::PickColorAction() {
 		}
 	}
 
-	if (pManager->GetFigureByColor(SelectedColor) == NULL)
+	if (pManager->GetFigureByColor(SelectedColor) == NULL)  //if no more of the selected color exists exit from the program and restart the program
 	{
 		Action* pAct = new LoadAction(pManager, 1);
 		pAct->Execute();
