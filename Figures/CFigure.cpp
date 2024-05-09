@@ -146,6 +146,11 @@ void CFigure::Load(ifstream& InFile)
 	}
 }
 
+void CFigure::ResetCreatedFigureCount()
+{
+	CreatedFigCount = 0;
+}
+
 CFigure::~CFigure()
 {
 }

@@ -477,6 +477,7 @@ void ApplicationManager::SaveAll(ofstream& OutFile) const
 
 void ApplicationManager::ClearAll()
 {
+	FigList[0]->ResetCreatedFigureCount();
 	for (int i = 0; i < FigCount; i++)
 	{
 		delete FigList[i];
