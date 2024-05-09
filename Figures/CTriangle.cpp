@@ -51,20 +51,14 @@ void CTriangle::PrintInfo(Output* pOut)
 bool CTriangle::IsClicked(int x, int y)
 {
 	double A1, A2, A3, A;
-	A1 = GetArea(x, y, Vertex1.x, Vertex1.y, Vertex2.x, Vertex2.y);
-	A2 = GetArea(x, y, Vertex2.x, Vertex2.y, Vertex3.x, Vertex3.y);
-	A3 = GetArea(x, y, Vertex1.x, Vertex1.y, Vertex3.x, Vertex3.y);
-	A = GetArea(Vertex1.x, Vertex1.y, Vertex2.x, Vertex2.y, Vertex3.x, Vertex3.y);
+	A1 = abs((x * (Vertex1.y - Vertex2.y) + Vertex1.x * (Vertex2.y - y) + Vertex2.x * (y - Vertex1.y)) / 2.0);
+	A2 = abs((x * (Vertex2.y - Vertex3.y) + Vertex2.x * (Vertex3.y - y) + Vertex3.x * (y - Vertex2.y)) / 2.0);
+	A3 = abs((x * (Vertex1.y - Vertex3.y) + Vertex1.x * (Vertex3.y - y) + Vertex3.x * (y - Vertex1.y)) / 2.0);
+	A = abs((Vertex3.x * (Vertex1.y - Vertex2.y) + Vertex1.x * (Vertex2.y - Vertex3.y) + Vertex2.x * (Vertex3.y - Vertex1.y)) / 2.0);
 	if (A == A1 + A2 + A3)//Compare area of 3 triangles around (x,y) and original area;
 		return true;
 	return false;
 }
-
-double CTriangle::GetArea(int Ax, int Ay, int Bx, int By, int Cx, int Cy)
-{
-	return abs((Ax * (By - Cy) + Bx * (Cy - Ay) + Cx * (Ay - By)) / 2.0);//Calculate Area using 3 Vertices of a triangle
-}
-
 FigureType CTriangle::GetFigType()
 {
 	return FigType;
