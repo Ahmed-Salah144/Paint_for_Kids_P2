@@ -20,36 +20,51 @@ public:
 	CFigure(ifstream& InFile);
 
 	void SetSelected(bool s);	//select/unselect the figure
-	bool IsSelected() const;	//check whether fig is selected
-	//bool IsTheSame(CFigure*)const;		//check for selected figure(Salem)
+
+	bool IsSelected() const;	//returns true if figure is selected
 
 	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
-	virtual void MoveFigure(int x, int y) = 0;
+
+
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
+
 	void ChngFillClr(color Fclr);	//changes the figure's filling color
-	color GetDrawClr(); //(Salem)
-	color GetFillClr();//(Salem)
-	bool IsFilled();
-	void UnFill();
-	void SetID(int);//(salem)
-	int GetID() ; //(abdo)
-	//void SetGfxInfo(CFigure*);
+
+	color GetDrawClr(); // Returns Figure Draw Color
+
+	color GetFillClr(); // Returns Figure Fill Color
+
+	bool IsFilled(); //Returns true if figure is filled
+
+	void UnFill(); //Unfills Figure
+
+	int GetID() ; //returns Figure ID
+
+	FigureType GetFigType(); //salem to check for figure type
+
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 
 	///Decide the parameters that you should pass to each function	
+
 	virtual bool IsClicked(int x, int y)=0;// (Salem to check area of click)
 
+	virtual void MoveFigure(int x, int y) = 0;		// Move the Center of the Figure to a new position
 
-	virtual FigureType GetFigType()=0; //salem to check for figure type
-	virtual bool DoubleSize() = 0;
-	virtual bool HalfSize() = 0;
-	virtual void FitInsideDrawArea() = 0;
+	virtual bool DoubleSize() = 0;		//Double Figure Size
+
+	virtual bool HalfSize() = 0;		//Halves Figure Size
+
+	virtual void FitInsideDrawArea() = 0; //Fixes figure inside Draw Area
 
 	virtual void Save(ofstream &OutFile);	//Save the figure parameters to the file
+
 	virtual void Load(ifstream &InFile);	//Load the figure parameters to the file
+
 	virtual void PrintInfo(Output* pOut) = 0;	//print all figure info on the status bar
-	void ResetCreatedFigureCount();
+
+	void ResetCreatedFigureCount();		//Resets Figure IDs
+
 	virtual ~CFigure();
 };
 

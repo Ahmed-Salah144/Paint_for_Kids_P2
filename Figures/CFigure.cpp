@@ -24,15 +24,6 @@ void CFigure::SetSelected(bool s)
 bool CFigure::IsSelected() const
 {	return Selected; }
 
-//bool CFigure::IsTheSame(CFigure* pFig) const
-//{
-	//if (pFig == NULL)
-		//return false;
-	//if (pFig->ID == this->ID)
-		//return true;
-	//return false;
-//}
-
 void CFigure::ChngDrawClr(color Dclr)
 {	FigGfxInfo.DrawClr = Dclr; }
 
@@ -51,7 +42,7 @@ color CFigure::GetFillClr()
 {
 	if (IsFilled())
 		return FigGfxInfo.FillClr;
-	return SNOW;
+	return WHITE;
 }
 
 bool CFigure::IsFilled()
@@ -64,19 +55,15 @@ void CFigure::UnFill()
 	FigGfxInfo.isFilled = false;
 }
 
-void CFigure::SetID(int id)
-{
-	ID = id;
-}
 int CFigure::GetID() {
 	return ID;
 }
-//void CFigure::SetGfxInfo(CFigure* Fig)
-//{
-	//FigGfxInfo.isFilled = Fig->IsFilled();
-	//FigGfxInfo.DrawClr = Fig->GetDrawClr();
-	//FigGfxInfo.FillClr = Fig->GetFillClr();
-//}
+
+FigureType CFigure::GetFigType()
+{
+	return FigType;
+}
+
 void CFigure::Save(ofstream& OutFile)
 {
 	if (FigGfxInfo.DrawClr == BLACK) //prints figure's draw color

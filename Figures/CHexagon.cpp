@@ -67,10 +67,7 @@ bool CHexagon::IsClicked(int x, int y)
 	return false;
 }
 
-FigureType CHexagon::GetFigType()
-{
-	return FigType;
-}
+
 
 void CHexagon::Save(ofstream& OutFile)
 {

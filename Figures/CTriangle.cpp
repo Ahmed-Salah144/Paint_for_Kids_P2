@@ -59,11 +59,6 @@ bool CTriangle::IsClicked(int x, int y)
 		return true;
 	return false;
 }
-FigureType CTriangle::GetFigType()
-{
-	return FigType;
-}
-
 void CTriangle::Save(ofstream& OutFile)
 {
 	OutFile << "TRIANGLE" << "\t" << this->ID << "\t";

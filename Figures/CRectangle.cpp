@@ -56,10 +56,6 @@ bool CRectangle::IsClicked(int x, int y)
 	return false;
 }
 
-FigureType CRectangle::GetFigType()
-{
-	return FigType;
-}
 
 void CRectangle::Save(ofstream& OutFile)
 {

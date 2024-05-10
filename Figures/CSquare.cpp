@@ -45,10 +45,6 @@ bool CSquare::IsClicked(int x, int y)
 	return false;
 }
 
-FigureType CSquare::GetFigType()
-{
-	return FigType;
-}
 
 void CSquare::Save(ofstream& OutFile)
 {

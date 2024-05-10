@@ -51,10 +51,6 @@ bool CCircle::IsClicked(int x, int y)
 	return false;
 }
 
-FigureType CCircle::GetFigType()
-{
-	return FigType;
-}
 
 void CCircle::Save(ofstream& OutFile)
 {
