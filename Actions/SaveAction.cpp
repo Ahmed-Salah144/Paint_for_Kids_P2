@@ -19,7 +19,7 @@ void SaveAction::ReadActionParameters()
 	Input* pin = pManager->GetInput();
 	Output* pout = pManager->GetOutput();
 	pout->PrintMessage("Enter save file name:");
-	file_name = ".\\\\Saves\\\\" + pin->GetString(pout);
+	file_name = ".\\\\Saves\\\\" + pin->GetString(pout) + ".txt";
 }
 
 void SaveAction::Execute()
