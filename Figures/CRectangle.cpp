@@ -23,6 +23,8 @@ CRectangle::CRectangle(ifstream& InFile)
 	: CFigure(InFile) // initializes ID and CFigure::selected = false
 {
 	Load(InFile);
+	if (CreatedFigCount < ID)
+		CreatedFigCount = ID + 1;
 }
 
 void CRectangle::Draw(Output* pOut) const

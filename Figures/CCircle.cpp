@@ -22,6 +22,8 @@ CCircle::CCircle(ifstream& InFile)
 	: CFigure (InFile)
 {
 	Load(InFile);
+	if (CreatedFigCount < ID)
+		CreatedFigCount = ID + 1;
 }
 
 void CCircle::Draw(Output* pOut) const

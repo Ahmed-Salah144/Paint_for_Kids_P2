@@ -20,6 +20,8 @@ CHexagon::CHexagon(ifstream& InFile)
 	: CFigure(InFile)
 {
 	Load(InFile);
+	if (CreatedFigCount < ID)
+		CreatedFigCount = ID + 1;
 }
 
 void CHexagon::Draw(Output* pOut) const
