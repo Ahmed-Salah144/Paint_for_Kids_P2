@@ -8,22 +8,29 @@
 class CFigure
 {
 protected:
+
 	int ID;		//Each figure has an ID
+
 	bool Selected;	//true if the figure is selected.
+
 	GfxInfo FigGfxInfo;	//Figure graphis info
-	FigureType FigType;
-	static int CreatedFigCount;
+
+	FigureType FigType; //Rectangle,triangle,square,circle or hexagon
+
+	static int CreatedFigCount;//Assigns IDs of figures
+
 	/// Add more parameters if needed.
 
 public:
-	CFigure(GfxInfo FigureGfxInfo);
-	CFigure(ifstream& InFile);
+	CFigure(GfxInfo FigureGfxInfo);	//Constructor Called by drawing actions
 
-	void SetSelected(bool s);	//select/unselect the figure
+	CFigure(ifstream& InFile); // Constructor Called by Load Actions
+
+	void SetSelected(bool s);	//select or unselect the figure
 
 	bool IsSelected() const;	//returns true if figure is selected
 
-	virtual void Draw(Output* pOut) const  = 0 ;		//Draw the figure
+	virtual void Draw(Output* pOut) const  = 0 ;	//Draw the figure
 
 
 	void ChngDrawClr(color Dclr);	//changes the figure's drawing color
@@ -40,14 +47,14 @@ public:
 
 	int GetID() ; //returns Figure ID
 
-	FigureType GetFigType(); //salem to check for figure type
+	virtual FigureType GetFigType() const = 0; //Returns  figure type
 
 	///The following functions should be supported by the figure class
 	///It should be overridden by each inherited figure
 
 	///Decide the parameters that you should pass to each function	
 
-	virtual bool IsClicked(int x, int y)=0;// (Salem to check area of click)
+	virtual bool IsClicked(int x, int y)=0;// returns true if a click is inside the figure
 
 	virtual void MoveFigure(int x, int y) = 0;		// Move the Center of the Figure to a new position
 

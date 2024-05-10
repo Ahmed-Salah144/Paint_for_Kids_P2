@@ -31,14 +31,11 @@ bool SelectionAction::SelectFigure(CFigure* pFig)
 {
 	if (pFig == NULL)
 		return false;
-	if (pManager->GetSelectedFigureCount() < 200)
+	if (!(pFig->IsSelected()))
 	{
-		if (!(pFig->IsSelected()))
-		{
-			pFig->SetSelected(true);
-			pManager->UpdateFigureData();
-			return true;
-		}
+		pFig->SetSelected(true);
+		pManager->UpdateFigureData();
+		return true;
 	}
 	return false;
 }

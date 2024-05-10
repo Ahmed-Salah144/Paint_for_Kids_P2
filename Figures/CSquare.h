@@ -6,20 +6,36 @@
 class CSquare : public CFigure
 {
 private:
+
 	Point Center;
+
 	int Size;
+
 public:
-	CSquare(CSquare*); //overriding constructor (needed for clipboard copy)// (abdo)
-	CSquare(Point, GfxInfo SquareGfxInfo);
-	CSquare(ifstream& InFile);
+	CSquare(CSquare*); //Copy Constructor
+
+	CSquare(Point, GfxInfo SquareGfxInfo);//Drawing Action  Constructor
+
+	CSquare(ifstream& InFile);//Loading Constructor
+
 	virtual void Draw(Output* pOut) const;
+
 	virtual void MoveFigure(int, int);
-	virtual void PrintInfo(Output* pOut);	//print all figure info on the status bar
+
+	virtual FigureType GetFigType()const;
+
+	virtual void PrintInfo(Output* pOut);
+
 	virtual bool IsClicked(int x, int y);
+
 	virtual void Save(ofstream& OutFile);
+
 	virtual void Load(ifstream& InFile);
+
 	virtual void FitInsideDrawArea();
+
 	virtual bool DoubleSize();
+
 	virtual bool HalfSize();
 };
 

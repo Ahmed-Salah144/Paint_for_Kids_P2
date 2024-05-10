@@ -59,10 +59,10 @@ int CFigure::GetID() {
 	return ID;
 }
 
-FigureType CFigure::GetFigType()
-{
-	return FigType;
-}
+//FigureType CFigure::GetFigType()
+//{
+	//return FigType;
+//}
 
 void CFigure::Save(ofstream& OutFile)
 {

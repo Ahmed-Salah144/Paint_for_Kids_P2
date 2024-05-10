@@ -6,6 +6,7 @@ CHexagon::CHexagon(CHexagon* H) :CFigure(H->FigGfxInfo) {
 	FigType = HEXAGON;
 	this->Size = H->Size;
 }
+
 CHexagon::CHexagon(Point P,GfxInfo HexagonGfxInfo):
 	CFigure(HexagonGfxInfo)
 {
@@ -20,7 +21,6 @@ CHexagon::CHexagon(ifstream& InFile)
 {
 	Load(InFile);
 }
-
 
 void CHexagon::Draw(Output* pOut) const
 {
@@ -39,35 +39,44 @@ void CHexagon::MoveFigure(int x, int y)
 	FitInsideDrawArea();
 }
 
+FigureType CHexagon::GetFigType() const
+{
+	return FigType;
+}
+
 bool CHexagon::IsClicked(int x, int y)
 {
-	int s1p , s4p;
-	if (x== Center.x+ 2 * Size)
-		s1p = (Center.y - y) / 0.01;
-	else
-		s1p = (Center.y - y) / (Center.x + 2* Size - x);
+	//This Check Works by splitting the hexagon into 3 regions of 2 triangles and a rectangle
+	//the 2 triangles are checked by making sure the slope of the line between the clicked point and the side vertex
+	//is below the upper edge and above the lower edge
 
-	if (x == Center.x - 2 * Size)
+
+	int s1p , s4p;//Slopes between Vertex1 and the point,Vertex4 and the point
+
+	if (x== Center.x + 2 * Size) // Avoiding Division by zero in case the X values are too close
+		s1p = (Center.y - y) / 0.01; 
+	else
+		s1p = (Center.y - y) / (Center.x + 2* Size - x); //Slope Calculation
+
+	if (x == Center.x - 2 * Size) // Avoiding Division by zero in case the Y values are too close
 		s4p =(Center.y - y) / 0.01;
 	else
-		s4p = (Center.y - y) /(Center.x- 2 * Size -x);
+		s4p = (Center.y - y) /(Center.x- 2 * Size -x); //Slope Calculation
 
 	if (x <= Center.x + Size && x >= Center.x - Size)
 		if (y <= Center.y + Size * 1.732 && y >= Center.y - Size * 1.732)
 			return true;//inner rectangle check
 
 	if (s1p <= 1.732 && s1p >= -1.732)	//circular sector between two lines
-		if (x <= Center.x + 2* Size && x >= Center.x + Size) // another section to get intersecion(triangle)
+		if (x <= Center.x + 2* Size && x >= Center.x + Size) // another rectangular section to get intersection(triangle)
 			return true;//side triangle check 1
 
 	if (s4p >= -1.732 && s4p <= 1.732)	//circular sector between two lines
-		if (x >= Center.x - 2* Size && x <= Center.x - Size) // another section to get intersecion(triangle)
+		if (x >= Center.x - 2* Size && x <= Center.x - Size) // another rectangular section to get intersection(triangle)
 			return true;//side triangle check 2
 
 	return false;
 }
-
-
 
 void CHexagon::Save(ofstream& OutFile)
 {
@@ -86,19 +95,19 @@ void CHexagon::Load(ifstream& InFile)
 
 void CHexagon::FitInsideDrawArea()
 {
-	if (Center.y + 2* Size *0.866 > (UI.height - 100 - UI.StatusBarHeight)) //Bottomside Validation(Salem)
+	if (Center.y + 2* Size *0.866 > (UI.height - 100 - UI.StatusBarHeight)) //Bottomside Validation
 	{
 		Center.y -= (Center.y + 2 * Size * 0.866 - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Center Inside
 	}
-	if (Center.y - 2 * Size * 0.866 < UI.ToolBarHeight)//Topside Validation(Salem)
+	if (Center.y - 2 * Size * 0.866 < UI.ToolBarHeight)//Topside Validation
 	{
 		Center.y += (-Center.y + 2 * Size * 0.866 + UI.ToolBarHeight + 5);//Pushing Center Inside
 	}
-	if (Center.x + 2* Size > UI.width - 25) //Rightside Validation(Salem)
+	if (Center.x + 2* Size > UI.width - 25) //Rightside Validation
 	{
 		Center.x -= (Center.x + 2 * Size - UI.width + 25 - 5);//Pushing Center Inside
 	}
-	if (Center.x - 2 * Size < 0) //Leftside Validation(Salem)
+	if (Center.x - 2 * Size < 0) //Leftside Validation
 	{
 		Center.x += (-Center.x + 2 * Size + 5);//Pushing Center Inside
 	}
@@ -106,7 +115,7 @@ void CHexagon::FitInsideDrawArea()
 
 bool CHexagon::DoubleSize()
 {
-	if ((2 * Size) > (UI.height - 300) / 2)
+	if ((2 * Size) > (UI.height - UI.ToolBarHeight-UI.StatusBarHeight-50) / 2) //if hexagon is too large 
 		return false;
 	Size *= 2;
 	FitInsideDrawArea();
@@ -115,9 +124,10 @@ bool CHexagon::DoubleSize()
 
 bool CHexagon::HalfSize()
 {
-	if (Size <8)
+	if (Size <8)   //if Hexagon is too small
 		return false;
 	Size *= 0.5;
 	FitInsideDrawArea();
 	return true;
 }
+

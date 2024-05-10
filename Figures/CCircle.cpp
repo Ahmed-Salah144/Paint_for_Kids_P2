@@ -7,6 +7,7 @@ CCircle::CCircle(CCircle* C) : CFigure(C->FigGfxInfo) {
 	this->Radius = C->Radius;
 	FigType = CIRCLE; 
 } 
+
 CCircle::CCircle(Point P1,Point P2, GfxInfo CircleGfxInfo) :
 	CFigure(CircleGfxInfo)
 {
@@ -23,7 +24,6 @@ CCircle::CCircle(ifstream& InFile)
 	Load(InFile);
 }
 
-
 void CCircle::Draw(Output* pOut) const
 {
 	pOut->DrawCircle(Center,OuterPoint,FigGfxInfo, Selected);
@@ -38,9 +38,14 @@ void CCircle::MoveFigure(int x, int y)
 	FitInsideDrawArea();
 }
 
+FigureType CCircle::GetFigType() const
+{
+	return FigType;
+}
+
 void CCircle::PrintInfo(Output* pOut)
 {
-	pOut->PrintMessage("Circle   ID: " + to_string(ID) + " ,Center : (" + to_string(Center.x) + "," + to_string(Center.y) + "),Radius : " + to_string(Radius));
+	pOut->PrintMessage("Circle  ID: " + to_string(ID) + " ,Center : (" + to_string(Center.x) + "," + to_string(Center.y) + "),Radius : " + to_string(Radius));
 }
 
 bool CCircle::IsClicked(int x, int y)
@@ -50,7 +55,6 @@ bool CCircle::IsClicked(int x, int y)
 		return true;
 	return false;
 }
-
 
 void CCircle::Save(ofstream& OutFile)
 {
@@ -71,27 +75,27 @@ void CCircle::Load(ifstream& InFile)
 
 void CCircle::FitInsideDrawArea()
 {
-	while (Radius > (UI.height - 100) / 2)
+	while (Radius > (UI.height - 100) / 2) //Reduce Circle size if it is too big
 	{
 		HalfSize();
 	}
 
-	if (Center.y + Radius > (UI.height-100 - UI.StatusBarHeight)) //Bottomside Validation(Salem)
+	if (Center.y + Radius > (UI.height-100 - UI.StatusBarHeight)) //Bottomside Validation
 	{
 		OuterPoint.y -= (Center.y + Radius - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Outer Point Inside
 		Center.y -= (Center.y + Radius - UI.height + 100  - UI.StatusBarHeight - 5); //Pushing Center Inside
 	}
-	if (Center.y - Radius < UI.ToolBarHeight)//Topside Validation(Salem)
+	if (Center.y - Radius < UI.ToolBarHeight)//Topside Validation
 	{
 		OuterPoint.y += (-Center.y + Radius + UI.ToolBarHeight + 5); //Pushing Outer Point Inside
 		Center.y += (-Center.y + Radius + UI.ToolBarHeight + 5);//Pushing Center Inside
 	}
-	if (Center.x + Radius > UI.width-25) //Rightside Validation(Salem)
+	if (Center.x + Radius > UI.width-25) //Rightside Validation(
 	{
 		OuterPoint.x -= (Center.x + Radius - UI.width +25 - 5); //Pushing Outer Point Inside
 		Center.x -= (Center.x + Radius - UI.width+25  - 5);//Pushing Center Inside
 	}
-	if (Center.x - Radius < 0) //Leftside Validation(Salem)
+	if (Center.x - Radius < 0) //Leftside Validation
 	{
 		OuterPoint.x += (-Center.x + Radius + 5); //Pushing Outer Point Inside
 		Center.x += (-Center.x + Radius + 5);//Pushing Center Inside

@@ -6,6 +6,7 @@ CSquare::CSquare(CSquare* S) : CFigure(S->FigGfxInfo) {
 	FigType = SQUARE;
 	this->Size = S->Size;
 }
+
 CSquare::CSquare(Point P, GfxInfo SquareGfxInfo) :
 	CFigure(SquareGfxInfo)
 {
@@ -38,13 +39,17 @@ void CSquare::MoveFigure(int x, int y)
 	FitInsideDrawArea();
 }
 
+FigureType CSquare::GetFigType() const
+{
+	return FigType;
+}
+
 bool CSquare::IsClicked(int x, int y)
 {
 	if (x >= Center.x - Size *1.25 && x <= Center.x + Size * 1.25 && y >= Center.y - Size * 1.25 && y <= Center.y + Size * 1.25)
 		return true;
 	return false;
 }
-
 
 void CSquare::Save(ofstream& OutFile)
 {
@@ -60,21 +65,22 @@ void CSquare::Load(ifstream& InFile)
 	FigType = SQUARE;
 	CFigure::Load(InFile);	//Loades Draw, Fill color
 }
+
 void CSquare::FitInsideDrawArea()
 {
-	if (Center.y + Size * 1.25 > (UI.height - 100 - UI.StatusBarHeight)) //Bottomside Validation(Salem)
+	if (Center.y + Size * 1.25 > (UI.height - 100 - UI.StatusBarHeight)) //Bottomside Validation
 	{
 		Center.y -= (Center.y + Size * 1.25 - UI.height + 100 - UI.StatusBarHeight - 5); //Pushing Center Inside
 	}
-	if (Center.y - Size * 1.25 < UI.ToolBarHeight)//Topside Validation(Salem)
+	if (Center.y - Size * 1.25 < UI.ToolBarHeight)//Topside Validation
 	{
 		Center.y += (-Center.y + Size * 1.25 + UI.ToolBarHeight + 5);//Pushing Center Inside
 	}
-	if (Center.x + Size * 1.25 > UI.width - 25) //Rightside Validation(Salem)
+	if (Center.x + Size * 1.25 > UI.width - 25) //Rightside Validation
 	{
 		Center.x -= (Center.x + Size * 1.25 - UI.width + 25 - 5);//Pushing Center Inside
 	}
-	if (Center.x - Size * 1.25 < 0) //Leftside Validation(Salem)
+	if (Center.x - Size * 1.25 < 0) //Leftside Validation
 	{
 		Center.x += (-Center.x + Size * 1.25 + 5);//Pushing Center Inside
 	}
@@ -82,7 +88,7 @@ void CSquare::FitInsideDrawArea()
 
 bool CSquare::DoubleSize()
 {
-	if ((Size * 1.25) > (UI.height - 200) / 2)
+	if ((Size * 1.25) > (UI.height - UI.ToolBarHeight - UI.StatusBarHeight - 50) / 2) //if Square will become too large
 		return false;
 	Size *= 2;
 	FitInsideDrawArea();
@@ -91,7 +97,7 @@ bool CSquare::DoubleSize()
 
 bool CSquare::HalfSize()
 {
-	if (Size < 8 )
+	if (Size < 8 ) // if square will become too small
 		return false;
 	Size *= 0.5;
 	FitInsideDrawArea();
