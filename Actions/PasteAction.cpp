@@ -44,5 +44,6 @@ void PasteAction::Execute()
 	if (pManager->GetCutFigureID() != -1) 
 	{
 		pManager->RemoveFigure(pManager->GetCutFigureID());
+		pManager->SetCutFigureID(-1);
 	}
 }
