@@ -37,11 +37,11 @@ void AddHexAction::Execute()
 	//Create a rectangle with the parameters read from the user
 
 	CHexagon* H = new CHexagon(P,HexGfxInfo);
-	if (VoiceAction::GetVoiceOn() == true) //plays Voice if enabled
-	{
-		PlaySound(TEXT("Voice/Hexagon"), NULL, SND_FILENAME | SND_SYNC);
-		PlaySound(TEXT("Voice/BGM"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
-	}
+
+	//Plays Voice if turned on
+	VoiceAction Voice(pManager);
+	Voice.PlayAudio(VoiceAction::PLAY_DRAW_HEXAGON);
+
 	//Add the rectangle to the list of figures
 	pManager->AddFigure(H);
 }

@@ -41,11 +41,11 @@ void AddCircAction::Execute()
 
 	//Create a circle with the parameters read from the user
 	CCircle* C = new CCircle (P1, P2, CircGfxInfo);	
-	if (VoiceAction::GetVoiceOn() == true)
-	{
-		PlaySound(TEXT("Voice/AddedCircle"), NULL, SND_FILENAME | SND_SYNC);
-		PlaySound(TEXT("Voice/BGM"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
-	}
+
+	//Plays Voice if turned on
+	VoiceAction Voice(pManager);
+	Voice.PlayAudio(VoiceAction::PLAY_DRAW_CIRCLE);
+
 	//Add the circle to the list of figures
 	pManager->AddFigure(C);
 }

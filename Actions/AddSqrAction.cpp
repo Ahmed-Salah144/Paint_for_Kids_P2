@@ -37,11 +37,11 @@ void AddSqrAction::Execute()
 
 	//Create a square with the parameters read from the user
 	CSquare* S = new CSquare(P, SqrGfxInfo);
-	if (VoiceAction::GetVoiceOn() == true) //plays Voice if enabled
-	{
-		PlaySound(TEXT("Voice/SquareAdded"), NULL, SND_FILENAME | SND_SYNC);
-		PlaySound(TEXT("Voice/BGM"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
-	}
+
+	//Plays Voice if turned on
+	VoiceAction Voice(pManager);
+	Voice.PlayAudio(VoiceAction::PLAY_DRAW_SQUARE);
+
 	//Add the square to the list of figures
 	pManager->AddFigure(S);
 }

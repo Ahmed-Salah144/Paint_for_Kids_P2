@@ -47,11 +47,11 @@ void AddTriAction::Execute()
 
 	//Create a triangle with the parameters read from the user
 	CTriangle* T = new CTriangle(P1, P2,P3,TriGfxInfo);
-	if (VoiceAction::GetVoiceOn() == true) //plays Voice if enabled
-	{
-		PlaySound(TEXT("Voice/Triangle"), NULL, SND_FILENAME | SND_SYNC);
-		PlaySound(TEXT("Voice/BGM"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
-	}
+
+	//Plays Voice if turned on
+	VoiceAction Voice(pManager);
+	Voice.PlayAudio(VoiceAction::PLAY_DRAW_TRIANGLE);
+
 	//Add the triangle to the list of figures
 	pManager->AddFigure(T);
 }

@@ -4,7 +4,6 @@
 #include "Action.h"
 #include"..\Figures\CFigure.h"
 #include"SelectionAction.h"
-//Border Color changeAction(Salem)
 class FillColorAction : public Action
 {
 private:
