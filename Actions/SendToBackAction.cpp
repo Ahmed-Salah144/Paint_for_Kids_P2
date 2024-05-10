@@ -28,4 +28,6 @@ void SendToBackAction::Execute()
 	}
 
 	pManager->GetOutput()->PrintMessage("Figure sent to back");
+
+	pManager->UpdateFigureData();
 }

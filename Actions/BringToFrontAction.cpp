@@ -23,4 +23,6 @@ void BringToFrontAction::Execute()
 	pManager->AddFigure(SelectedFig); // adds figure to the top of the list
 
 	pManager->GetOutput()->PrintMessage("Figure brought to front");
+
+	pManager->UpdateFigureData();
 }
