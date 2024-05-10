@@ -34,6 +34,7 @@
 #include<iostream>
 
 //Constructor
+
 ApplicationManager::ApplicationManager()
 {
 	//Create Input and output
@@ -54,13 +55,16 @@ ApplicationManager::ApplicationManager()
 //==================================================================================//
 //								Actions Related Functions							//
 //==================================================================================//
+
 ActionType ApplicationManager::GetUserAction() const
 {
 	//Ask the input to get the action from the user.
 	return pIn->GetUserAction();		
 }
+
 ////////////////////////////////////////////////////////////////////////////////////
 //Creates an action and executes it
+
 void ApplicationManager::ExecuteAction(ActionType ActType) 
 {
 	Action* pAct = NULL;
@@ -232,11 +236,13 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		pAct = NULL;
 	}
 }
+
 //==================================================================================//
 //						Figures Management Functions								//
 //==================================================================================//
 
 //Add a figure to the list of figures
+
 void ApplicationManager::AddFigure(CFigure* pFig)
 {
 	if (FigCount < MaxFigCount)
@@ -244,10 +250,16 @@ void ApplicationManager::AddFigure(CFigure* pFig)
 		FigList[FigCount++] = pFig;
 	}
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
 int ApplicationManager::GetFigureCount()const
 {
 	return FigCount;
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
 void ApplicationManager::SwapFigure(int m,int n)
 {
 	CFigure* Temp = FigList[n];
@@ -255,11 +267,16 @@ void ApplicationManager::SwapFigure(int m,int n)
 	FigList[m] = Temp;
 
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
 CFigure* ApplicationManager::GetSelectedFigure()const
 {
 		return SelectedFigure;
 }
+
 ////////////////////////////////////////////////////////////////////////////////////
+
 CFigure *ApplicationManager::GetFigure(int x, int y) const
 {
 	//If a figure is found return a pointer to it.
@@ -277,6 +294,8 @@ CFigure *ApplicationManager::GetFigure(int x, int y) const
 	return NULL;
 }
 
+////////////////////////////////////////////////////////////////////////////////////
+
 CFigure* ApplicationManager::GetFigureByColor(color c)const 
 {
 	for (int i = FigCount - 1; i >= 0; i--)
@@ -288,8 +307,9 @@ CFigure* ApplicationManager::GetFigureByColor(color c)const
 	return NULL;
 }
 
+////////////////////////////////////////////////////////////////////////////////////
 
-CFigure* ApplicationManager::CheckTypeAndColor(color c,FigureType b)const     //checks for same shape and color (osama)
+CFigure* ApplicationManager::CheckTypeAndColor(color c,FigureType b)const
 {
 	for (int i = FigCount - 1; i >= 0; i--)
 	{
@@ -303,6 +323,23 @@ CFigure* ApplicationManager::CheckTypeAndColor(color c,FigureType b)const     //
 	}
 	return NULL;
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+int ApplicationManager::GetSelectedFigureCountByType(FigureType Fig) const
+{
+	switch (Fig)
+	{
+	case HEXAGON:return SelectedHexes;
+	case CIRCLE:return SelectedCircs;
+	case TRIANGLE:return SelectedTris;
+	case SQUARE:return SelectedSqrs;
+	case RECTANGLE:return SelectedRects;
+	default: return 0;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////
 
 void ApplicationManager::RemoveFigure(int ID)
 {
@@ -323,10 +360,31 @@ void ApplicationManager::RemoveFigure(int ID)
 	FigList[FigCount] = NULL;
 	UpdateFigureData();
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
 int ApplicationManager::GetSelectedFigureCount() const
 {
 	return SelectedFigCount;
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
+int ApplicationManager::GetFigureCountByType(FigureType Fig)
+{
+	UpdateFigureData();
+	switch (Fig)
+	{
+	case HEXAGON:return NumOfHex;
+	case CIRCLE:return NumOfCirc;
+	case TRIANGLE:return NumOfTri;
+	case SQUARE:return NumOfSqr;
+	case RECTANGLE:return NumOfRect;
+	default: return 0;
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////////
 
 void ApplicationManager::ClearClipboard()
 {
@@ -334,6 +392,8 @@ void ApplicationManager::ClearClipboard()
 	Clipboard = NULL;
 	CutFigureID = -1;
 }
+
+////////////////////////////////////////////////////////////////////////////////////
 
 CFigure* ApplicationManager::GetRandomFigure(bool isFilled) const
 {
@@ -352,7 +412,10 @@ CFigure* ApplicationManager::GetRandomFigure(bool isFilled) const
 	}
 	return NULL;
 }
-CFigure* ApplicationManager::GetFigureByID(int ID) 
+
+////////////////////////////////////////////////////////////////////////////////////
+
+CFigure* ApplicationManager::GetFigureByID(int ID)const 
 {
 	for (int i = FigCount - 1; i >= 0; i--)
 	{
@@ -362,39 +425,38 @@ CFigure* ApplicationManager::GetFigureByID(int ID)
 	return NULL;
 }
 
+////////////////////////////////////////////////////////////////////////////////////
+
 void ApplicationManager::SetClipboard(CFigure* CF) {
 	Clipboard = CF;
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
 CFigure* ApplicationManager::GetClipboard() {
 	return Clipboard;
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
 void ApplicationManager::SetCutFigureID(int i) {
 	CutFigureID = i;
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+
 int ApplicationManager::GetCutFigureID() {
 	return CutFigureID;
 }
 
-//==================================================================================//
-//							Interface Management Functions							//
-//==================================================================================//
-
-//Draw all figures on the user interface
-void ApplicationManager::UpdateInterface() const
-{
-	pOut->ClearDrawArea();//Salem
-	for (int i = 0; i < FigCount; i++)
-		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
-}
-
-
+////////////////////////////////////////////////////////////////////////////////////
 
 void ApplicationManager::UpdateFigureData()
 {
 	SelectedRects = 0, SelectedSqrs = 0, SelectedHexes = 0, SelectedTris = 0, SelectedCircs = 0;
 	NumOfRect = 0, NumOfSqr = 0, NumOfHex = 0, NumOfTri = 0, NumOfCirc = 0; SelectedFigCount = 0;
 	SelectedFigure = NULL;
-	for (int i = 0; i <FigCount; i++)
+	for (int i = 0; i < FigCount; i++)
 	{
 		if (FigList[i] != NULL)
 		{
@@ -450,6 +512,40 @@ void ApplicationManager::UpdateFigureData()
 	}
 }
 
+////////////////////////////////////////////////////////////////////////////////////
+
+void ApplicationManager::ClearAll()
+{
+	FigList[0]->ResetCreatedFigureCount();
+	for (int i = 0; i < FigCount; i++)
+	{
+		delete FigList[i];
+		FigList[i] = NULL;
+	}
+	delete Clipboard;
+	Clipboard = NULL;
+	FigCount = 0;
+	UpdateFigureData();
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
+
+//==================================================================================//
+//							Interface Management Functions							//
+//==================================================================================//
+
+//Draw all figures on the user interface
+
+void ApplicationManager::UpdateInterface() const
+{
+	pOut->ClearDrawArea();//Salem
+	for (int i = 0; i < FigCount; i++)
+		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
+}
+
+////////////////////////////////////////////////////////////////////////////////////
+
 void ApplicationManager::SaveAll(ofstream& OutFile) const
 {
 	Output* pout = this->GetOutput();
@@ -490,66 +586,25 @@ void ApplicationManager::SaveAll(ofstream& OutFile) const
 	}
 }
 
-void ApplicationManager::ClearAll()
-{
-	FigList[0]->ResetCreatedFigureCount();
-	for (int i = 0; i < FigCount; i++)
-	{
-		delete FigList[i];
-		FigList[i] = NULL;
-	}
-	delete Clipboard;
-	Clipboard = NULL;
-	FigCount = 0;
-	UpdateFigureData();
-}
 ////////////////////////////////////////////////////////////////////////////////////
-//Return a pointer to the input
+
 Input *ApplicationManager::GetInput() const
 {	return pIn; }
-void ApplicationManager::SetSelectedFigure(CFigure* pFig)
-{
-	SelectedFigure = pFig;
-}
-//Return a pointer to the output
+
+//Return a pointer to the input
+////////////////////////////////////////////////////////////////////////////////////
+
 Output *ApplicationManager::GetOutput() const
 {	return pOut; }
-int ApplicationManager::GetSelectedFigureCountByType(FigureType Fig) const
-{
-	switch (Fig)
-	{
-	case HEXAGON:return SelectedHexes;
-	case CIRCLE:return SelectedCircs;
-	case TRIANGLE:return SelectedTris;
-	case SQUARE:return SelectedSqrs;
-	case RECTANGLE:return SelectedRects;
-	default: return 0;
-	}
-}
-int ApplicationManager::GetFigureCountByType(FigureType Fig)
-{
-	UpdateFigureData();
-	switch (Fig)
-	{
-	case HEXAGON:return NumOfHex;
-	case CIRCLE:return NumOfCirc;
-	case TRIANGLE:return NumOfTri;
-	case SQUARE:return NumOfSqr;
-	case RECTANGLE:return NumOfRect;
-	default: return 0;
-	}
-}
 
-
-
-
-
+//Return a pointer to the output
 ////////////////////////////////////////////////////////////////////////////////////
+
 //Destructor
 ApplicationManager::~ApplicationManager()
 {
 	for (int i = 0; i < FigCount; i++)
-		delete FigList[i];//ERROR!
+		delete FigList[i];
 	delete Clipboard;
 	delete pIn;
 	delete pOut;

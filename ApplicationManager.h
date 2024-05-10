@@ -14,65 +14,94 @@ class ApplicationManager
 
 private:
 	int FigCount;		//Actual number of figures
+
 	CFigure* FigList[MaxFigCount];	//List of all figures (Array of pointers)
+
 	CFigure* SelectedFigure; //Pointer to the selected figure
-	int SelectedFigCount;//(salem)
-	int SelectedRects, SelectedSqrs, SelectedHexes, SelectedTris, SelectedCircs ;//selected
-	int NumOfRect,NumOfSqr, NumOfHex, NumOfTri, NumOfCirc;//total;
-	int NumOfBlack, NumOfYellow,NumOfOrange,NumOfRed,NumOfGreen,NumOfBlue; //change by osama to get num of each color
-	int CutFigureID; //ID of the figure in clipboard if it was cut (abdo)
-	//GfxInfo CutFigureGfxInfo; //Appearance of cut figure in clipboard
+
+	int SelectedFigCount;//Number of Selected Figures
+
+	int SelectedRects, SelectedSqrs, SelectedHexes, SelectedTris, SelectedCircs ;//Number of selected figures of each type
+
+	int NumOfRect,NumOfSqr, NumOfHex, NumOfTri, NumOfCirc;//Number of Figures of each type;\
+
+	int NumOfBlack, NumOfYellow,NumOfOrange,NumOfRed,NumOfGreen,NumOfBlue; //Num of Figures of each color
+
+	int CutFigureID; //ID of the figure in clipboard if it was cut
+
 
 	//Pointers to Input and Output classes
+
 	Input *pIn;
+
 	Output *pOut;
 
 	CFigure* Clipboard;  //Pointer to copied/cut figure
 
 public:	
 	ApplicationManager(); 
+
 	~ApplicationManager();
 	
 	// -- Action-Related Functions
 	//Reads the input command from the user and returns the corresponding action type
 	ActionType GetUserAction() const;
+
 	void ExecuteAction(ActionType) ; //Creates an action and executes it
+
 	// -- Figures Management Functions
+
 	void AddFigure(CFigure*);         //Adds a new figure to the FigList
+
 	CFigure *GetFigure(int x, int y) const; //Search for a figure given a point inside the figure
-	CFigure* GetFigureByColor(color)const;
-	CFigure* GetRandomFigure(bool=false)const;
-	void RemoveFigure(int); //Salem
-	CFigure* GetFigureByID(int); //Salem
-	void SwapFigure(int,int);//Salem for (send to back)
-	void ClearClipboard();
-	CFigure* GetSelectedFigure() const;
-	void SetSelectedFigure(CFigure*);
-	//void SetCutFigureGfxInfo(CFigure*);
-	//GfxInfo GetCutFigureGfxInfo();
-	int GetSelectedFigureCount()const;
-	int GetFigureCountByType(FigureType);
-	int GetSelectedFigureCountByType(FigureType)const;
-	int GetFigureCount()const;
+
+	CFigure* GetFigureByColor(color)const; //Search for a figure given a color
+
+	CFigure* GetRandomFigure(bool=false)const; //Search for a random figure
+
+	CFigure* GetFigureByID(int)const; //Search for a figure given its ID
+
+	CFigure* CheckTypeAndColor(color c, FigureType b)const;//Search for a figure given its type and color
+
+	CFigure* GetSelectedFigure() const;//returns the selected Figure
+
+	void RemoveFigure(int); //Remove a figure from figure List given its ID
+
+	void SwapFigure(int,int);//Swap to figures in the figure List given their indecies
+
+
+	int GetSelectedFigureCount()const; //Returns total number of selected figures
+
+	int GetFigureCountByType(FigureType);//returns number of figures of a specific type
+
+	int GetSelectedFigureCountByType(FigureType)const;//returns number of selected figures of a specific type
+
+	int GetFigureCount()const;//returns total figure count
+
+	void SetClipboard(CFigure*);  //Adds a figure to the clipboard
+
+	CFigure* GetClipboard();	 //returns pointer to figure in clipboard
+
+	void SetCutFigureID(int);   //Setter for the figure's ID in clipboard
+
+	int GetCutFigureID();	   //returns ID of Cut Figure in clipboard
+
+	void ClearAll();    //Resets all Application Manager Data
+
+	void ClearClipboard();//Clears any figures in clipboard
+
+	void UpdateFigureData();//Updates all Data in Application Manager
+
 	// Interface Management Functions
+
 	Input *GetInput() const; //Return pointer to the input
+
 	Output *GetOutput() const; //Return pointer to the output
 
 
-	
-	void SetClipboard(CFigure*);  ////Taking a copy of the selected figure to clipboard (abdo)
-	CFigure* GetClipboard();	 //Getter for clipboard
-	void SetCutFigureID(int);   //Setter for the figure's ID in clipboard
-	int GetCutFigureID();	   //Getter for the figure's ID in clipboard
+	void UpdateInterface() const;	//Redraws all the drawing window
 
-	void UpdateInterface() const;	//Redraws all the drawing window	
-	void ClearAll();//(salem)
-	void UpdateFigureData();
-	void SaveAll(ofstream& OutFile) const; //ChecK TA Save Output changed ?? (figure name, 1 added tab) Faseeh
-
-
-
-	CFigure* ApplicationManager::CheckTypeAndColor(color c, FigureType b)const;
+	void SaveAll(ofstream& OutFile) const; //Saves All Application Manager Data
 
 
 };

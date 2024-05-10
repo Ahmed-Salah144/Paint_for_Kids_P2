@@ -37,6 +37,27 @@
     <Filter Include="Figures Classes\Figures\Implementation">
       <UniqueIdentifier>{6a57c2b7-b6ae-40bd-a279-34d7a72309c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Action Classes\Miscellanious Actions\Clipboard">
+      <UniqueIdentifier>{c16a4b4c-6f59-448d-a1cd-e7dc31fb4288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Action Classes\Miscellanious Actions\Playmode">
+      <UniqueIdentifier>{129d86d0-1d90-4f7d-abf8-be9a9f39a9dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Action Classes\Miscellanious Actions\Changing Colors">
+      <UniqueIdentifier>{de208de5-164e-4dfc-a6cc-04fc5ef1556a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Action Classes\Miscellanious Actions\Save and Load">
+      <UniqueIdentifier>{fa17d480-b729-445a-bbbd-06ae0b611e48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Action Classes\Miscellanious Actions\Move to front/back">
+      <UniqueIdentifier>{1d32d683-e7b0-40b5-8d1a-b521a73db160}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Action Classes\Miscellanious Actions\Selection">
+      <UniqueIdentifier>{08846a28-fc28-415a-b6e0-7c88faad621a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Action Classes\Miscellanious Actions\Delete and Clear">
+      <UniqueIdentifier>{25657113-f4c5-497a-a66c-ec142605c074}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMUgraphicsLib\auxil.cpp">
@@ -172,33 +193,6 @@
     <ClCompile Include="Actions\AddTriAction.cpp">
       <Filter>Action Classes\FigureActions</Filter>
     </ClCompile>
-    <ClCompile Include="Actions\SelectionAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\BorderColorAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\FillColorAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\ClearAllAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\DeleteAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\BringToFrontAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\SendToBackAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\SaveAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\LoadAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
     <ClCompile Include="Actions\DoubleSizeAction.cpp">
       <Filter>Action Classes\BonusActions</Filter>
     </ClCompile>
@@ -207,30 +201,6 @@
     </ClCompile>
     <ClCompile Include="Actions\VoiceAction.cpp">
       <Filter>Action Classes\BonusActions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\CopyAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\CutAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\PasteAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\FindByTypeAndColor.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\FindyByType.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\FindByColor.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\SwitchToDrawModeAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
-    <ClCompile Include="Actions\SwitchToPlayModeAction.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClCompile>
     <ClCompile Include="Figures\CCircle.cpp">
       <Filter>Figures Classes\Figures\Implementation</Filter>
@@ -249,6 +219,57 @@
     </ClCompile>
     <ClCompile Include="Figures\CFigure.cpp">
       <Filter>Figures Classes\Figures\Implementation</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\CutAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Clipboard</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\CopyAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Clipboard</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\PasteAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Clipboard</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\SwitchToDrawModeAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Playmode</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\SwitchToPlayModeAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Playmode</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\FindByTypeAndColor.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Playmode</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\FindByColor.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Playmode</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\FindyByType.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Playmode</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\FillColorAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Changing Colors</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\BorderColorAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Changing Colors</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\LoadAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Save and Load</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\SaveAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Save and Load</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\SendToBackAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Move to front/back</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\BringToFrontAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Move to front/back</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\DeleteAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Delete and Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\ClearAllAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Delete and Clear</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\SelectionAction.cpp">
+      <Filter>Action Classes\Miscellanious Actions\Selection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -343,35 +364,8 @@
     <ClInclude Include="Actions\AddTriAction.h">
       <Filter>Action Classes\FigureActions</Filter>
     </ClInclude>
-    <ClInclude Include="Actions\SelectionAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\BorderColorAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\FillColorAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\ClearAllAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\DeleteAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\BringToFrontAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\SendToBackAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
     <ClInclude Include="Actions\AddFigureAction.h">
       <Filter>Action Classes\FigureActions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\SaveAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\LoadAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\HalfSizeAction.h">
       <Filter>Action Classes\BonusActions</Filter>
@@ -381,30 +375,6 @@
     </ClInclude>
     <ClInclude Include="Actions\DoubleSizeAction.h">
       <Filter>Action Classes\BonusActions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\CopyAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\CutAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\PasteAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\FindByType.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\FindByColor.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\FindByTypeAndColor.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\SwitchToDrawModeAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\SwitchToPlayModeAction.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
     <ClInclude Include="Figures\CCircle.h">
       <Filter>Figures Classes\Figures\Headers</Filter>
@@ -423,6 +393,57 @@
     </ClInclude>
     <ClInclude Include="Figures\CFigure.h">
       <Filter>Figures Classes\Figures\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\CutAction.h">
+      <Filter>Action Classes\Miscellanious Actions\Clipboard</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\CopyAction.h">
+      <Filter>Action Classes\Miscellanious Actions\Clipboard</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\PasteAction.h">
+      <Filter>Action Classes\Miscellanious Actions\Clipboard</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SwitchToDrawModeAction.h">
+      <Filter>Action Classes\Miscellanious Actions\Playmode</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SwitchToPlayModeAction.h">
+      <Filter>Action Classes\Miscellanious Actions\Playmode</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\FindByTypeAndColor.h">
+      <Filter>Action Classes\Miscellanious Actions\Playmode</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\FindByType.h">
+      <Filter>Action Classes\Miscellanious Actions\Playmode</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\FindByColor.h">
+      <Filter>Action Classes\Miscellanious Actions\Playmode</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\FillColorAction.h">
+      <Filter>Action Classes\Miscellanious Actions\Changing Colors</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\BorderColorAction.h">
+      <Filter>Action Classes\Miscellanious Actions\Changing Colors</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\LoadAction.h">
+      <Filter>Action Classes\Miscellanious Actions\Save and Load</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SaveAction.h">
+      <Filter>Action Classes\Miscellanious Actions\Save and Load</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SendToBackAction.h">
+      <Filter>Action Classes\Miscellanious Actions\Move to front/back</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\BringToFrontAction.h">
+      <Filter>Action Classes\Miscellanious Actions\Move to front/back</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ClearAllAction.h">
+      <Filter>Action Classes\Miscellanious Actions\Delete and Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\DeleteAction.h">
+      <Filter>Action Classes\Miscellanious Actions\Delete and Clear</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\SelectionAction.h">
+      <Filter>Action Classes\Miscellanious Actions\Selection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
