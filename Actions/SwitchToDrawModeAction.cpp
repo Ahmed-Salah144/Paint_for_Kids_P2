@@ -14,6 +14,6 @@ void SwitchToDrawModeAction::Execute()
 	LoadAction* pLoad = new LoadAction(pManager, 1);
 	pLoad->Execute();
 	delete pLoad;
-	pManager->GetOutput()->PrintMessage("Switched to Play Mode");
+	pManager->GetOutput()->PrintMessage("Switched to Draw Mode");
 	pManager->GetOutput()->CreateDrawToolBar();
 }
