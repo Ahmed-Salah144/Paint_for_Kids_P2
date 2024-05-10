@@ -26,11 +26,11 @@ void FindByType::ReadActionParameters()   // reading parameters from the user
 		pAct->Execute();
 		delete pAct;
 	}
-	else if (Click.x > UI.MenuItemWidth * 5 && Click.x < UI.MenuItemWidth * 6 && Click.y < UI.ToolBarHeight) //exiting from the program
+	else if (Click.x > UI.MenuItemWidth * 5 && Click.x < UI.MenuItemWidth * 6 && Click.y < UI.ToolBarHeight) //exiting find by type
 	{
 		Exit = true;
 	}
-	else if (Click.x > UI.MenuItemWidth * 0 && Click.x < UI.MenuItemWidth * 1 && Click.y < UI.ToolBarHeight) // restarting program
+	else if (Click.x > UI.MenuItemWidth * 0 && Click.x < UI.MenuItemWidth * 1 && Click.y < UI.ToolBarHeight) // restarting game
 	{
 		Exit = true;
 		Restart = true;
@@ -70,7 +70,7 @@ void FindByType::GenRandShape2() //making sure a figure exists and generating ra
 		pOut->PrintMessage("No Figures");
 		return;
 	}
-	SelectedShape=pManager->GetRandomFigure()->GetFigType(); // selecting a figure
+	SelectedShape=pManager->GetRandomFigure(false)->GetFigType(); // selecting a random figure
 	switch (SelectedShape)
 	{
 	case SQUARE:pOut->PrintMessage("Select All Squares");break;

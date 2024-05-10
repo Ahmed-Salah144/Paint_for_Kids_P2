@@ -32,22 +32,12 @@ void FindByTypeAndColor::GenRandColor2() //generates a random color and type use
 		pOut->PrintMessage("No Figures");
 		return;
 	}
-	if (pManager->GetFigureByColor(YELLOW) == NULL &&
-		pManager->GetFigureByColor(RED) == NULL &&
-		pManager->GetFigureByColor(BLACK) == NULL &&
-		pManager->GetFigureByColor(GREEN) == NULL &&
-		pManager->GetFigureByColor(ORANGE) == NULL &&
-		pManager->GetFigureByColor(BLUE) == NULL)
+	CFigure* TempFig = pManager->GetRandomFigure(true);               //gets random colored figure from the figure list
+	if (TempFig == NULL)	//Checks if no colored Figures
 	{
-		pOut->PrintMessage("No colored figures");
+		pOut->PrintMessage("No Colored Figures ");
 		return;
 	}
-	CFigure* TempFig;          
-	do {
-		TempFig = pManager->GetRandomFigure();
-		//pOut->PrintMessage(to_string(count++));
-	} while (!TempFig->IsFilled());
-
 	SelectedColor = TempFig->GetFillClr();
 	SelectedShape = TempFig->GetFigType();
 
@@ -115,9 +105,6 @@ void FindByTypeAndColor::ReadActionParameters()      //reads user input
 	{
 		Exit = true;
 		pManager->ExecuteAction(TO_DRAW);
-		Action* pAct = new LoadAction(pManager, 1);
-		pAct->Execute();
-		delete pAct;
 	}
 	else if (Click.x > UI.MenuItemWidth * 5 && Click.x < UI.MenuItemWidth * 6 && Click.y < UI.ToolBarHeight)
 	{

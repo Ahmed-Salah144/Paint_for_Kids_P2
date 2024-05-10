@@ -304,10 +304,6 @@ CFigure* ApplicationManager::CheckTypeAndColor(color c,FigureType b)const     //
 	return NULL;
 }
 
-
-
-
-
 void ApplicationManager::RemoveFigure(int ID)
 {
 	int RemovedFigIndex=FigCount;

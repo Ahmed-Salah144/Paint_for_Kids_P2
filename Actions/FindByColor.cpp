@@ -21,58 +21,43 @@ FindByColor::FindByColor(ApplicationManager* pApp) : Action(pApp) {
 
 void FindByColor::GenRandColor2()  //generates random color
 {
-	int count = 0;
 	Output* pOut = pManager->GetOutput();
 	if (pManager->GetFigureCount() == 0)
 	{
 		pOut->PrintMessage("No Figures");
 		return;
 	}
-	if (pManager->GetFigureByColor(YELLOW) == NULL &&         //checks that there are colored figures on the screen
-		pManager->GetFigureByColor(RED) == NULL &&
-		pManager->GetFigureByColor(BLACK) == NULL &&
-		pManager->GetFigureByColor(GREEN) == NULL &&
-		pManager->GetFigureByColor(ORANGE) == NULL &&
-		pManager->GetFigureByColor(BLUE) == NULL)
+	CFigure *TempFig = pManager->GetRandomFigure(true);               //gets random colored figure from the figure list
+	if (TempFig == NULL)	//Checks if no colored Figures
 	{
-		pOut->PrintMessage("No colored figures");
+		pOut->PrintMessage("No Colored Figures ");
 		return;
 	}
-	CFigure* TempFig;
-	do { TempFig = pManager->GetRandomFigure();               //gets random color from the user
-	pOut->PrintMessage(to_string(count++));
-	} while (!TempFig->IsFilled());
-
 	SelectedColor = TempFig->GetFillClr();
+
 	if (SelectedColor==GREEN)
 	{
 		pOut->PrintMessage("Select all Green figures");
-		SelectedColor = GREEN;
 	}
 	else if (SelectedColor == YELLOW)
 	{
 		pOut->PrintMessage("Select all Yellow figures");
-		SelectedColor = YELLOW;
 	}
 	else if (SelectedColor == ORANGE)
 	{
 		pOut->PrintMessage("Select all Orange figures");
-		SelectedColor = ORANGE;
 	}
 	else if (SelectedColor == BLUE)
 	{
 		pOut->PrintMessage("Select all Blue figures");
-		SelectedColor = BLUE;
 	}
 	else if (SelectedColor == RED)
 	{
 		pOut->PrintMessage("Select all Red figures");
-		SelectedColor = RED;
 	}
 	else if (SelectedColor == BLACK)
 	{
 		pOut->PrintMessage("Select all Black figures");
-		SelectedColor = BLACK;
 	}
 }
 
@@ -84,19 +69,15 @@ void FindByColor::ReadActionParameters()
 	{
 		Exit = true;
 		pManager->ExecuteAction(TO_DRAW);
-		Action* pAct = new LoadAction(pManager, 1);
-		pAct->Execute();
-		delete pAct;
 	}
-	else if (Click.x > UI.MenuItemWidth * 5 && Click.x < UI.MenuItemWidth * 6 && Click.y < UI.ToolBarHeight) // exits the program
+	else if (Click.x > UI.MenuItemWidth * 5 && Click.x < UI.MenuItemWidth * 6 && Click.y < UI.ToolBarHeight) // exits find by color
 	{
 		Exit = true;
 	}
-	else if (Click.x > UI.MenuItemWidth * 0 && Click.x < UI.MenuItemWidth * 1 && Click.y < UI.ToolBarHeight) // switches to find by type
+	else if (Click.x > UI.MenuItemWidth * 1 && Click.x < UI.MenuItemWidth * 2 && Click.y < UI.ToolBarHeight) // restarts the program
 	{
 		Exit = true;
 		Restart = true;
-		pManager->ExecuteAction(TYPE);
 	}
 
 }
