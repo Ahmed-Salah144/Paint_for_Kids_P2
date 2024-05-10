@@ -40,7 +40,7 @@ ApplicationManager::ApplicationManager()
 	//Create Input and output
 	pOut = new Output;
 	pIn = pOut->CreateInput();
-	
+	//Initialize all data members
 	CutFigureID = -1;
 	Clipboard = NULL;
 	FigCount = 0;
@@ -314,12 +314,15 @@ CFigure* ApplicationManager::CheckTypeAndColor(color c,FigureType b)const
 	for (int i = FigCount - 1; i >= 0; i--)
 	{
 		if (FigList[i]->IsFilled())
-			if (FigList[i]->GetFillClr() == c) {
-					if (FigList[i]->GetFigType() == b)
-					{
-						return FigList[i];
-					}
+		{
+			if (FigList[i]->GetFillClr() == c)
+			{
+				if (FigList[i]->GetFigType() == b)
+				{
+					return FigList[i];
+				}
 			}
+		}
 	}
 	return NULL;
 }
@@ -343,7 +346,7 @@ int ApplicationManager::GetSelectedFigureCountByType(FigureType Fig) const
 
 void ApplicationManager::RemoveFigure(int ID)
 {
-	int RemovedFigIndex=FigCount;
+	int RemovedFigIndex=FigCount; //index of removed figure initialised
 	for (int i = 0; i < FigCount; i++)
 	{
 		if (FigList[i]->GetID()==ID)
@@ -353,7 +356,7 @@ void ApplicationManager::RemoveFigure(int ID)
 			break;
 		}
 	}
-	for (int i = RemovedFigIndex; i < FigCount; i++)
+	for (int i = RemovedFigIndex; i < FigCount; i++) //sets array back in order
 	{
 		FigList[i] = FigList[i + 1];
 	}
@@ -390,7 +393,7 @@ void ApplicationManager::ClearClipboard()
 {
 	delete Clipboard;
 	Clipboard = NULL;
-	CutFigureID = -1;
+	CutFigureID = -1;//sets cutfigure ID by a value that cannot equal any ID
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -456,6 +459,9 @@ void ApplicationManager::UpdateFigureData()
 	SelectedRects = 0, SelectedSqrs = 0, SelectedHexes = 0, SelectedTris = 0, SelectedCircs = 0;
 	NumOfRect = 0, NumOfSqr = 0, NumOfHex = 0, NumOfTri = 0, NumOfCirc = 0; SelectedFigCount = 0;
 	SelectedFigure = NULL;
+
+	//Reset all figure numbers and count them again
+
 	for (int i = 0; i < FigCount; i++)
 	{
 		if (FigList[i] != NULL)
@@ -539,7 +545,7 @@ void ApplicationManager::ClearAll()
 
 void ApplicationManager::UpdateInterface() const
 {
-	pOut->ClearDrawArea();//Salem
+	pOut->ClearDrawArea();
 	for (int i = 0; i < FigCount; i++)
 		FigList[i]->Draw(pOut);		//Call Draw function (virtual member fn)
 }
