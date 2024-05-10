@@ -3,11 +3,10 @@
 #include "..\ApplicationManager.h"
 #include "..\GUI\input.h"
 #include "..\GUI\Output.h"
-//#include <string>
 #include"..\Actions\SaveAction.h"
 #include"..\Actions\LoadAction.h"
 
-FindByType::FindByType(ApplicationManager* pApp) : Action(pApp) {
+FindByType::FindByType(ApplicationManager* pApp) : Action(pApp) {     //constructor
 	RightCount = 0;
 	WrongCount = 0;
 	srand(time(NULL));
@@ -16,10 +15,8 @@ FindByType::FindByType(ApplicationManager* pApp) : Action(pApp) {
 	Restart = false;
 }
 
-void FindByType::ReadActionParameters()
+void FindByType::ReadActionParameters()   // reading parameters from the user
 {
-	//Output* pOut = pManager->GetOutput();
-	//Input* pIn = pManager->GetInput();
 	pManager->GetInput()->GetPointClicked(Click.x, Click.y);
 	if (Click.x > UI.MenuItemWidth * 3 && Click.x < UI.MenuItemWidth * 4 && Click.y < UI.ToolBarHeight)
 	{
@@ -29,22 +26,19 @@ void FindByType::ReadActionParameters()
 		pAct->Execute();
 		delete pAct;
 	}
-	else if (Click.x > UI.MenuItemWidth * 5 && Click.x < UI.MenuItemWidth * 6 && Click.y < UI.ToolBarHeight)
+	else if (Click.x > UI.MenuItemWidth * 5 && Click.x < UI.MenuItemWidth * 6 && Click.y < UI.ToolBarHeight) //exiting from the program
 	{
 		Exit = true;
 	}
-	else if (Click.x > UI.MenuItemWidth * 0 && Click.x < UI.MenuItemWidth * 1 && Click.y < UI.ToolBarHeight)
+	else if (Click.x > UI.MenuItemWidth * 0 && Click.x < UI.MenuItemWidth * 1 && Click.y < UI.ToolBarHeight) // restarting program
 	{
 		Exit = true;
 		Restart = true;
 	}
-	//else if (Click.x > UI.MenuItemWidth * 1 && Click.x < UI.MenuItemWidth * 3 && Click.y < UI.ToolBarHeight)
-	//{
-		//Exit = true;
-	//}
+
 }
 
-void FindByType::Execute()
+void FindByType::Execute() //running fucntions on execute
 {
 	Restart = false;
 	Exit = false;
@@ -54,9 +48,6 @@ void FindByType::Execute()
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearStatusBar();
 	pManager->UpdateInterface();
-	//pOut->PrintMessage("execute command");
-	//CFigure* pFig = pManager->GetFigure(Click.x, Click.y);
-	//GenRandShape();
 	GenRandShape2();
 	PickFigureAction();
 	if (Restart)
@@ -71,15 +62,15 @@ void FindByType::Execute()
 	}
 }
 
-void FindByType::GenRandShape2()
+void FindByType::GenRandShape2() //making sure a figure exists and generating random shape from the list
 {
-	Output* pOut = pManager->GetOutput();
+	Output* pOut = pManager->GetOutput(); //cheking the existence of the figure
 	if (pManager->GetFigureCount() == 0)
 	{
 		pOut->PrintMessage("No Figures");
 		return;
 	}
-	SelectedShape=pManager->GetRandomFigure(false)->GetFigType();
+	SelectedShape=pManager->GetRandomFigure()->GetFigType(); // selecting a figure
 	switch (SelectedShape)
 	{
 	case SQUARE:pOut->PrintMessage("Select All Squares");break;
@@ -91,78 +82,23 @@ void FindByType::GenRandShape2()
 }
 
 
-//8ayar le switch
-//condition en lazem yekon fe figure
-void FindByType::GenRandShape() {
-	Output* pOut = pManager->GetOutput(); 
-	Input* pIn = pManager->GetInput();
-	if (pManager->GetFigureCount() == 0)
-	{
-		 pOut->PrintMessage("No Figures");
-		 return;
-	}
-	//bool exit = true;
-	while (true)
-	{
-		srand(time(NULL));
-		RandNum = rand() % 5;
-		if (RandNum == 0 && pManager->GetFigureCountByType(SQUARE) != 0)
-		{
-			//pOut->ClearStatusBar();
-			pOut->PrintMessage("select all squares");
-			SelectedShape = SQUARE;
-			break;
-		}
-		else if (RandNum == 1 && pManager->GetFigureCountByType(RECTANGLE) != 0) {
-			//pOut->ClearStatusBar();
-			pOut->PrintMessage("select all rectangles");
-			SelectedShape = RECTANGLE;
-			break;
-		}
-		else if (RandNum == 2 && pManager->GetFigureCountByType(HEXAGON) != 0)
-		{
-			//pOut->ClearStatusBar();
-			pOut->PrintMessage("select all hexagons");
-			SelectedShape = HEXAGON;
-			break;
-		}
-		else if (RandNum == 3 && pManager->GetFigureCountByType(TRIANGLE) != 0)
-		{
-			//pOut->ClearStatusBar();
-			pOut->PrintMessage("select all triangles");
-			SelectedShape = TRIANGLE;
-			break;
-		}
-		else if (RandNum == 4 && pManager->GetFigureCountByType(CIRCLE) != 0) {
-			//pOut->ClearStatusBar();
-			pOut->PrintMessage("select all circles");
-			SelectedShape = CIRCLE;
-			break;
-		}
-	}
-}
 
-
-//lesa metab2y el save we el load
 void FindByType::PickFigureAction() {
 	Input* pIn = pManager->GetInput();
 	Output* pOut = pManager->GetOutput();
-	//Input* pIn = pManager->GetInput();
-	//int x;
-	//int y;
-	while (pManager->GetFigureCountByType(SelectedShape) > 0)
+
+	while (pManager->GetFigureCountByType(SelectedShape) > 0) // while there exists a shape of the picked type
 	{
-		ReadActionParameters();
+		ReadActionParameters(); // if the user clicks on exit while running the program it exits find by type not the program
 		if (Exit)
 		{
-			pOut->ClearStatusBar();
+			pOut->PrintMessage("exited find by type");
 			break;
 		}
-		//pIn->GetPointClicked(x, y);
 
-		if (pManager->GetFigure(Click.x, Click.y) == NULL || pManager->GetFigure(Click.x, Click.y)->GetFigType() != SelectedShape)
+
+		if (pManager->GetFigure(Click.x, Click.y) == NULL || pManager->GetFigure(Click.x, Click.y)->GetFigType() != SelectedShape) // if the user clicks on a figure other than the one required or clicks on the background
 		{
-			//pOut->ClearStatusBar();
 			pOut->PrintMessage("Selected wrong figure");
 			WrongCount++;
 			PickedFigure = pManager->GetFigure(Click.x, Click.y);
@@ -170,15 +106,14 @@ void FindByType::PickFigureAction() {
 				pOut->PrintMessage("No figure selected");
 			else
 			{
-				pManager->RemoveFigure(PickedFigure->GetID());
+				pManager->RemoveFigure(PickedFigure->GetID()); //removes the figure clicked on
 				delete PickedFigure;
 			}
 			pManager->UpdateInterface();
 		}
 		else
 		{
-			//pOut->ClearStatusBar();
-			pOut->PrintMessage("Selected right figure");
+			pOut->PrintMessage("Selected right figure");             //if not selected wrong figure then selected right figure
 			PickedFigure = pManager->GetFigure(Click.x, Click.y);
 			pManager->RemoveFigure(PickedFigure->GetID());
 			delete PickedFigure;
@@ -187,12 +122,11 @@ void FindByType::PickFigureAction() {
 		}
 	}
 
-	if (pManager->GetFigureCountByType(SelectedShape) == 0)
+	if (pManager->GetFigureCountByType(SelectedShape) == 0)          //exits program when no figures of the picked type are left
 	{
 		Action* pAct = new LoadAction(pManager, 1);
 		pAct->Execute();
 		delete pAct;
-		//pOut->ClearStatusBar();
 		pOut->PrintMessage("you got right times: " + to_string(RightCount) + " you got wrong times: " + to_string(WrongCount));
 	}
 }

@@ -20,11 +20,11 @@ FindByTypeAndColor::FindByTypeAndColor(ApplicationManager* pApp) : Action(pApp) 
 
 
 
-void FindByTypeAndColor::GenRandColor2()
+void FindByTypeAndColor::GenRandColor2() //generates a random color and type uses the same function since if we dont have a filled color we wont run the program
 {
-	int count = 0;
-	string s1="nah";
-	string s2="id win";
+	//int count = 0;
+	string s1;
+	string s2;
 
 	Output* pOut = pManager->GetOutput();
 	if (pManager->GetFigureCount() == 0)
@@ -32,7 +32,7 @@ void FindByTypeAndColor::GenRandColor2()
 		pOut->PrintMessage("No Figures");
 		return;
 	}
-	/*if (pManager->GetFigureByColor(YELLOW) == NULL &&
+	if (pManager->GetFigureByColor(YELLOW) == NULL &&
 		pManager->GetFigureByColor(RED) == NULL &&
 		pManager->GetFigureByColor(BLACK) == NULL &&
 		pManager->GetFigureByColor(GREEN) == NULL &&
@@ -41,24 +41,18 @@ void FindByTypeAndColor::GenRandColor2()
 	{
 		pOut->PrintMessage("No colored figures");
 		return;
-	}*/
-	CFigure* TempFig=NULL;
-	//do {
-	TempFig = pManager->GetRandomFigure(true);
-		//pOut->PrintMessage(to_string(count++));
-	//} while (!TempFig->IsFilled());
-
-	if (TempFig == NULL)
-	{
-		pOut->PrintMessage("No colored figures");
-		return;
 	}
+	CFigure* TempFig;          
+	do {
+		TempFig = pManager->GetRandomFigure();
+		//pOut->PrintMessage(to_string(count++));
+	} while (!TempFig->IsFilled());
 
 	SelectedColor = TempFig->GetFillClr();
 	SelectedShape = TempFig->GetFigType();
 
 
-	if (SelectedShape == TRIANGLE)
+	if (SelectedShape == TRIANGLE) //converts the selected shape into a string
 	{
 		s2 = "triangle";
 	}
@@ -79,7 +73,8 @@ void FindByTypeAndColor::GenRandColor2()
 		s2 = "rectangle";
 	}
 
-	if (SelectedColor == GREEN)
+
+	if (SelectedColor == GREEN)  //converts the selected color into a string
 	{
 		s1 = "green ";
 	}
@@ -103,96 +98,18 @@ void FindByTypeAndColor::GenRandColor2()
 		s1 = "ORANGE ";
 
 	}
+	else if (true)
+	{
 
-
-
+	}
 
 	pOut->PrintMessage("Select all " + s1 + s2 + "s");
-
-
-
-	//if (SelectedColor == GREEN)
-	//{
-
-	//	SelectedColor = GREEN;
-	//	SelectedShape = TempFig->GetFigType();
-	//}
-	//else if (SelectedColor == YELLOW)
-	//{
-	//	pOut->PrintMessage("Select all Yellow figures" + TempFig->GetFigType());
-	//	SelectedColor = YELLOW;
-	//	SelectedShape = TempFig->GetFigType();
-	//}
-	//else if (SelectedColor == ORANGE)
-	//{
-	//	pOut->PrintMessage("Select all Orange figures" + TempFig->GetFigType());
-	//	SelectedColor = ORANGE;
-	//	SelectedShape = TempFig->GetFigType();
-	//}
-	//else if (SelectedColor == BLUE)
-	//{
-	//	pOut->PrintMessage("Select all Blue " + TempFig->GetFigType());
-	//	SelectedColor = BLUE;
-	//	SelectedShape = TempFig->GetFigType();
-	//}
-	//else if (SelectedColor == RED)
-	//{
-	//	pOut->PrintMessage("Select all Red figures" + TempFig->GetFigType());
-	//	SelectedColor = RED;
-	//	SelectedShape = TempFig->GetFigType();
-	//}
-	//else if (SelectedColor == BLACK)
-	//{
-	//	pOut->PrintMessage("Select all Black figures" + TempFig->GetFigType());
-	//	SelectedColor = BLACK;
-	//	SelectedShape = TempFig->GetFigType();
-	//}	//if (SelectedColor == GREEN)
-	//{
-
-	//	SelectedColor = GREEN;
-	//	SelectedShape = TempFig->GetFigType();
-	//}
-	//else if (SelectedColor == YELLOW)
-	//{
-	//	pOut->PrintMessage("Select all Yellow figures" + TempFig->GetFigType());
-	//	SelectedColor = YELLOW;
-	//	SelectedShape = TempFig->GetFigType();
-	//}
-	//else if (SelectedColor == ORANGE)
-	//{
-	//	pOut->PrintMessage("Select all Orange figures" + TempFig->GetFigType());
-	//	SelectedColor = ORANGE;
-	//	SelectedShape = TempFig->GetFigType();
-	//}
-	//else if (SelectedColor == BLUE)
-	//{
-	//	pOut->PrintMessage("Select all Blue " + TempFig->GetFigType());
-	//	SelectedColor = BLUE;
-	//	SelectedShape = TempFig->GetFigType();
-	//}
-	//else if (SelectedColor == RED)
-	//{
-	//	pOut->PrintMessage("Select all Red figures" + TempFig->GetFigType());
-	//	SelectedColor = RED;
-	//	SelectedShape = TempFig->GetFigType();
-	//}
-	//else if (SelectedColor == BLACK)
-	//{
-	//	pOut->PrintMessage("Select all Black figures" + TempFig->GetFigType());
-	//	SelectedColor = BLACK;
-	//	SelectedShape = TempFig->GetFigType();
-	//}
-
-
-
-
 };
 
 
-void FindByTypeAndColor::ReadActionParameters()
+void FindByTypeAndColor::ReadActionParameters()      //reads user input
 {
-	//Output* pOut = pManager->GetOutput();
-	//Input* pIn = pManager->GetInput();
+
 	pManager->GetInput()->GetPointClicked(Click.x, Click.y);
 	if (Click.x > UI.MenuItemWidth * 3 && Click.x < UI.MenuItemWidth * 4 && Click.y < UI.ToolBarHeight)
 	{
@@ -206,11 +123,12 @@ void FindByTypeAndColor::ReadActionParameters()
 	{
 		Exit = true;
 	}
-	else if (Click.x > UI.MenuItemWidth * 2 && Click.x < UI.MenuItemWidth * 3 && Click.y < UI.ToolBarHeight)
+	else if (Click.x > UI.MenuItemWidth * 2 && Click.x < UI.MenuItemWidth * 3 && Click.y < UI.ToolBarHeight) //restarts when clicked on again
 	{
 		Exit = true;
 		Restart = true;
 	}
+
 }
 
 void FindByTypeAndColor::Execute()
@@ -221,9 +139,6 @@ void FindByTypeAndColor::Execute()
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearStatusBar();
 	pManager->UpdateInterface();
-	//pOut->PrintMessage("execute command");
-	//CFigure* pFig = pManager->GetFigure(Click.x, Click.y);
-	//GenRandShape();
 	GenRandColor2();
 	PickFigureAndColorAction();
 	if (Restart)
@@ -245,7 +160,7 @@ void FindByTypeAndColor::Execute()
 void FindByTypeAndColor::PickFigureAndColorAction() {
 	Input* pIn = pManager->GetInput();
 	Output* pOut = pManager->GetOutput();
-	while (pManager->GetFigureCountByType(SelectedShape) > 0 && pManager->GetFigureByColor(SelectedColor) != NULL)
+	while (pManager->CheckTypeAndColor(SelectedColor, SelectedShape) != NULL)      //if there exists a figure with the picked color and type
 	{
 		ReadActionParameters();
 		if (Exit)
@@ -253,13 +168,13 @@ void FindByTypeAndColor::PickFigureAndColorAction() {
 			pOut->ClearStatusBar();
 			break;
 		}
-		PickedFigure = pManager->GetFigure(Click.x, Click.y);
+		PickedFigure = pManager->GetFigure(Click.x, Click.y); //if the kid clicked on the background
 		if (PickedFigure == NULL)
 		{
 			WrongCount++;
 			pOut->PrintMessage("no figure Selected");
 		}
-		else if (!PickedFigure->IsFilled())
+		else if (!PickedFigure->IsFilled())   //if the kid clicked on a non filled figure
 		{
 			WrongCount++;
 			pManager->RemoveFigure(PickedFigure->GetID());
@@ -267,7 +182,7 @@ void FindByTypeAndColor::PickFigureAndColorAction() {
 			pOut->PrintMessage("selected wrong figure");
 			pManager->UpdateInterface();
 		}
-		else if (PickedFigure->GetFillClr() != SelectedColor)
+		else if (PickedFigure->GetFillClr() != SelectedColor) //if the kid clicked on a color that was not chosen
 		{
 
 			pOut->PrintMessage("selected wrong figure");
@@ -276,7 +191,7 @@ void FindByTypeAndColor::PickFigureAndColorAction() {
 			delete PickedFigure;
 			pManager->UpdateInterface();
 		}
-		else if (PickedFigure->GetFigType() != SelectedShape)
+		else if (PickedFigure->GetFigType() != SelectedShape)  //is the kid clicked on a shape that was not selected
 		{
 			pOut->PrintMessage("selected wrong figure");
 			WrongCount++;
@@ -284,7 +199,7 @@ void FindByTypeAndColor::PickFigureAndColorAction() {
 			delete PickedFigure;
 			pManager->UpdateInterface();
 		}
-		else if (PickedFigure->GetFillClr() == SelectedColor && PickedFigure->GetFigType() == SelectedShape)
+		else if (PickedFigure->GetFillClr() == SelectedColor && PickedFigure->GetFigType() == SelectedShape)  //if the selected figure has the shape and color chosen
 		{
 			pOut->PrintMessage("Selected right figure");
 			PickedFigure = pManager->GetFigure(Click.x, Click.y);
@@ -295,13 +210,12 @@ void FindByTypeAndColor::PickFigureAndColorAction() {
 		}
 	}
 
-	if (pManager->GetFigureCountByType(SelectedShape) == 0 || pManager->GetFigureByColor(SelectedColor) == NULL)
+	if (pManager->CheckTypeAndColor(SelectedColor,SelectedShape) == NULL) //when all shapes with the chosen color and type are picked end the game and display the score
 	{
 		Action* pAct = new LoadAction(pManager, 1);
 		pAct->Execute();
 		delete pAct;
-		//&& pManager->GetFigureByColor(SelectedColor) == NULL
-		//pOut->ClearStatusBar();
+;
 		pOut->ClearStatusBar();
 		pOut->PrintMessage("you got right times: " + to_string(RightCount) + " you got wrong times: " + to_string(WrongCount));
 	}

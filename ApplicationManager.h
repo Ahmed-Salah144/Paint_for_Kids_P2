@@ -53,11 +53,11 @@ public:
 	int GetSelectedFigureCount()const;
 	int GetFigureCountByType(FigureType);
 	int GetSelectedFigureCountByType(FigureType)const;
-	int ApplicationManager::GetFigureCountByColor(ActionType Fig); //get the number of figure by color (osama)
 	int GetFigureCount()const;
 	// Interface Management Functions
 	Input *GetInput() const; //Return pointer to the input
 	Output *GetOutput() const; //Return pointer to the output
+
 
 	
 	void SetClipboard(CFigure*);  ////Taking a copy of the selected figure to clipboard (abdo)
@@ -69,6 +69,12 @@ public:
 	void ClearAll();//(salem)
 	void UpdateFigureData();
 	void SaveAll(ofstream& OutFile) const; //ChecK TA Save Output changed ?? (figure name, 1 added tab) Faseeh
+
+
+
+	CFigure* ApplicationManager::CheckTypeAndColor(color c, FigureType b)const;
+
+
 };
 
 #endif
