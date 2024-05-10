@@ -3,13 +3,18 @@
 
 #include "Action.h"
 #include"..\Figures\CFigure.h"
-//Bring to front Action (Salem)
+//Bring to front Action
 class BringToFrontAction : public Action
 {
+
 	CFigure* SelectedFig;
+
 public:
+
 	BringToFrontAction(ApplicationManager* pApp);
+
 	virtual void ReadActionParameters();
+
 	virtual void Execute();
 
 };

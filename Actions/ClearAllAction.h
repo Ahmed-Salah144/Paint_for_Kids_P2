@@ -3,7 +3,7 @@
 
 #include "Action.h"
 #include"..\Figures\CFigure.h"
-//Clear All Action(Salem)
+//Clear All Action
 class ClearAllAction : public Action
 {
 public:

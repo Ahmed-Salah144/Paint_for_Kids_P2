@@ -16,7 +16,7 @@ private:
 	bool Exit;
 	bool Restart;
 public:
-	void FindByTypeAndColor::GenRandColor2();
+	void FindByTypeAndColor::GenRandColor();
 	FindByTypeAndColor(ApplicationManager* pApp);
 
 	void FindByTypeAndColor::ReadActionParameters();

@@ -142,7 +142,6 @@
     <ClCompile Include="Actions\FindByTypeAndColor.cpp" />
     <ClCompile Include="Actions\FindyByType.cpp" />
     <ClCompile Include="Actions\LoadAction.cpp" />
-    <ClCompile Include="Actions\RandNum.cpp" />
     <ClCompile Include="Actions\PasteAction.cpp" />
     <ClCompile Include="Actions\SaveAction.cpp" />
     <ClCompile Include="Actions\SelectionAction.cpp" />
@@ -218,7 +217,6 @@
     <ClInclude Include="Actions\FindByType.h" />
     <ClInclude Include="Actions\FindByTypeAndColor.h" />
     <ClInclude Include="Actions\HalfSizeAction.h" />
-    <ClInclude Include="Actions\RandNum.h" />
     <ClInclude Include="Actions\PasteAction.h" />
     <ClInclude Include="Actions\SwitchToDrawModeAction.h" />
     <ClInclude Include="Actions\SwitchToPlayModeAction.h" />

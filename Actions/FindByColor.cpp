@@ -19,7 +19,7 @@ FindByColor::FindByColor(ApplicationManager* pApp) : Action(pApp) {
 	Exit = false;
 }
 
-void FindByColor::GenRandColor2()  //generates random color
+void FindByColor::GenRandColor()  //generates random color
 {
 	Output* pOut = pManager->GetOutput();
 	if (pManager->GetFigureCount() == 0)
@@ -91,7 +91,7 @@ void FindByColor::Execute()
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearStatusBar();
 	pManager->UpdateInterface();
-	GenRandColor2();
+	GenRandColor();
 	PickColorAction();
 	if (Restart)
 	{

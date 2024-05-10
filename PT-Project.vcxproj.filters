@@ -223,9 +223,6 @@
     <ClCompile Include="Actions\FindyByType.cpp">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClCompile>
-    <ClCompile Include="Actions\RandNum.cpp">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClCompile>
     <ClCompile Include="Actions\FindByColor.cpp">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClCompile>
@@ -395,9 +392,6 @@
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\FindByType.h">
-      <Filter>Action Classes\Miscellanious Actions</Filter>
-    </ClInclude>
-    <ClInclude Include="Actions\RandNum.h">
       <Filter>Action Classes\Miscellanious Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\FindByColor.h">

@@ -7,7 +7,6 @@
 
 SendToBackAction::SendToBackAction(ApplicationManager* pApp) :Action(pApp)
 {
-	FigCount = pManager->GetFigureCount();
 }
 
 void SendToBackAction::ReadActionParameters()
@@ -18,10 +17,15 @@ void SendToBackAction::ReadActionParameters()
 void SendToBackAction::Execute()
 {
 	ReadActionParameters();
-	pManager->RemoveFigure(SelectedFig->GetID());
-	pManager->AddFigure(SelectedFig);
-	for (int i = FigCount-1; i > 0; i--)
+
+	pManager->RemoveFigure(SelectedFig->GetID());//remove figure from list
+
+	pManager->AddFigure(SelectedFig);//adds figure to the top of the list
+
+	for (int i = pManager->GetFigureCount()-1; i > 0; i--) //swaps figure from top of the list to the bottom
 	{
 		pManager->SwapFigure(i,i-1);
 	}
+
+	pManager->GetOutput()->PrintMessage("Figure sent to back");
 }

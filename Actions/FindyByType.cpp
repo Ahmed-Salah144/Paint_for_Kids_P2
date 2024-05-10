@@ -48,7 +48,7 @@ void FindByType::Execute() //running fucntions on execute
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearStatusBar();
 	pManager->UpdateInterface();
-	GenRandShape2();
+	GenRandShape();
 	PickFigureAction();
 	if (Restart)
 	{
@@ -62,7 +62,7 @@ void FindByType::Execute() //running fucntions on execute
 	}
 }
 
-void FindByType::GenRandShape2() //making sure a figure exists and generating random shape from the list
+void FindByType::GenRandShape() //making sure a figure exists and generating random shape from the list
 {
 	Output* pOut = pManager->GetOutput(); //cheking the existence of the figure
 	if (pManager->GetFigureCount() == 0)

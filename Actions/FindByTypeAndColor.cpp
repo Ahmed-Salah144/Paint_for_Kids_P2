@@ -20,9 +20,8 @@ FindByTypeAndColor::FindByTypeAndColor(ApplicationManager* pApp) : Action(pApp) 
 
 
 
-void FindByTypeAndColor::GenRandColor2() //generates a random color and type uses the same function since if we dont have a filled color we wont run the program
+void FindByTypeAndColor::GenRandColor() //generates a random color and type uses the same function since if we dont have a filled color we wont run the program
 {
-	//int count = 0;
 	string s1;
 	string s2;
 
@@ -126,7 +125,7 @@ void FindByTypeAndColor::Execute()
 	Output* pOut = pManager->GetOutput();
 	pOut->ClearStatusBar();
 	pManager->UpdateInterface();
-	GenRandColor2();
+	GenRandColor();
 	PickFigureAndColorAction();
 	if (Restart)
 	{

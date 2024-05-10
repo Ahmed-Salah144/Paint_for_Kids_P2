@@ -1,7 +1,6 @@
 
 #pragma once
 #include "Action.h"
-//#include "RandNum.h"
 #include <iostream>
 #include"..\Figures\CFigure.h"
 #include <cstdlib> 
@@ -21,7 +20,6 @@ public:
 	FindByType(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
 	virtual void Execute();
-	void GenRandShape2();
 	void GenRandShape();
 	void PickFigureAction();
 };

@@ -17,6 +17,10 @@ void BringToFrontAction::ReadActionParameters()
 void BringToFrontAction::Execute()
 {
 	ReadActionParameters();
-	pManager->RemoveFigure(SelectedFig->GetID());
-	pManager->AddFigure(SelectedFig);
+
+	pManager->RemoveFigure(SelectedFig->GetID());//removes figure from list
+
+	pManager->AddFigure(SelectedFig); // adds figure to the top of the list
+
+	pManager->GetOutput()->PrintMessage("Figure brought to front");
 }

@@ -7,8 +7,11 @@
 class DoubleSizeAction : public Action
 {
 private:
+
 	CFigure* SelectedFig;
+
 public:
+
 	DoubleSizeAction(ApplicationManager* pApp);
 
 	virtual void ReadActionParameters();

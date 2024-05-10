@@ -6,8 +6,11 @@
 class HalfSizeAction : public Action
 {
 private:
+
 	CFigure* SelectedFig;
+
 public:
+
 	HalfSizeAction(ApplicationManager* pApp);
 
 	virtual void ReadActionParameters();

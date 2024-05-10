@@ -3,13 +3,18 @@
 
 #include "Action.h"
 #include"..\Figures\CFigure.h"
-//Delete Action (Salem)
+//Delete Action
 class DeleteAction : public Action
 {
-	CFigure* FigureToDelete;
+
+	CFigure* FigureToDelete;//Pointer to figure to be deleted
+
 public:
+
 	DeleteAction(ApplicationManager* pApp);
+
 	virtual void ReadActionParameters();
+
 	virtual void Execute();
 
 };

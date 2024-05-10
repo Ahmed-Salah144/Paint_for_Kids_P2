@@ -58,9 +58,9 @@ public:
 
 	virtual void MoveFigure(int x, int y) = 0;		// Move the Center of the Figure to a new position
 
-	virtual bool DoubleSize() = 0;		//Double Figure Size
+	virtual bool DoubleSize() = 0;		//returns true if figure size doubled successfully
 
-	virtual bool HalfSize() = 0;		//Halves Figure Size
+	virtual bool HalfSize() = 0;		//returns true if figure size halfed successfully
 
 	virtual void FitInsideDrawArea() = 0; //Fixes figure inside Draw Area
 
